@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as SalesActions from './sales.actions';
 import { switchMap, map } from 'rxjs/operators';
-import { SalesService } from '../../pages/sales-automation/service/sales.service';
+import { SalesService } from '../../pages/crm-services/sales-automation/service/sales.service';
 @Injectable()
 export class SalesEffects {
  loadSales$ = createEffect(() =>
