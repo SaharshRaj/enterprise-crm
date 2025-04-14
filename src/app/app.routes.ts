@@ -39,7 +39,8 @@ export const appRoutes: Routes = [
           {path: 'customer-support', component: CustomerSupportComponent},
           {path: 'marketing-automation', component: MarketingAutomationComponent},
           {path: 'analytics-and-reporting', component: AnalyticsAndReportingComponent},
-        ]
+        ],
+        canActivate: [AuthGuard]
       }
     ],
   },
