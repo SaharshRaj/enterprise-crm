@@ -9,12 +9,12 @@ export type SalesOpportunity = {
 
   followUpReminder: string | null;
 
-  salesStage: keyof SalesStage;
+  salesStage: SalesStage;
 };
 
-export interface SalesStage {
-  PROSPECTING: string;
-  QUALIFICATION: string;
-  CLOSED_WON: string;
-  CLOSED_LOST: string;
+export enum SalesStage {
+  PROSPECTING = "PROSPECTING",
+  QUALIFICATION = "QUALIFICATION",
+  CLOSED_WON="CLOSED_WON",
+  CLOSED_LOST="CLOSED_LOST"
 };

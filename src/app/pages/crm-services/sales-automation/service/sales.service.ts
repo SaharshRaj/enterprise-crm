@@ -12,4 +12,20 @@ export class SalesService {
   getSales(){
     return this.httpClient.get<SalesOpportunity[]>(environment.apiUrl+'/sales-opportunity')
   }
+
+  create(salesOpportunity: {customerID: string, estimatedValue: number, closingDate: string, salesStage: string}){
+    return this.httpClient.post<SalesOpportunity>(environment.apiUrl+'/sales-opportunity',salesOpportunity);
+  }
+
+  updateSales(salesOpportunity: SalesOpportunity){
+    return this.httpClient.put<SalesOpportunity>(environment.apiUrl+'/sales-opportunity/'+salesOpportunity.opportunityID,salesOpportunity);
+  }
+
+  updateNotificationSchedule(cron: string){
+    return this.httpClient.post<{id: string, taskName: string, cronExpression: string}>(environment.apiUrl+'/sales-opportunity/setReminderSchedule',{cronExpression: cron});
+  }
+
+  updateClosingSchedule(cron: string){
+    return this.httpClient.post<{id: string, taskName: string, cronExpression: string}>(environment.apiUrl+'/sales-opportunity/setClosingSchedule',{cronExpression: cron});
+  }
 }

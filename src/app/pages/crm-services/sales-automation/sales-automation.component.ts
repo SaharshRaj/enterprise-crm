@@ -18,8 +18,10 @@ export class SalesAutomationComponent implements OnInit {
 
   ngOnInit(): void {
     this.salesList$ = this.salesService.getSales();
-    this.salesList$.subscribe((sales) => console.table(sales))
+    this.salesList$.subscribe((sales) => console.table(sales));
   }
+
+  title = "Sales-Automation"
 
 
 }
