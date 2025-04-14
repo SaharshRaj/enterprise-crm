@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
+import { Toast } from 'primeng/toast';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
@@ -21,6 +22,7 @@ import { CustomerDataManagementModule } from './modules/crm-services/customer-da
 import { MarketingAutomationModule } from './modules/crm-services/marketing-automation/marketing-automation.module';
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +40,7 @@ import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-an
     AnalyticsAndReportingModule,
     StoreModule.forRoot({ time: timeReducer, auth: authReducer }),
     EffectsModule.forRoot([AuthEffects]),
+    Toast
   ],
   providers: [
     provideHttpClient(withFetch()),
@@ -45,6 +48,7 @@ import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-an
     providePrimeNG({
       theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } },
     }),
+    MessageService
   ],
   bootstrap: [AppComponent],
 })
