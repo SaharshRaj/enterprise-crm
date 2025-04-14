@@ -10,6 +10,7 @@ import { AuthService } from '../../auth/service/auth.service';
     templateUrl: './update-employee.component.html',
     styleUrl: './update-employee.component.scss'
 })
+
 export class UpdateEmployeeComponent implements OnInit {
     userRegistered = false;
     loading = false;

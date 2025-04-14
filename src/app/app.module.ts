@@ -22,6 +22,7 @@ import { MarketingAutomationModule } from './modules/crm-services/marketing-auto
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -37,7 +38,7 @@ import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-an
     CustomerSupportModule,
     AnalyticsAndReportingModule,
     StoreModule.forRoot({ time: timeReducer, auth: authReducer }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     provideHttpClient(withFetch()),
