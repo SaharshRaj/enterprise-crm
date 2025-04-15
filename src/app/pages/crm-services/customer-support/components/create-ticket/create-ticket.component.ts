@@ -19,7 +19,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
-  styleUrls: ['./create-ticket.component.scss']
+  styleUrls: ['./create-ticket.component.scss'],
+  standalone: false
 })
 export class CreateTicketComponent implements OnInit {
   createTicketForm!: FormGroup;
@@ -52,13 +53,14 @@ export class CreateTicketComponent implements OnInit {
     }
 
     this.loading = true;
-    this.supportService.createSupportTicket(this.createTicketForm.value).subscribe({
+    this.supportService.createSupportTicket({customerID: this.createTicketForm.get('customerId')?.value, assignedAgent: this.createTicketForm.get('assignedAgent')?.value, issueDescription: this.createTicketForm.get('issueDescription')?.value, status: 'OPEN' }).subscribe({
       next: (ticket) => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: `Ticket created successfully with ID: ${ticket.ticketID}` });
         this.createTicketForm.reset();
         this.submitted = false;
       },
       error: (error: HttpErrorResponse) => {
+        console.error(error)
         this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
         this.loading = false;
       },

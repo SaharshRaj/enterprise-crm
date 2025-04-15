@@ -7,11 +7,11 @@
           id="customerId"
           formControlName="customerId"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.customerId.errors }"
+          [ngClass]="{ 'is-invalid': submitted && f['customerId'].errors }"
         />
-        <div *ngIf="submitted && f.customerId.errors" class="invalid-feedback">
-          <div *ngIf="f.customerId.errors.required">Customer ID is required</div>
-          <div *ngIf="f.customerId.errors.min">Customer ID must be valid</div>
+        <div *ngIf="submitted && f['customerId'].errors" class="invalid-feedback">
+          <div *ngIf="f['customerId'].errors['required']">Customer ID is required</div>
+          <div *ngIf="f['customerId'].errors['min']">Customer ID must be valid</div>
         </div>
       </div>
   
@@ -21,11 +21,11 @@
           id="issueDescription"
           formControlName="issueDescription"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.issueDescription.errors }"
+          [ngClass]="{ 'is-invalid': submitted && f['issueDescription'].errors }"
         ></textarea>
-        <div *ngIf="submitted && f.issueDescription.errors" class="invalid-feedback">
-          <div *ngIf="f.issueDescription.errors.required">Issue description is required</div>
-          <div *ngIf="f.issueDescription.errors.minLength">Issue description must be at least 10 characters long</div>
+        <div *ngIf="submitted && f['issueDescription'].errors" class="invalid-feedback">
+          <div *ngIf="f['issueDescription'].errors['required']">Issue description is required</div>
+          <div *ngIf="f['issueDescription'].errors['minLength']">Issue description must be at least 10 characters long</div>
         </div>
       </div>
   
@@ -36,10 +36,10 @@
           id="assignedAgent"
           formControlName="assignedAgent"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.assignedAgent.errors }"
+          [ngClass]="{ 'is-invalid': submitted && f['assignedAgent'].errors }"
         />
-        <div *ngIf="submitted && f.assignedAgent.errors" class="invalid-feedback">
-          <div *ngIf="f.assignedAgent.errors.required">Assigned agent is required</div>
+        <div *ngIf="submitted && f['assignedAgent'].errors" class="invalid-feedback">
+          <div *ngIf="f['assignedAgent'].errors['required']">Assigned agent is required</div>
         </div>
       </div>
   

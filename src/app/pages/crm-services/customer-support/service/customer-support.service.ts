@@ -15,7 +15,7 @@ export class CustomerSupportService {
   updateClosingSchedule: any;
 
   
-private apiUrl = 'http://your-backend-url/api/support-tickets';
+private apiUrl = environment.apiUrl+'/support'
 
 constructor(private http: HttpClient) {}
 

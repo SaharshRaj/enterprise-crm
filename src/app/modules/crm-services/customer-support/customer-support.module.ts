@@ -5,13 +5,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerSupportComponent } from '../../../pages/crm-services/customer-support/customer-support.component';
 import { CustomerSupportService } from '../../../pages/crm-services/customer-support/service/customer-support.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     CustomerSupportComponent,ViewTicketsComponent,CreateTicketComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [
     CustomerSupportService
