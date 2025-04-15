@@ -226,7 +226,7 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
           updatedLead.followUpReminder;
       }
 
-      // Update the lead in the salesPipeline
+      
       for (const stage in this.salesPipeline) {
         const index = this.salesPipeline[stage as SalesStage].findIndex(
           (lead) => lead.opportunityID === updatedLead.opportunityID
@@ -236,11 +236,11 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
             ...this.salesPipeline[stage as SalesStage][index],
             followUpReminder: formattedDate,
           };
-          break; // Lead found and updated
+          break; 
         }
       }
 
-      // Update the pagedSalesPipeline
+      
       this.updatePagedSalesPipeline();
 
       this.visible = false;
@@ -251,7 +251,7 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
     return `ID ${lead.opportunityID}`;
   }
 
-  // Helper function for deep copying objects
+  
   private deepCopy<T>(obj: T): T {
     return JSON.parse(JSON.stringify(obj));
   }
