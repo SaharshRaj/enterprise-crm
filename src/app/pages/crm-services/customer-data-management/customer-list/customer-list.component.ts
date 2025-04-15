@@ -143,7 +143,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDeleteModal(customerId: number): void {
+  openDeleteModal(customerId: number | null): void {
     this.selectedCustomerId = customerId;
     this.showDeleteModal = true;
     this.deleteErrorMessage = null;
@@ -178,7 +178,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.filterCustomers(searchTerm);
   }
 
-  updateBtn(customerId: number) {
+  updateBtn(customerId: number|null) {
     console.log(customerId);
     this.customerService.setCustomerId(customerId);
     this.router.navigate([`/pages/services/customer-data-management/update-customer/${customerId}`]);
