@@ -13,6 +13,9 @@ import { CustomerDataManagementComponent } from './pages/crm-services/customer-d
 import { CustomerSupportComponent } from './pages/crm-services/customer-support/customer-support.component';
 import { MarketingAutomationComponent } from './pages/crm-services/marketing-automation/marketing-automation.component';
 import { AnalyticsAndReportingComponent } from './pages/crm-services/analytics-and-reporting/analytics-and-reporting.component';
+import { ViewTicketsComponent } from './pages/crm-services/customer-support/components/view-tickets/view-tickets.component';
+import { CreateTicketComponent } from './pages/crm-services/customer-support/components/create-ticket/create-ticket.component';
+// import { HeaderComponent } from './pages/crm-services/customer-support/components/header/header.component';
 
 export const appRoutes: Routes = [
   { path: '', component: LandingComponent, canActivate: [AuthGuard] },
@@ -39,6 +42,8 @@ export const appRoutes: Routes = [
           {path: 'customer-support', component: CustomerSupportComponent},
           {path: 'marketing-automation', component: MarketingAutomationComponent},
           {path: 'analytics-and-reporting', component: AnalyticsAndReportingComponent},
+          {path: 'customer-support-component', component: ViewTicketsComponent},
+          {path: 'customer-support-component', component: CreateTicketComponent}
         ],
         canActivate: [AuthGuard]
       }

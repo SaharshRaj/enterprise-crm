@@ -19,7 +19,7 @@ export interface SupportTicket {
 export function getMockSupportTicket(): SupportTicket {
     return {
         ticketID: 'TICKET12345',
-        customerID: 'CUSTOMER67890',
+        customerID: '1243',
         priority: 'High',
         created: new Date(),
         assignedAgent: 'Agent001',
