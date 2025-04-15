@@ -21,6 +21,7 @@ import { CustomerDataManagementModule } from './modules/crm-services/customer-da
 import { MarketingAutomationModule } from './modules/crm-services/marketing-automation/marketing-automation.module';
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
+// import { CustomerDeleteConfirmationComponent } from './pages/crm-services/customer-data-management/customer-delete-confirmation/customer-delete-confirmation.component';
 
 @NgModule({
   declarations: [AppComponent],

@@ -1,8 +1,8 @@
 export type CustomerProfile = {
-  customerID: number,
+  customerID: number|null,
   name : string,
   emailId: string,
-  phoneNumeber : string,
+  phoneNumber : string,
   purchaseHistory: string[],
   segmentationData: SegmentationData
 }
