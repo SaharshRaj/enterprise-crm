@@ -115,15 +115,16 @@
   }
   
   .page-button.active {
-    background-color: #4caf50;
+    background-color: #333; 
     color: white;
-    border-color: #4caf50;
+    border-color: #333;
   }
   td {
 
     .update-button{
         $accent-cool: #4caf50; // Define your accent color
         color: $accent-cool;
+        margin: 0 0.7rem 0 0.5rem;
       }
 
       .delete-button {
