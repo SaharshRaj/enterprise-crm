@@ -1,15 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-header',
-//   standalone: false,
-//   templateUrl: './header.component.html',
-//   styleUrl: './header.component.scss'
-// })
-// export class HeaderComponent {
-
-// }
-
 import { Component, Input, OnInit } from '@angular/core';
 import { SupportTicket } from '../../../../../models/SupportTicket';
 import { Observable } from 'rxjs';
@@ -19,13 +7,13 @@ import { CustomerSupportService } from './../../service/customer-support.service
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-customer-support-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  standalone: false
 })
-export class HeaderComponent implements OnInit {
+export class CustomerSupportHeaderComponent implements OnInit {
   @Input({ required: true }) title!: string;
-  @Input({ required: true }) allTickets$!: Observable<SupportTicket[]>;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -40,13 +28,6 @@ export class HeaderComponent implements OnInit {
       assignedAgent: ['', [Validators.required]],
     });
 
-    this.notificationCronForm = this.fb.group({
-      time: [null, [Validators.required]],
-    });
-
-    this.closingCronForm = this.fb.group({
-      time: [null, [Validators.required]],
-    });
 
     this.items = [
       {
@@ -72,11 +53,6 @@ export class HeaderComponent implements OnInit {
       },
     ];
 
-    this.allTickets$.subscribe((tickets) => {
-      this.activeTickets = tickets.filter(ticket => ticket.status === 'Open').length;
-      this.resolvedTickets = tickets.filter(ticket => ticket.status === 'Closed').length;
-      this.pendingTickets = tickets.filter(ticket => ticket.status === 'Pending').length;
-    });
   }
 
   activeTickets!: number;
@@ -84,8 +60,7 @@ export class HeaderComponent implements OnInit {
   pendingTickets!: number;
   items!: MenuItem[];
   newTicketForm!: FormGroup;
-  notificationCronForm!: FormGroup;
-  closingCronForm!: FormGroup;
+  
 
   visible1: boolean = false;
   visible2: boolean = false;
@@ -118,11 +93,11 @@ export class HeaderComponent implements OnInit {
 
   handleTicketSumbit() {
     this.isLoading = true;
-    this.customerSupportService.create({
+    this.customerSupportService.createSupportTicket({
       customerID: this.newTicketForm.get('customerId')?.value,
       issueDescription: this.newTicketForm.get('issueDescription')?.value,
       assignedAgent: this.newTicketForm.get('assignedAgent')?.value,
-      status: 'Open',
+      status: "OPEN",
     }).subscribe({
       next: (ticket: SupportTicket) => {
         this.showToast({ severity: 'success', summary: 'Saved', message: `Ticket created successfully with id: ${ticket.ticketID}` });
@@ -140,43 +115,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  handleNotificationSumbit() {
-    this.isLoading = true;
-    const timeString = this.notificationCronForm.get('time')?.value;
-    const cron = this.timeToDailyCron(timeString);
-    this.customerSupportService.updateNotificationSchedule(cron).subscribe({
-      next: (res: { id: string; taskName: string; cronExpression: string }) =>
-        this.showToast({ severity: 'success', summary: 'Success', message: `Updated schedule for ${res.taskName}` }),
-      error: (error: HttpErrorResponse) => {
-        this.showToast({ severity: 'error', summary: 'Error', message: error.error.message });
-        this.notificationCronForm.reset();
-      },
-      complete: () => {
-        this.isLoading = false;
-        this.visible2 = false;
-        this.notificationCronForm.reset();
-      },
-    });
-  }
-
-  handleClosingSumbit() {
-    this.isLoading = true;
-    const timeString = this.closingCronForm.get('time')?.value;
-    const cron = this.timeToDailyCron(timeString);
-    this.customerSupportService.updateClosingSchedule(cron).subscribe({
-      next: (res: { id: string; taskName: string; cronExpression: string }) =>
-        this.showToast({ severity: 'success', summary: 'Success', message: `Updated schedule for ${res.taskName}` }),
-      error: (error: HttpErrorResponse) => {
-        this.showToast({ severity: 'error', summary: 'Error', message: error.error.message });
-        this.closingCronForm.reset();
-      },
-      complete: () => {
-        this.isLoading = false;
-        this.visible1 = false;
-        this.closingCronForm.reset();
-      },
-    });
-  }
+  
 
   get customerIdErrorMessage(): string {
     const control = this.newTicketForm.get('customerId');
@@ -208,20 +147,5 @@ export class HeaderComponent implements OnInit {
     return '';
   }
 
-  get notificationTimeErrorMessage(): string {
-    const control = this.notificationCronForm.get('time');
-    if (control?.hasError('required')) {
-      return 'Notification time is required.';
-    }
-    return '';
-  }
-
-  get closingTimeErrorMessage(): string {
-    const control = this.closingCronForm.get('time');
-    if (control?.hasError('required')) {
-      return 'Closing time is required.';
-    }
-    return '';
-  }
 }
 

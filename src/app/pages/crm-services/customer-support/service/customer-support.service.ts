@@ -10,9 +10,6 @@ import { environment } from '../../../../../environments/environment.development
 })
 
 export class CustomerSupportService {
-  updateNotificationSchedule: any;
-  create: any;
-  updateClosingSchedule: any;
 
   
 private apiUrl = environment.apiUrl+'/support'
@@ -22,5 +19,14 @@ constructor(private http: HttpClient) {}
 createSupportTicket(ticket: SupportTicket): Observable<SupportTicket> {
   return this.http.post<SupportTicket>(this.apiUrl, ticket);
 }
+
+  
+updateTicketStatus(ticketId: number, status: string): Observable<SupportTicket> {
+  return this.http.patch<SupportTicket>(`${this.apiUrl}/${ticketId}/status`, null, {
+  params: { status }
+  });
+  }
+  
 }
+
 

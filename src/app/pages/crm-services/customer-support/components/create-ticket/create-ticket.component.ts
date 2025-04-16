@@ -1,15 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-create-ticket',
-//   standalone: false,
-//   templateUrl: './create-ticket.component.html',
-//   styleUrl: './create-ticket.component.scss'
-// })
-// export class CreateTicketComponent {
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerSupportService } from './../../service/customer-support.service';

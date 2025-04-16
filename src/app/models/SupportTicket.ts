@@ -22,7 +22,7 @@ export function getMockSupportTicket(): SupportTicket {
         customerID: '1243',
         priority: 'High',
         created: new Date(),
-        assignedAgent: 'Agent001',
+        assignedAgent: 'Agent01',
         issueDescription: 'Sample issue description for testing.',
         status: 'OPEN'
     };
