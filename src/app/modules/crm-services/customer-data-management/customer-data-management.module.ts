@@ -11,6 +11,7 @@ import { DeleteCustomerComponent } from '../../../pages/crm-services/customer-da
 import { SearchCustomerComponent } from '../../../pages/crm-services/customer-data-management/search-customer/search-customer.component';
 import { CustomerDataManagementComponent } from '../../../pages/crm-services/customer-data-management/customer-data-management.component';
 import { UpdateCustomerComponent } from '../../../pages/crm-services/customer-data-management/update-customer/update-customer.component';
+import { FilterCustomerComponent } from '../../../pages/crm-services/customer-data-management/filter-customer/filter-customer.component';
 // import { CustomerDeleteConfirmationComponent } from '../../../pages/crm-services/customer-data-management/customer-delete-confirmation/customer-delete-confirmation.component';
 
 
@@ -22,7 +23,8 @@ import { UpdateCustomerComponent } from '../../../pages/crm-services/customer-da
     RegisterCustomerComponent,
     DeleteCustomerComponent,
     SearchCustomerComponent,
-    UpdateCustomerComponent
+    UpdateCustomerComponent,
+    FilterCustomerComponent
   ],
   imports: [
     CommonModule,

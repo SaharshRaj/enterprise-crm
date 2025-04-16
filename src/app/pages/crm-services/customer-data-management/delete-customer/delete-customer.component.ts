@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     styleUrl: './delete-customer.component.scss'
 })
 export class DeleteCustomerComponent implements OnInit {
-    @Input() selectedCustomerId: number | null = null; // Changed to number | null
+    @Input() selectedCustomerId: number | null = null;
     @Output() close = new EventEmitter<void>();
     @Output() deleteSuccessful = new EventEmitter<void>();
 

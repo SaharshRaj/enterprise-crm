@@ -36,7 +36,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   constructor(private customerService: CustomersService, private cdr: ChangeDetectorRef,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadTotalPages();
@@ -72,7 +72,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       .subscribe(
         (data) => {
           this.allCustomers = data;
-          this.filterCustomers('');
+          this.filteredCustomers = data; // Initialize filteredCustomers
+          this.updatePagedCustomers();
           this.loading = false;
         },
         (error) => {
@@ -168,7 +169,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   onCustomersSearchChanged(filteredCustomers: CustomerProfile[]): void {
-    this.customers = filteredCustomers;
+    this.filteredCustomers = filteredCustomers;
     this.currentPage = 0;
     this.updatePagedCustomers();
   }
@@ -178,9 +179,16 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.filterCustomers(searchTerm);
   }
 
+  handleFilteredCustomers(filteredList: CustomerProfile[]) {
+    this.filteredCustomers = filteredList;
+    this.currentPage = 0;
+    this.updatePagedCustomers();
+  }
+
   updateBtn(customerId: number|null) {
     console.log(customerId);
     this.customerService.setCustomerId(customerId);
     this.router.navigate([`/pages/services/customer-data-management/update-customer/${customerId}`]);
-  }
+    }
 }
+
