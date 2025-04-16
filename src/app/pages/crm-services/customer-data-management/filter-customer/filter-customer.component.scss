@@ -42,7 +42,7 @@
   .filter-button .arrow.open {
     border-top: none;
     border-bottom: 8px solid #555;
-    transform: rotate(180deg);
+    transform: rotate(360deg);
   }
   
   .dropdown {
@@ -133,23 +133,24 @@
   .selected-filters {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Increased gap between selected filters */
+    gap: 10px; 
     margin-top: 15px;
     font-size: 14px;
     align-items: center;
+    margin-bottom: 15px;
   }
   
   .selected-filters span {
-    background-color: #e0f7fa;
-    color: #00897b;
-    padding: 8px 16px; /* Increased padding */
-    border-radius: 20px; /* More rounded corners */
+    background-color: #dee2e3;
+    color: #040b0a;
+    padding: 8px 16px; 
+    border-radius: 20px; 
     display: flex;
     align-items: center;
-    gap: 10px; /* Increased gap between text and button */
+    gap: 10px; 
     border: 1px solid #b2ebf2;
-    margin: 2px 5px; /* Added horizontal margin */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Added shadow */
+    margin: 2px 5px 2px 5px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     white-space: nowrap;
   }
   
@@ -159,7 +160,7 @@
     color: #00897b;
     cursor: pointer;
     padding: 0;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
     line-height: 1;
     opacity: 0.7;
     transition: opacity 0.2s ease-in-out;

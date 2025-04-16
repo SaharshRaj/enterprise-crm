@@ -7,9 +7,9 @@
   <div *ngIf="isFilterOpen" class="dropdown">
     <div class="dropdown-content">
       <div class="filter-options">
-        <button (click)="openSection('interest')" [ngClass]="{'active': activeSection === 'interest'}"  class="filter-option-button">Interest</button>
-        <button (click)="openSection('region')" [ngClass]="{'active': activeSection === 'region'}" class="filter-option-button">Region</button>
-        <button (click)="openSection('purchasingHabits')" [ngClass]="{'active': activeSection === 'purchasingHabits'}" class="filter-option-button">Purchasing Habits</button>
+        <button (click)="openSection('interest')" [ngClass]="{'active': activeSection === 'interest'}"  class="filter-option-button">INTEREST</button>
+        <button (click)="openSection('region')" [ngClass]="{'active': activeSection === 'region'}" class="filter-option-button">REGION</button>
+        <button (click)="openSection('purchasingHabits')" [ngClass]="{'active': activeSection === 'purchasingHabits'}" class="filter-option-button">PURCHASING HABITS</button>
       </div>
 
       <div *ngIf="activeSection === 'interest'" class="sub-dropdown">
