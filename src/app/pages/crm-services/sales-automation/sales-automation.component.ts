@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesService } from './service/sales.service';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { SalesOpportunity } from '../../../models/SalesOpportunity';
+import { Store } from '@ngrx/store';
+import { selectAllOpportunities, selectLoading } from '../../../store/sales/sales.selector';
+import { loadSales } from '../../../store/sales/sales.actions';
 
 
 @Component({
@@ -13,12 +16,18 @@ import { SalesOpportunity } from '../../../models/SalesOpportunity';
 export class SalesAutomationComponent implements OnInit {
 
   salesList$!:Observable<SalesOpportunity[]>;
+  loaded$!: Observable<boolean>;
 
-  constructor(private readonly salesService: SalesService){}
+  constructor(private readonly salesService: SalesService, private readonly store: Store){}
 
   ngOnInit(): void {
-    this.salesList$ = this.salesService.getSales();
-    this.salesList$.subscribe((sales) => console.table(sales));
+    this.salesList$ = this.store.select(selectAllOpportunities);
+    this.loaded$ = this.store.select(selectLoading);
+    this.loaded$.pipe(take(1)).subscribe((loaded) => {
+      if (!loaded) {
+        this.store.dispatch(loadSales());
+      }
+    });
   }
 
   title = "Sales-Automation"

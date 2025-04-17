@@ -1,7 +1,7 @@
 <app-floating-configurator></app-floating-configurator>
 <section id="sales-automation" class="flex flex-col gap-4">
-  <app-heading [title]="title" [allSales$]="salesList$"></app-heading>
-  <app-stats [allSales$]="salesList$"></app-stats>
-  <app-monthly-sales-trend [allSales$]="salesList$"></app-monthly-sales-trend>
-  <app-sales-pipeline [allSales$]="salesList$"></app-sales-pipeline>
+  <app-heading [title]="title" [allSales]="salesList$ | async"></app-heading>
+  <app-stats [allSales]="salesList$ | async"></app-stats>
+  <app-monthly-sales-trend [allSales]="salesList$ | async"></app-monthly-sales-trend>
+  <app-sales-pipeline [allSales]="salesList$ | async"></app-sales-pipeline>
 </section>

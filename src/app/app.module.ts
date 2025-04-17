@@ -23,6 +23,8 @@ import { MarketingAutomationModule } from './modules/crm-services/marketing-auto
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
 import { MessageService } from 'primeng/api';
+import { salesReducer } from './store/sales/sales.reducer';
+import { SalesEffects } from './store/sales/sales.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,8 +40,8 @@ import { MessageService } from 'primeng/api';
     MarketingAutomationModule,
     CustomerSupportModule,
     AnalyticsAndReportingModule,
-    StoreModule.forRoot({ time: timeReducer, auth: authReducer }),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot({ time: timeReducer, auth: authReducer, sales: salesReducer }),
+    EffectsModule.forRoot([AuthEffects, SalesEffects]),
     Toast
   ],
   providers: [

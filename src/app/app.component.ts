@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadSales } from './store/sales/sales.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,11 @@ import { Component } from '@angular/core';
   standalone: false,
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+constructor(private readonly store: Store){}
+
+  ngOnInit(): void {
+    this.store.dispatch(loadSales())
+  }
   title = 'enterprise-crm';
 }

@@ -10,9 +10,9 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './stats.component.scss',
 })
 export class StatsComponent implements OnInit {
-  @Input({ required: true }) allSales$!: Observable<SalesOpportunity[]>;
+  @Input({ required: true }) allSales!: SalesOpportunity[] | null;
 
-  constructor(private currencyPipe: CurrencyPipe){}
+  constructor(private readonly currencyPipe: CurrencyPipe){}
 
   totalLeads!: number;
   totalRevenue!: number;
@@ -39,22 +39,21 @@ export class StatsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.allSales$.subscribe((sales) => {
-      this.revenueLost = sales.filter((sale) => sale.salesStage == SalesStage.CLOSED_LOST).map(sale => sale.estimatedValue).reduce((a,b)=>a+b,0)
-      this.closingToday = sales.filter((sale) => this.isSameDay(new Date(sale.closingDate) ,new Date())).length
-      this.totalLeads = sales.length;
-      this.totalRevenue = sales
+      this.revenueLost = this.allSales!.filter((sale) => sale.salesStage == SalesStage.CLOSED_LOST).map(sale => sale.estimatedValue).reduce((a,b)=>a+b,0)
+      this.closingToday = this.allSales!.filter((sale) => this.isSameDay(new Date(sale.closingDate) ,new Date())).length
+      this.totalLeads = this.allSales!.length;
+      this.totalRevenue = this.allSales!
         .filter((sale) => sale.salesStage === 'CLOSED_WON')
         .map((sale) => sale.estimatedValue)
         .reduce((a, b) => a + b, 0);
-      const won = sales.filter(
+      const won = this.allSales!.filter(
         (sale) => sale.salesStage === 'CLOSED_WON',
       ).length;
-      const lost = sales.filter(
+      const lost = this.allSales!.filter(
         (sale) => sale.salesStage === 'CLOSED_LOST',
       ).length;
-      this.winRate = +((won / sales.length) * 100).toFixed(2);
-      this.lostRate = +((lost / sales.length) * 100).toFixed(2);
+      this.winRate = +((won / this.allSales!.length) * 100).toFixed(2);
+      this.lostRate = +((lost / this.allSales!.length) * 100).toFixed(2);
       this.statistics = [
         {
           title: 'Total Leads',
@@ -84,6 +83,5 @@ export class StatsComponent implements OnInit {
           footer: 'Lose rate:',
         },
       ];
-    });
   }
 }

@@ -22,7 +22,7 @@ export class MonthlySalesTrendComponent implements OnInit, OnDestroy {
   lostDataPoints: MonthlySales[] = []; // Initialize lostDataPoints
   totalDataPoints: MonthlySales[] = []; // Initialize totalDataPoints
 
-  @Input({ required: true }) allSales$!: Observable<SalesOpportunity[]>;
+  @Input({ required: true }) allSales!: SalesOpportunity[] | null;
 
   getPast6MonthsSalesTrendArray(data: SalesOpportunity[], salesStage: string, forAll: boolean): MonthlySales[] {
     const monthlySalesMap: { [monthYear: string]: number } = {};
@@ -94,12 +94,10 @@ export class MonthlySalesTrendComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.allSales$.subscribe((sales) => {
-      this.wonDataPoints = this.getPast6MonthsSalesTrendArray(sales,SalesStage.CLOSED_WON, false);
-      this.lostDataPoints = this.getPast6MonthsSalesTrendArray(sales,SalesStage.CLOSED_LOST, false);
-      this.totalDataPoints = this.getPast6MonthsSalesTrendArray(sales,"", true);
+      this.wonDataPoints = this.getPast6MonthsSalesTrendArray(this.allSales!,SalesStage.CLOSED_WON, false);
+      this.lostDataPoints = this.getPast6MonthsSalesTrendArray(this.allSales!,SalesStage.CLOSED_LOST, false);
+      this.totalDataPoints = this.getPast6MonthsSalesTrendArray(this.allSales!,"", true);
       this.initCharts(); // Call initCharts when sales data is available
-    });
   }
 
   ngOnDestroy(): void {

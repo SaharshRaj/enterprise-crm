@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  SalesOpportunity,
-} from '../../../../../models/SalesOpportunity';
-import { Observable } from 'rxjs';
+import { SalesOpportunity } from '../../../../../models/SalesOpportunity';
+import { loadSales } from '../../../../../.../../store/sales/sales.actions';
 import { MenuItem, MessageService } from 'primeng/api';
 import {
   FormBuilder,
@@ -12,6 +10,7 @@ import {
 } from '@angular/forms';
 import { SalesService } from '../../service/sales.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-heading',
@@ -20,16 +19,16 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './heading.component.scss',
 })
 export class HeadingComponent implements OnInit {
-  
   @Input({ required: true }) title!: string;
-  @Input({ required: true }) allSales$!: Observable<SalesOpportunity[]>;
-  
+  @Input({ required: true }) allSales!: SalesOpportunity[] | null;
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly salesService: SalesService,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly store : Store
   ) {}
-  
+
   ngOnInit(): void {
     this.newLeadForm = this.fb.group({
       customerId: ['', [Validators.required, Validators.min(1)]],
@@ -87,23 +86,22 @@ export class HeadingComponent implements OnInit {
         },
       },
     ];
-    this.allSales$.subscribe((sales) => {
-      this.activeLeads = sales.filter(
-        (sale) =>
-          (sale.salesStage !== 'CLOSED_LOST' || 'CLOSED_WON') &&
-          Date.parse(sale.closingDate) > Date.now(),
-      ).length;
-      this.estimatedRevenue = sales.reduce(
-        (total, sale) => total + (sale.estimatedValue || 0),
-        0,
-      );
-      this.leadsWon = sales.filter(
-        (sale) => sale.salesStage === 'CLOSED_WON',
-      ).length;
-    });
+    this.activeLeads = this.allSales!.filter(
+      (sale: SalesOpportunity) =>
+        sale.salesStage !== 'CLOSED_LOST' &&
+        sale.salesStage !== 'CLOSED_WON' &&
+        Date.parse(sale.closingDate) > Date.now(),
+    ).length;
+    this.estimatedRevenue = this.allSales!.reduce(
+      (total: number, sale: SalesOpportunity) =>
+        total + (sale.estimatedValue || 0),
+      0,
+    );
+    this.leadsWon = this.allSales!.filter(
+      (sale) => sale.salesStage === 'CLOSED_WON',
+    ).length;
   }
-  
-  
+
   activeLeads!: number;
   estimatedRevenue!: number;
   leadsWon!: number;
@@ -115,37 +113,40 @@ export class HeadingComponent implements OnInit {
   visible1: boolean = false;
   visible2: boolean = false;
   visible3: boolean = false;
-  
+
   isLoading = false;
-  
-  
+
   timeToDailyCron(timeString: string) {
     const date = new Date(timeString);
-    
+
     const minutes = date.getMinutes();
     const hours = date.getHours();
-    
+
     return `* ${minutes} ${hours} * * * `;
   }
-  
+
   showDialog1() {
     this.visible1 = true;
   }
-  
+
   showDialog2() {
     this.visible2 = true;
   }
-  
+
   showDialog3() {
     this.visible3 = true;
   }
-  
-  showToast(toast : {severity: string, summary: string, message: string}){
-    this.messageService.add({ severity: toast.severity, summary: toast.summary, detail: toast.message });
+
+  showToast(toast: { severity: string; summary: string; message: string }) {
+    this.messageService.add({
+      severity: toast.severity,
+      summary: toast.summary,
+      detail: toast.message,
+    });
   }
 
   salesStage = [{ name: 'PROSPECTING' }];
-  
+
   handleLeadSumbit() {
     this.isLoading = true;
     const date = this.newLeadForm.get('closingDate')?.value;
@@ -160,24 +161,33 @@ export class HeadingComponent implements OnInit {
       })
       .subscribe({
         next: (sale: SalesOpportunity) => {
-          this.showToast({severity: 'success', summary: 'Saved', message:`Lead created successfully with id: ${sale.opportunityID}`})
+          this.showToast({
+            severity: 'success',
+            summary: 'Saved',
+            message: `Lead created successfully with id: ${sale.opportunityID}`,
+          });
+          this.store.dispatch(loadSales())
         },
         error: (error: HttpErrorResponse) => {
-          this.showToast({severity:'error', summary: 'Error', message: error.error.message})
+          this.showToast({
+            severity: 'error',
+            summary: 'Error',
+            message: error.error.message,
+          });
           console.log(error.error.message);
           this.isLoading = false;
           this.newLeadForm.reset({
             salesStage: [{ name: 'PROSPECTING' }],
-            estimatedValue: 10000
-          })
+            estimatedValue: 10000,
+          });
         },
         complete: () => {
           this.isLoading = false;
           this.visible3 = false;
           this.newLeadForm.reset({
             salesStage: [{ name: 'PROSPECTING' }],
-            estimatedValue: 10000
-          })
+            estimatedValue: 10000,
+          });
         },
       });
   }
@@ -187,15 +197,23 @@ export class HeadingComponent implements OnInit {
     const cron = this.timeToDailyCron(timeString);
     this.salesService.updateNotificationSchedule(cron).subscribe({
       next: (res: { id: string; taskName: string; cronExpression: string }) =>
-        this.showToast({severity: 'success', summary: 'Success', message: `Updated schedule for ${res.taskName}` }),
+        this.showToast({
+          severity: 'success',
+          summary: 'Success',
+          message: `Updated schedule for ${res.taskName}`,
+        }),
       error: (error: HttpErrorResponse) => {
-        this.showToast({severity: 'error', summary: 'Error', message: error.error.message });
-        this.notificationCronForm.reset()
+        this.showToast({
+          severity: 'error',
+          summary: 'Error',
+          message: error.error.message,
+        });
+        this.notificationCronForm.reset();
       },
       complete: () => {
         this.isLoading = false;
         this.visible2 = false;
-        this.notificationCronForm.reset()
+        this.notificationCronForm.reset();
       },
     });
   }
@@ -205,19 +223,26 @@ export class HeadingComponent implements OnInit {
     const cron = this.timeToDailyCron(timeString);
     this.salesService.updateClosingSchedule(cron).subscribe({
       next: (res: { id: string; taskName: string; cronExpression: string }) =>
-        this.showToast({severity: 'success', summary: 'Success', message: `Updated schedule for ${res.taskName}` }),
+        this.showToast({
+          severity: 'success',
+          summary: 'Success',
+          message: `Updated schedule for ${res.taskName}`,
+        }),
       error: (error: HttpErrorResponse) => {
-        this.showToast({severity: 'error', summary: 'Error', message: error.error.message });
-        this.closingCronForm.reset()
+        this.showToast({
+          severity: 'error',
+          summary: 'Error',
+          message: error.error.message,
+        });
+        this.closingCronForm.reset();
       },
       complete: () => {
         this.isLoading = false;
         this.visible1 = false;
-        this.notificationCronForm.reset()
+        this.notificationCronForm.reset();
       },
     });
   }
-
 
   get customerIdErrorMessage(): string {
     const control = this.newLeadForm.get('customerId');
@@ -267,6 +292,4 @@ export class HeadingComponent implements OnInit {
     }
     return '';
   }
-
-
 }

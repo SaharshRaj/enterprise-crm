@@ -4,7 +4,7 @@ import {
   SalesStage,
 } from '../../../../../models/SalesOpportunity';
 import { SalesService } from '../../service/sales.service';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject} from 'rxjs';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { PaginatorState } from 'primeng/paginator';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -19,7 +19,7 @@ import { MessageService } from 'primeng/api';
   styleUrl: './sales-pipeline.component.scss',
 })
 export class SalesPipelineComponent implements OnInit, OnDestroy {
-  @Input({ required: true }) allSales$!: Observable<SalesOpportunity[]>;
+  @Input({ required: true }) allSales!: SalesOpportunity[] | null;
 
   formGroup!: FormGroup;
   selectedLead: SalesOpportunity | null = null;
@@ -137,18 +137,18 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
   }
 
   loadSalesData() {
-    this.allSales$.pipe(takeUntil(this.destroy$)).subscribe((sales) => {
-      this.total = sales.length;
+    
+      this.total = this.allSales!.length;
       this.salesStageKeys.forEach(
         (stage) =>
-          (this.salesPipeline[stage] = sales.filter(
+          (this.salesPipeline[stage] = this.allSales!.filter(
             (sale) => sale.salesStage === stage
           ))
       );
       // Create a deep copy of the initial sales data
       this.originalSalesPipeline = this.deepCopy(this.salesPipeline);
       this.updatePagedSalesPipeline();
-    });
+    
   }
 
   ngOnDestroy(): void {
