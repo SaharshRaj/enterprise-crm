@@ -9,6 +9,11 @@ import { CustomersService } from '../customer-data-management/service/customers.
 import { CustomerSupportService } from '../customer-support/service/customer-support.service';
 import { StatsComponent } from '../sales-automation/components/stats/stats.component';
 import { HeaderComponent } from './components/header/header.component';
+import { TabsSalesComponent } from './components/tabs-sales/tabs-sales.component';
+import { CustomerDataManagementComponent } from '../customer-data-management/customer-data-management.component';
+import { TabsCustomerComponent } from './components/tabs-customer/tabs-customer.component';
+import { TabsSupportComponent } from './components/tabs-support/tabs-support.component';
+import { TabsMarketingComponent } from './components/tabs-marketing/tabs-marketing.component';
 @Component({
   selector: 'app-analytics-and-reporting',
   standalone: false,
@@ -137,10 +142,10 @@ export class AnalyticsAndReportingComponent implements OnInit{
   }
 
   tabs = [
-    {label: "Tab 1", content: "s"},
-    {label: "Tab 2", content: "s"},
-    {label: "Tab 3", content: "s"},
-    {label: "Tab 4", content: "s"},
+    {label: "Customer Data Management", content: TabsCustomerComponent},
+    {label: "Sales Automation", content: TabsSalesComponent},
+    {label: "Customer Support", content: TabsSupportComponent},
+    {label: "Marketing Automation", content: TabsMarketingComponent},
   ]
 
 }

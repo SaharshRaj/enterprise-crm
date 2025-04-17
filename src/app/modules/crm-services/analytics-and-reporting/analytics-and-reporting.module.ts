@@ -10,9 +10,11 @@ import { CustomermoduleComponent } from '../../../pages/crm-services/analytics-a
 import { ChartModule } from 'primeng/chart';
 import { MarketingmoduleComponent } from '../../../pages/crm-services/analytics-and-reporting/components/marketingmodule/marketingmodule.component';
 import { SupportmoduleComponent } from '../../../pages/crm-services/analytics-and-reporting/components/supportmodule/supportmodule.component';
-import { TabsComponent } from '../../../pages/landing/components/tabs/tabs.component';
 import { LandingModule } from '../../pages/landing/landing.module';
 import { TabsSalesComponent } from '../../../pages/crm-services/analytics-and-reporting/components/tabs-sales/tabs-sales.component';
+import { TabsCustomerComponent } from '../../../pages/crm-services/analytics-and-reporting/components/tabs-customer/tabs-customer.component';
+import { TabsSupportComponent } from '../../../pages/crm-services/analytics-and-reporting/components/tabs-support/tabs-support.component';
+import { TabsMarketingComponent } from '../../../pages/crm-services/analytics-and-reporting/components/tabs-marketing/tabs-marketing.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,9 @@ import { TabsSalesComponent } from '../../../pages/crm-services/analytics-and-re
     MarketingmoduleComponent,
     SupportmoduleComponent,
     TabsSalesComponent,
+    TabsCustomerComponent,
+    TabsSupportComponent,
+    TabsMarketingComponent,
   ],
   imports: [
     CommonModule,

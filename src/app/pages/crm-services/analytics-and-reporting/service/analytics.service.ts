@@ -22,7 +22,7 @@ export class AnalyticsService {
       return this.httpClient.get<SupportTicket[]>(environment.apiUrl+'/supportTicket');
   }
 
-  getSalesData(){
+  getSales(){
       return this.httpClient.get<SalesOpportunity[]>(environment.apiUrl+'/sales');
   }
   

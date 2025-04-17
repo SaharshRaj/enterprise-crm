@@ -4,12 +4,12 @@ import { SalesService } from '../../../sales-automation/service/sales.service';
 import { SalesOpportunity, SalesStage } from '../../../../../models/SalesOpportunity';
 
 @Component({
-  selector: 'app-tabs-sales',
-  templateUrl: './tabs-sales.component.html',
-  styleUrls: ['./tabs-sales.component.scss'],
-  standalone: false
+  selector: 'app-tabs-marketing',
+  standalone: false,
+  templateUrl: './tabs-marketing.component.html',
+  styleUrl: './tabs-marketing.component.scss'
 })
-export class TabsSalesComponent implements OnInit {
+export class TabsMarketingComponent {
   allSales!: SalesOpportunity[];
 
   constructor(private readonly currencyPipe: CurrencyPipe, private readonly salesService: SalesService){}
@@ -86,5 +86,6 @@ export class TabsSalesComponent implements OnInit {
       ];
     });
   }
+
 
 }

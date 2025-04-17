@@ -1,15 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-customermodule',
-//   standalone: false,
-//   templateUrl: './customermodule.component.html',
-//   styleUrl: './customermodule.component.scss'
-// })
-// export class CustomermoduleComponent {
-
-// }
-
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
@@ -22,7 +10,7 @@ export class CustomermoduleComponent implements OnInit {
   regionData: any[] = [];
 
   // Your raw data
-  rawData = [
+  customersData = [
     { id: 1, name: 'Alice Smith', email: 'alice.smith@example.com', phone: '555-123-4567', segmentationData: { Region: 'NORTH_AMERICA', Interest: 'SPORTS', 'Purchasing Habits': 'NEW' } },
     { id: 2, name: 'Bob Johnson', email: 'bob.johnson@example.com', phone: '555-234-5678', segmentationData: { Region: 'EUROPE', Interest: 'TECH', 'Purchasing Habits': 'FREQUENT' } },
     { id: 3, name: 'Carol White', email: 'carol.white@example.com', phone: '555-345-6789', segmentationData: { Region: 'ASIAN_PACIFIC', Interest: 'FASHION', 'Purchasing Habits': 'REGULAR' } },
@@ -62,11 +50,11 @@ export class CustomermoduleComponent implements OnInit {
             const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
             const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
             const customerByRegion = new Map<string,number>();
-            this.rawData.forEach((customer) => {
+            this.customersData.forEach((customer) => {
               const region = customer.segmentationData.Region;
               customerByRegion.set(region, (customerByRegion.get(region) || 0) + 1);
             });
-            const regions = [...(new Set([...(this.rawData.map((customer) =>  customer.segmentationData.Region))]))]
+            const regions = [...(new Set([...(this.customersData.map((customer) =>  customer.segmentationData.Region))]))]
             const finalValues: number[] = []
             regions.forEach((region) => finalValues.push(customerByRegion.get(region)!))
 
