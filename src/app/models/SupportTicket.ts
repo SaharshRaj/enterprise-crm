@@ -4,7 +4,7 @@ export interface SupportTicket {
   
     customerID: string;
   
-    priority?: string;
+    priority?: "high" | "low";
   
     created?: Date;
   
@@ -20,7 +20,7 @@ export function getMockSupportTicket(): SupportTicket {
     return {
         ticketID: 'TICKET12345',
         customerID: '1243',
-        priority: 'High',
+        priority: 'high',
         created: new Date(),
         assignedAgent: 'Agent01',
         issueDescription: 'Sample issue description for testing.',

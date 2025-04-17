@@ -11,22 +11,30 @@ import { environment } from '../../../../../environments/environment.development
 
 export class CustomerSupportService {
 
-  
 private apiUrl = environment.apiUrl+'/support'
 
 constructor(private http: HttpClient) {}
 
-createSupportTicket(ticket: SupportTicket): Observable<SupportTicket> {
-  return this.http.post<SupportTicket>(this.apiUrl, ticket);
+public createTicket(supportTicket: SupportTicket) {
+  return this.http.post<SupportTicket>(this.apiUrl, supportTicket);
 }
 
-  
-updateTicketStatus(ticketId: number, status: string): Observable<SupportTicket> {
-  return this.http.patch<SupportTicket>(`${this.apiUrl}/${ticketId}/status`, null, {
-  params: { status }
-  });
-  }
-  
+public getTicketById(ticketId: number | null) {
+  return this.http.get<SupportTicket>(this.apiUrl + `/${ticketId}`);
+}
+
+public updateTicket(supportTicket: SupportTicket) {
+  return this.http.patch<SupportTicket>(this.apiUrl + '/' + supportTicket.ticketID + `/status?status=${supportTicket.status}`, null);
+}
+
+public deleteTicket(ticketID: string) {
+  return this.http.delete(this.apiUrl + '/' + ticketID, { responseType: 'text' });
+}
+
+public getAllTickets(){
+  return this.http.get<SupportTicket[]>(this.apiUrl); 
+}
+ 
 }
 
 

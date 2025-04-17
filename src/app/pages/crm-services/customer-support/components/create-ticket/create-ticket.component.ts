@@ -1,61 +1,69 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomerSupportService } from './../../service/customer-support.service';
-import { MessageService } from 'primeng/api';
-import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SupportTicket } from '../../../../../models/SupportTicket';
+import { CustomerSupportService } from '../../service/customer-support.service';
 
 @Component({
   selector: 'app-create-ticket',
+  standalone: false,
   templateUrl: './create-ticket.component.html',
-  styleUrls: ['./create-ticket.component.scss'],
-  standalone: false
+  styleUrls: ['./create-ticket.component.scss']
 })
+
 export class CreateTicketComponent implements OnInit {
-  createTicketForm!: FormGroup;
-  submitted = false;
+  ticketForm!: FormGroup;
   loading = false;
+  error: string | null = null;
+  success = false;
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private supportService: CustomerSupportService,
-    private messageService: MessageService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.createTicketForm = this.formBuilder.group({
-      customerId: ['', [Validators.required, Validators.min(1)]],
-      issueDescription: ['', [Validators.required, Validators.minLength(10)]],
-      assignedAgent: ['', [Validators.required]]
+    this.ticketForm = this.fb.group({
+      customerID: ['', Validators.required],
+      issueDescription: ['', Validators.required],
+      status: ['OPEN']
     });
   }
 
-  get f() {
-    return this.createTicketForm.controls;
+  onSubmit(): void {
+    if (this.ticketForm.valid) {
+      this.loading = true;
+      this.error = null;
+      this.success = false;
+
+      const supportTicket: SupportTicket = this.ticketForm.value;
+
+      this.supportService.createTicket(supportTicket).subscribe({
+        next: (response: any) => {
+          console.log('Ticket created successfully:', response);
+          this.loading = false;
+          this.success = true;
+          this.router.navigate(['pages/services/customer-support']);
+        },
+        error: (error: { message: string; }) => {
+          this.error = error.message || 'Failed to create ticket.';
+          this.loading = false;
+          this.success = false;
+        }
+      });
+    } else {
+      this.markFormGroupTouched(this.ticketForm);
+    }
   }
 
-  onSubmit(): void {
-    this.submitted = true;
-
-    if (this.createTicketForm.invalid) {
-      return;
-    }
-
-    this.loading = true;
-    this.supportService.createSupportTicket({customerID: this.createTicketForm.get('customerId')?.value, assignedAgent: this.createTicketForm.get('assignedAgent')?.value, issueDescription: this.createTicketForm.get('issueDescription')?.value, status: 'OPEN' }).subscribe({
-      next: (ticket) => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Ticket created successfully with ID: ${ticket.ticketID}` });
-        this.createTicketForm.reset();
-        this.submitted = false;
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error(error)
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
-        this.loading = false;
-      },
-      complete: () => {
-        this.loading = false;
+  markFormGroupTouched(formGroup: FormGroup) {
+    (Object as any).values(formGroup.controls).forEach((control: any) => {
+      control.markAsTouched();
+      if (control.controls) {
+        this.markFormGroupTouched(control);
       }
     });
   }
 }
-

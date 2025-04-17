@@ -1,60 +1,85 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MessageService } from 'primeng/api';
-import { HttpErrorResponse } from '@angular/common/http';
-import { CustomerSupportService } from '../../service/customer-support.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SupportTicket } from '../../../../../models/SupportTicket';
+import { CustomerSupportService } from '../../service/customer-support.service';
 
 @Component({
   selector: 'app-update-ticket',
+  standalone: false,
   templateUrl: './update-ticket.component.html',
-  styleUrls: ['./update-ticket.component.scss'],
-  standalone: false
+  styleUrls: ['./update-ticket.component.scss']
 })
 export class UpdateTicketComponent implements OnInit {
-  updateTicketForm!: FormGroup;
-  submitted = false;
+  ticketForm!: FormGroup;
   loading = false;
-  statuses = ['Open','Closed'];
+  error: string | null = null;
+  success = false;
+  ticketId!: number | null;
+  // issueDescription: string | null = null;
+  ticketData!: SupportTicket;
+
+  statusOptions: ('OPEN' | 'CLOSED' )[] = ['OPEN', 'CLOSED'];
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private supportService: CustomerSupportService,
-    private messageService: MessageService
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.updateTicketForm = this.formBuilder.group({
-      ticketId: ['', [Validators.required, Validators.min(1)]],
-      status: ['', [Validators.required]]
+    this.ticketId = Number(this.route.snapshot.paramMap.get('id'));
+    this.getTicketData();
+    this.ticketForm = this.fb.group({
+      ticketID: [{ value: '', disabled: true }, Validators.required],
+      status: ['', Validators.required],
+      // issueDescription: [{ string: ''}, Validators.required]
     });
   }
 
-  get f() {
-    return this.updateTicketForm.controls;
+  getTicketData() {
+    this.supportService.getTicketById(this.ticketId).subscribe(
+      (data) => {
+        this.ticketData = data;
+        this.ticketForm.patchValue(this.ticketData);
+      }
+    );
   }
 
   onSubmit(): void {
-    this.submitted = true;
+    if (this.ticketForm.valid) {
+      this.loading = true;
+      this.error = null;
+      this.success = false;
 
-    if (this.updateTicketForm.invalid) {
-      return;
+      let supportTicket: SupportTicket = this.ticketForm.getRawValue();
+      supportTicket.ticketID = this.ticketId?.toString();
+
+      this.supportService.updateTicket(supportTicket).subscribe({
+        next: (response) => {
+          console.log('Ticket updated successfully:', response);
+          this.loading = false;
+          this.success = true;
+          this.router.navigate(['pages/services/customer-support']);
+        },
+        error: (error) => {
+          this.error = error.message || 'Failed to update ticket.';
+          this.loading = false;
+          this.success = false;
+        }
+      });
+    } else {
+      this.markFormGroupTouched(this.ticketForm);
     }
+  }
 
-    this.loading = true;
-    const { ticketId, status } = this.updateTicketForm.value;
-    this.supportService.updateTicketStatus(ticketId, status).subscribe({
-      next: (ticket: SupportTicket) => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: `Ticket status updated successfully for ID: ${ticket.ticketID}` });
-        this.updateTicketForm.reset();
-        this.submitted = false;
-      },
-      error: (error: HttpErrorResponse) => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
-        this.loading = false;
-      },
-      complete: () => {
-        this.loading = false;
+  markFormGroupTouched(formGroup: FormGroup) {
+    (Object as any).values(formGroup.controls).forEach((control: any) => {
+      control.markAsTouched();
+      if (control.controls) {
+        this.markFormGroupTouched(control);
       }
     });
   }

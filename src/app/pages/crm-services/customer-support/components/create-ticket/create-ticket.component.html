@@ -1,51 +1,32 @@
-<div class="card">
-    <form [formGroup]="createTicketForm" (ngSubmit)="onSubmit()">
+<div class="container">
+  <h1 class="title">Create Ticket</h1>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+  <div *ngIf="error" class="error">Error: {{ error }}</div>
+  <div *ngIf="success" class="success">Ticket created successfully!</div>
+
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()" class="form">
       <div class="form-group">
-        <label for="customerId">Customer ID</label>
-        <input
-          type="text"
-          id="customerId"
-          formControlName="customerId"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f['customerId'].errors }"
-        />
-        <div *ngIf="submitted && f['customerId'].errors" class="invalid-feedback">
-          <div *ngIf="f['customerId'].errors['required']">Customer ID is required</div>
-          <div *ngIf="f['customerId'].errors['min']">Customer ID must be valid</div>
-        </div>
+          <label for="customerID">Customer ID</label>
+          <input type="text" id="customerID" formControlName="customerID" class="form-control" />
+          <div *ngIf="ticketForm.controls['customerID'].invalid && (ticketForm.controls['customerID'].dirty || ticketForm.controls['customerID'].touched)" class="alert alert-danger">
+              <div *ngIf="ticketForm.controls['customerID'].errors?.['required']">
+                  Customer ID is required.
+              </div>
+          </div>
       </div>
-  
+
       <div class="form-group">
-        <label for="issueDescription">Issue Description</label>
-        <textarea
-          id="issueDescription"
-          formControlName="issueDescription"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f['issueDescription'].errors }"
-        ></textarea>
-        <div *ngIf="submitted && f['issueDescription'].errors" class="invalid-feedback">
-          <div *ngIf="f['issueDescription'].errors['required']">Issue description is required</div>
-          <div *ngIf="f['issueDescription'].errors['minLength']">Issue description must be at least 10 characters long</div>
-        </div>
+          <label for="issueDescription">Issue Description</label>
+          <textarea id="issueDescription" formControlName="issueDescription" class="form-control"></textarea>
+          <div *ngIf="ticketForm.controls['issueDescription'].invalid && (ticketForm.controls['issueDescription'].dirty || ticketForm.controls['issueDescription'].touched)" class="alert alert-danger">
+              <div *ngIf="ticketForm.controls['issueDescription'].errors?.['required']">
+                  Issue description is required.
+              </div>
+          </div>
       </div>
-  
-      <!-- <div class="form-group">
-        <label for="assignedAgent">Assigned Agent</label>
-        <input
-          type="text"
-          id="assignedAgent"
-          formControlName="assignedAgent"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f['assignedAgent'].errors }"
-        />
-        <div *ngIf="submitted && f['assignedAgent'].errors" class="invalid-feedback">
-          <div *ngIf="f['assignedAgent'].errors['required']">Assigned agent is required</div>
-        </div>
-      </div> -->
-  
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="loading">Create Ticket</button>
-      </div>
-    </form>
-  </div>
-  
+
+
+      <button type="submit" class="btn btn-primary">Create Ticket</button>
+  </form>
+</div>

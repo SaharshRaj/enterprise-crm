@@ -1,6 +1,7 @@
 <app-customer-support-header title="Customer-Support"></app-customer-support-header>
-<!-- <app-create-ticket></app-create-ticket> -->
-<app-view-tickets></app-view-tickets>
+<app-search-ticket></app-search-ticket>
+<app-filter-tickets></app-filter-tickets>
+<app-view-tickets [customers]="allTickets$ | async"></app-view-tickets>
 <!-- <app-update-ticket></app-update-ticket> -->
 
 

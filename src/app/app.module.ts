@@ -22,7 +22,6 @@ import { CustomerDataManagementModule } from './modules/crm-services/customer-da
 import { MarketingAutomationModule } from './modules/crm-services/marketing-automation/marketing-automation.module';
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
-import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,7 +48,6 @@ import { MessageService } from 'primeng/api';
     providePrimeNG({
       theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } },
     }),
-    MessageService
   ],
   bootstrap: [AppComponent],
 })

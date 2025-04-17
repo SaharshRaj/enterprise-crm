@@ -10,17 +10,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ticket of pagedTickets">
+      <tr *ngFor="let ticket of pagedCustomers">
         <td>{{ ticket.ticketID }}</td>
         <td>{{ ticket.customerID }}</td>
         <td>{{ ticket.issueDescription }}</td>
         <td>{{ ticket.assignedAgent }}</td>
         <td>{{ ticket.status }}</td>
         <td class="actions-cell">
-          <button class="action-button update-button" title="Update">
+          <button class="action-button update-button" title="Update" [routerLink]="'/pages/services/customer-support/update-ticket/'+ticket.ticketID">
             <i class="fas fa-edit"></i>
           </button>
-          <button class="action-button delete-button" title="Delete">
+          <button class="action-button delete-button" title="Delete" (click)="handleDelete(ticket.ticketID!)">
             <i class="fas fa-trash-alt"></i>
           </button>
         </td>
