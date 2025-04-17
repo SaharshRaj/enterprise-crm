@@ -59,5 +59,6 @@ import { Ripple } from 'primeng/ripple';
     Ripple
   ],
   providers: [SalesService, CurrencyPipe],
+  exports: [MonthlySalesTrendComponent]
 })
 export class SalesAutomationModule {}
