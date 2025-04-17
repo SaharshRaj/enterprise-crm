@@ -1,0 +1,49 @@
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.analytics-header h2 {
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.analytics-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.date-range-selector select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.refresh-button,
+.download-button {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+    fill: #777;
+  }
+
+  &:hover {
+    border-color: #999;
+    svg {
+      fill: #555;
+    }
+  }
+}
