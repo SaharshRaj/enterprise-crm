@@ -20,7 +20,10 @@ import { ListCampaignComponent } from './pages/crm-services/marketing-automation
 import { GetCampaignByIdComponent } from './pages/crm-services/marketing-automation/components/get-campaign-by-id/get-campaign-by-id.component';
 import { DeleteCampaignComponent } from './pages/crm-services/marketing-automation/components/delete-campaign/delete-campaign.component';
 import { UpdateCampaignComponent } from './pages/crm-services/marketing-automation/components/update-campaign/update-campaign.component';
-import { ReachAnalysisComponent } from './pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';
+import { ReachAnalysisComponent } from './pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';import { CreateTicketComponent } from './pages/crm-services/customer-support/components/create-ticket/create-ticket.component';
+import { UpdateTicketComponent } from './pages/crm-services/customer-support/components/update-ticket/update-ticket.component';
+import { DeleteTicketComponent } from './pages/crm-services/customer-support/components/delete-ticket/delete-ticket.component';
+
 export const appRoutes: Routes = [
   { path: '', component: LandingComponent, canActivate: [AuthGuard] },
   {
@@ -48,7 +51,12 @@ export const appRoutes: Routes = [
             { path: 'update-customer/:id', component: UpdateCustomerComponent },
           ]},
           {path: 'sales-automation', component: SalesAutomationComponent},
-          {path: 'customer-support', component: CustomerSupportComponent},
+          {path: 'customer-support', children: [
+            {path: '',component: CustomerSupportComponent},
+            {path: 'add-ticket', component: CreateTicketComponent},
+            {path: 'update-ticket/:id', component: UpdateTicketComponent},
+            {path: 'delete-ticket', component: DeleteTicketComponent}
+          ]},
           {path: 'marketing-automation',children:[
             { path: '', component: MarketingAutomationComponent ,},
             {path:'createCampaign',component:CreateCampaignComponent},

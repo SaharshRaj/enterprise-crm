@@ -27,6 +27,7 @@ import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,7 +50,6 @@ import { MessageService } from 'primeng/api';
     providePrimeNG({
       theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } },
     }),
-    MessageService
   ],
   bootstrap: [AppComponent],
 })

@@ -1,46 +1,8 @@
-<!-- <app-create-ticket></app-create-ticket> -->
-<!-- <app-view-tickets></app-view-tickets> -->
-<!-- <div class="container mx-auto p-4">
-  <header class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-bold">Support</h1>
-      <button  class="bg-blue-500 text-white px-4 py-2 rounded">New Ticket</button>
-  </header>
+<app-customer-support-header title="Customer-Support"></app-customer-support-header>
+<app-search-ticket></app-search-ticket>
+<app-filter-tickets></app-filter-tickets>
+<app-view-tickets [customers]="allTickets$ | async"></app-view-tickets>
+<!-- <app-update-ticket></app-update-ticket> -->
 
-  <section class="ticket-dashboard">
-      <h2 class="text-xl font-semibold mb-2">Ticket Dashboard</h2>
-      <p class="text-gray-600 mb-4">Manage and respond to customer support tickets</p>
-
-      <div class="tabs mb-4">
-          <button class="px-4 py-2" [class.active]="selectedTab === 'open'" (click)="selectTab('open')">Open</button>
-          <button class="px-4 py-2" [class.active]="selectedTab === 'in-progress'" (click)="selectTab('in-progress')">In Progress</button>
-          <button class="px-4 py-2" [class.active]="selectedTab === 'closed'" (click)="selectTab('closed')">Closed</button>
-      </div>
-
-      <table class="min-w-full bg-white">
-          <thead>
-              <tr>
-                  <th class="py-2 px-4 border-b">Ticket ID</th>
-                  <th class="py-2 px-4 border-b">Subject</th>
-                  <th class="py-2 px-4 border-b">Customer</th>
-                  <th class="py-2 px-4 border-b">Priority</th>
-                  <th class="py-2 px-4 border-b">Created Date</th>
-                  <th class="py-2 px-4 border-b">Assigned To</th>
-                  <th class="py-2 px-4 border-b">Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let ticket of tickets">
-                  <td class="py-2 px-4 border-b">{{ ticket.ticketID }}</td>
-                  <td class="py-2 px-4 border-b">{{ ticket.subject }}</td>
-                  <td class="py-2 px-4 border-b">{{ ticket.customer }}</td>
-                  <td class="py-2 px-4 border-b" >{{ ticket.priority }}</td>
-                  <td class="py-2 px-4 border-b">{{ ticket.created }}</td>
-                  <td class="py-2 px-4 border-b">{{ ticket.assignedTo }}</td>
-                  <td class="py-2 px-4 border-b"><button class="bg-blue-500 text-white px-2 py-1 rounded">View Details</button></td>
-              </tr>
-          </tbody>
-      </table>
-  </section>
-</div> -->
 
   

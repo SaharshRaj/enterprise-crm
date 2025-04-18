@@ -1,0 +1,122 @@
+<!-- <p-fluid>
+  <div class="card">
+    <div class="flex flex-column justify-between lg:flex-row">
+      <div>
+        <div class="font-medium text-3xl text-900">{{ title }}</div>
+        </div>
+      </div>
+      <div class="mt-3 lg:mt-0 flex gap-2">
+        <div style="position: relative">
+          <p-speeddial
+            [model]="items"
+            direction="left"
+            [style]="{ position: 'absolute', top: 'calc(50% - 2rem)', right: 0 }"
+            [tooltipOptions]="{ tooltipPosition: 'top' }"
+            />
+          </div>
+        </div> 
+      </div>
+      
+  </p-fluid>
+  
+  
+  <p-dialog
+    header="Create New Ticket"
+    [modal]="true"
+    [maximizable]="true"
+    [(visible)]="visible3"
+    [style]="{ width: '35rem', height: '25rem' }"
+  > 
+    <form [formGroup]="newTicketForm" #registerForm="ngForm" (ngSubmit)="handleTicketSumbit()"> 
+      <span class="p-text-secondary block mb-8">
+        Register a new Support Ticket
+      </span>
+      <div class="flex items-center gap-4 mb-4">
+        <label for="customerID" class="font-semibold w-24">Customer ID</label>
+         <p-fluid class="flex flex-col"> 
+          <input
+            pInputText
+            id="customerID"
+            class="flex-auto"
+            autocomplete="off"
+            formControlName="customerId"
+          />
+          <div
+            *ngIf="
+              newTicketForm.get('customerId')?.invalid &&
+              (newTicketForm.get('customerId')?.dirty ||
+                newTicketForm.get('customerId')?.touched)
+            "
+          >
+            <small class="text-red-500">{{ customerIdErrorMessage }}</small>
+          </div>
+        </p-fluid>
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label for="issueDescription" class="font-semibold w-24">Issue Description</label>
+        <p-fluid class="flex flex-col">
+          <textarea
+            pInputTextarea
+            id="issueDescription"
+            class="flex-auto"
+            formControlName="issueDescription"
+          ></textarea>
+          <div
+            *ngIf="
+              newTicketForm.get('issueDescription')?.invalid &&
+              (newTicketForm.get('issueDescription')?.dirty ||
+                newTicketForm.get('issueDescription')?.touched)
+            "
+          >
+            <small class="text-red-500">{{ issueDescriptionErrorMessage }}</small>
+          </div>
+        </p-fluid>
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label for="assignedAgent" class="font-semibold w-24">Assigned Agent</label>
+        <p-fluid class="flex flex-col">
+          <input
+            pInputText
+            id="assignedAgent"
+            class="flex-auto"
+            autocomplete="off"
+            formControlName="assignedAgent"
+          />
+          <div
+            *ngIf="
+              newTicketForm.get('assignedAgent')?.invalid &&
+              (newTicketForm.get('assignedAgent')?.dirty ||
+                newTicketForm.get('assignedAgent')?.touched)
+            "
+          >
+            <small class="text-red-500">{{ assignedAgentErrorMessage }}</small>
+          </div>
+        </p-fluid>
+      </div>
+      <div class="flex justify-end gap-2">
+        <p-button
+          label="Cancel"
+          severity="secondary"
+          (click)="visible3 = false"
+          (onKeyDown)="visible3 = false"
+        />
+        <p-button
+          label="Save"
+          [disabled]="!newTicketForm.valid"
+          type="submit"
+          [loading]="isLoading"
+        /> 
+      </div>
+    </form>
+  </p-dialog>
+   -->
+
+   <div class="customer-support-header">
+    <div class="btn-container">
+        <h2 class="title">Customer Support</h2>
+        <div class="addbt">
+            <button class="add-btn" routerLink="/pages/services/customer-support/add-ticket">Create Ticket</button>
+        </div>
+    </div>
+    <p class="description">Manage and resolve customer service requests</p>
+</div>

@@ -1,0 +1,31 @@
+<div class="filter-container">
+    <button class="filter-button" (click)="toggleFilter()">
+      Filter
+      <span [ngClass]="{'arrow': true, 'open': isFilterOpen}"></span>
+    </button>
+  
+    <div *ngIf="isFilterOpen" class="dropdown">
+      <div class="dropdown-content">
+        <div class="filter-options">
+          
+          <button (click)="openSection('status')" [ngClass]="{'active': activeSection === 'status'}" class="filter-option-button">Status</button>
+        </div>
+  
+        <div *ngIf="activeSection === 'status'" class="sub-dropdown">
+          <div *ngFor="let option of statusOptions" (click)="selectFilterValue('status', option)" class="sub-dropdown-option">
+            {{ option }}
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    <div *ngIf=" selectedFilter.status " class="selected-filters">
+      
+      <span *ngIf="selectedFilter.status">
+        Status: {{selectedFilter.status}}
+        <button (click)="clearFilter('status')" class="clear-filter-button">x</button>
+      </span>
+      
+    </div>
+  </div>
+  

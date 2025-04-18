@@ -60,13 +60,13 @@
       </span>
       <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages - 1" class="page-button">
         Next
-      </button>
-    </div>
-  </div>
-  
-  <app-delete-customer
-    *ngIf="showDeleteModal"
-    [selectedCustomerId]="selectedCustomerId"
-    (close)="closeDeleteModal()"
-    (deleteSuccessful)="handleDeleteSuccessful()"
-  ></app-delete-customer>
+        </button>
+       </div>
+      </div>
+      
+      <app-delete-customer
+       *ngIf="showDeleteModal"
+       [selectedCustomerId]="selectedCustomerId" 
+       (close)="closeDeleteModal()"
+       (deleteSuccessful)="handleDeleteSuccessful()">
+    </app-delete-customer>
