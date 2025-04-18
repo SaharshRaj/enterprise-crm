@@ -53,5 +53,6 @@ import { NotFoundComponent } from '../../../pages/not-found/not-found.component'
     ConfirmDialog,
     FormsModule,
   ],
+  exports :[TabsComponent] 
 })
 export class LandingModule {}
