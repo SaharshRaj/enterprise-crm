@@ -15,7 +15,12 @@ import { MarketingAutomationComponent } from './pages/crm-services/marketing-aut
 import { AnalyticsAndReportingComponent } from './pages/crm-services/analytics-and-reporting/analytics-and-reporting.component';
 import { RegisterCustomerComponent } from './pages/crm-services/customer-data-management/register-customer/register-customer.component';
 import { UpdateCustomerComponent } from './pages/crm-services/customer-data-management/update-customer/update-customer.component';
-
+import { CreateCampaignComponent } from './pages/crm-services/marketing-automation/components/create-campaign/create-campaign.component';
+import { ListCampaignComponent } from './pages/crm-services/marketing-automation/components/list-campaign/list-campaign.component';
+import { GetCampaignByIdComponent } from './pages/crm-services/marketing-automation/components/get-campaign-by-id/get-campaign-by-id.component';
+import { DeleteCampaignComponent } from './pages/crm-services/marketing-automation/components/delete-campaign/delete-campaign.component';
+import { UpdateCampaignComponent } from './pages/crm-services/marketing-automation/components/update-campaign/update-campaign.component';
+import { ReachAnalysisComponent } from './pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';
 export const appRoutes: Routes = [
   { path: '', component: LandingComponent, canActivate: [AuthGuard] },
   {
@@ -44,7 +49,15 @@ export const appRoutes: Routes = [
           ]},
           {path: 'sales-automation', component: SalesAutomationComponent},
           {path: 'customer-support', component: CustomerSupportComponent},
-          {path: 'marketing-automation', component: MarketingAutomationComponent},
+          {path: 'marketing-automation',children:[
+            { path: '', component: MarketingAutomationComponent ,},
+            {path:'createCampaign',component:CreateCampaignComponent},
+            {path: 'listCampaign', component: ListCampaignComponent},
+            {path:'getCampaignById', component: GetCampaignByIdComponent},
+            {path:'deleteCampaign',component:DeleteCampaignComponent},
+            {path:'updateCampaign',component:UpdateCampaignComponent},
+            {path:'reachAnalysis',component:ReachAnalysisComponent} // Assuming you want to use the same component for viewing by ID
+          ]},
           {path: 'analytics-and-reporting', component: AnalyticsAndReportingComponent},
         ],
         canActivate: [AuthGuard]
