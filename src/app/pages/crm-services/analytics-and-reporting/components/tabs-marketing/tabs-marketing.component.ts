@@ -10,7 +10,7 @@ import { SalesOpportunity, SalesStage } from '../../../../../models/SalesOpportu
   styleUrl: './tabs-marketing.component.scss'
 })
 export class TabsMarketingComponent {
-  allSales!: SalesOpportunity[];
+  allCampaigns!: SalesOpportunity[];
 
   constructor(private readonly currencyPipe: CurrencyPipe, private readonly salesService: SalesService){}
 

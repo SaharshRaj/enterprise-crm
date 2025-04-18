@@ -4,9 +4,9 @@ export interface SupportTicket {
   
     customerID: string;
   
-    priority: string;
+    priority?: string;
   
-    created: Date;
+    created?: Date;
   
     assignedAgent: string;
   

@@ -1,271 +1,148 @@
 import { Component } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
-import { CustomerProfile } from '../../../../../models/CustomerProfile';
-import { CustomersService } from '../../../customer-data-management/service/customers.service';
 import { Observable, of } from 'rxjs';
-
+import { SupportTicket } from '../../../../../models/SupportTicket';
+import { CustomerSupportService } from '../../../customer-support/service/customer-support.service';
 
 @Component({
   selector: 'app-tabs-support',
   standalone: false,
   templateUrl: './tabs-support.component.html',
-  styleUrl: './tabs-support.component.scss'
+  styleUrl: './tabs-support.component.scss',
 })
 export class TabsSupportComponent {
-  allCustomers: Observable<CustomerProfile[]> = of([
+  allTickets: Observable<SupportTicket[]> = of([
     {
-      customerID: 1,
-      name: 'Alice Smith',
-      emailId: 'alice.smith@example.com',
-      phoneNumeber: '555-123-4567',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'NORTH_AMERICA',
-        Interest: 'SPORTS',
-        'Purchasing Habits': 'NEW',
-      },
+      ticketID: '1',
+      customerID: '1',
+      issueDescription: 'Issue opened',
+      assignedAgent: '1',
+      status: 'CLOSED',
     },
     {
-      customerID: 2,
-      name: 'Bob Johnson',
-      emailId: 'bob.johnson@example.com',
-      phoneNumeber: '555-234-5678',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'EUROPE',
-        Interest: 'TECH',
-        'Purchasing Habits': 'FREQUENT',
-      },
+      ticketID: '4',
+      customerID: '4',
+      issueDescription: 'Order not received',
+      assignedAgent: '4',
+      status: 'OPEN',
     },
     {
-      customerID: 3,
-      name: 'Carol White',
-      emailId: 'carol.white@example.com',
-      phoneNumeber: '555-345-6789',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'ASIAN_PACIFIC',
-        Interest: 'FASHION',
-        'Purchasing Habits': 'REGULAR',
-      },
+      ticketID: '5',
+      customerID: '1',
+      issueDescription: 'The issue has been opened',
+      assignedAgent: '1',
+      status: 'OPEN',
     },
     {
-      customerID: 4,
-      name: 'David Brown',
-      emailId: 'david.brown@example.com',
-      phoneNumeber: '555-456-7890',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'LATIN_AMERICA',
-        Interest: 'MUSIC',
-        'Purchasing Habits': 'SPARSE',
-      },
+      ticketID: '7',
+      customerID: '2',
+      issueDescription: 'The issue has been opened',
+      assignedAgent: '2',
+      status: 'OPEN',
     },
     {
-      customerID: 5,
-      name: 'Eve Davis',
-      emailId: 'eve.davis@example.com',
-      phoneNumeber: '555-567-8901',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'MIDDLE_EAST_AND_AFRICA',
-        Interest: 'FOOD_AND_DRINK',
-        'Purchasing Habits': 'NEW',
-      },
+      ticketID: '8',
+      customerID: '2',
+      issueDescription: 'The issue has been opened',
+      assignedAgent: '2',
+      status: 'OPEN',
     },
     {
-      customerID: 6,
-      name: 'Frank Miller',
-      emailId: 'frank.miller@example.com',
-      phoneNumeber: '555-678-9012',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'CENTRAL_AMERICA',
-        Interest: 'HEALTH_AND_WELLNESS',
-        'Purchasing Habits': 'FREQUENT',
-      },
+      ticketID: '9',
+      customerID: '2',
+      issueDescription: 'The issue has been opened',
+      assignedAgent: '2',
+      status: 'OPEN',
     },
     {
-      customerID: 7,
-      name: 'Grace Wilson',
-      emailId: 'grace.wilson@example.com',
-      phoneNumeber: '555-789-0123',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'EASTERN_EUROPE',
-        Interest: 'GAMING',
-        'Purchasing Habits': 'REGULAR',
-      },
+      ticketID: '10',
+      customerID: '3',
+      issueDescription: 'The issue has been closed',
+      assignedAgent: '10',
+      status: 'CLOSED',
     },
     {
-      customerID: 8,
-      name: 'Hank Moore',
-      emailId: 'hank.moore@example.com',
-      phoneNumeber: '555-890-1234',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'WESTERN_EUROPE',
-        Interest: 'AUTOMOTIVE',
-        'Purchasing Habits': 'SPARSE',
-      },
+      ticketID: '12',
+      customerID: '12',
+      issueDescription: 'The ticket has been closed',
+      assignedAgent: '12',
+      status: 'CLOSED',
     },
     {
-      customerID: 9,
-      name: 'Ivy Taylor',
-      emailId: 'ivy.taylor@example.com',
-      phoneNumeber: '555-901-2345',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'NORTHERN_EUROPE',
-        Interest: 'PETS',
-        'Purchasing Habits': 'NEW',
-      },
+      ticketID: '13',
+      customerID: '2',
+      issueDescription: 'The ticket has been opened',
+      assignedAgent: '2',
+      status: 'OPEN',
     },
     {
-      customerID: 10,
-      name: 'Jack Anderson',
-      emailId: 'jack.anderson@example.com',
-      phoneNumeber: '555-012-3456',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'SOUTHERN_EUROPE',
-        Interest: 'GARDENING',
-        'Purchasing Habits': 'FREQUENT',
-      },
+      ticketID: '15',
+      customerID: '3',
+      issueDescription: 'Issue closed',
+      assignedAgent: '3',
+      status: 'CLOSED',
     },
     {
-      customerID: 11,
-      name: 'Kara Thomas',
-      emailId: 'kara.thomas@example.com',
-      phoneNumeber: '555-123-4567',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'SOUTHEAST_ASIA',
-        Interest: 'FINANCE',
-        'Purchasing Habits': 'REGULAR',
-      },
+      ticketID: '16',
+      customerID: '3',
+      issueDescription: 'Issue closed',
+      assignedAgent: '3',
+      status: 'CLOSED',
     },
     {
-      customerID: 12,
-      name: 'Leo Jackson',
-      emailId: 'leo.jackson@example.com',
-      phoneNumeber: '555-234-5678',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'SOUTH_ASIA',
-        Interest: 'BEAUTY_AND_COSMETICS',
-        'Purchasing Habits': 'SPARSE',
-      },
+      ticketID: '17',
+      customerID: '0',
+      issueDescription: 'string',
+      assignedAgent: '1',
+      status: 'OPEN',
     },
     {
-      customerID: 13,
-      name: 'Mia Harris',
-      emailId: 'mia.harris@example.com',
-      phoneNumeber: '555-345-6789',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'EAST_ASIA',
-        Interest: 'BOOKS_AND_LITERATURE',
-        'Purchasing Habits': 'NEW',
-      },
+      ticketID: '21',
+      customerID: '3',
+      issueDescription: 'Issue closed',
+      assignedAgent: '3',
+      status: 'CLOSED',
     },
     {
-      customerID: 14,
-      name: 'Noah Martin',
-      emailId: 'noah.martin@example.com',
-      phoneNumeber: '555-456-7890',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'OCEANIA',
-        Interest: 'MOVIES_AND_TV',
-        'Purchasing Habits': 'FREQUENT',
-      },
+      ticketID: '23',
+      customerID: '3',
+      issueDescription: 'Issue closed',
+      assignedAgent: '3',
+      status: 'CLOSED',
     },
     {
-      customerID: 15,
-      name: 'Olivia Lee',
-      emailId: 'olivia.lee@example.com',
-      phoneNumeber: '555-567-8901',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'SUB_SAHARAN_AFRICA',
-        Interest: 'PHOTOGRAPHY',
-        'Purchasing Habits': 'REGULAR',
-      },
+      ticketID: '24',
+      customerID: '3',
+      issueDescription: 'Issue closed',
+      assignedAgent: '3',
+      status: 'CLOSED',
     },
     {
-      customerID: 16,
-      name: 'Paul Walker',
-      emailId: 'paul.walker@example.com',
-      phoneNumeber: '555-678-9012',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'NORTH_AMERICA',
-        Interest: 'DIY_AND_HOME_IMPROVEMENT',
-        'Purchasing Habits': 'SPARSE',
-      },
+      ticketID: '25',
+      customerID: '3',
+      issueDescription: 'Issue closed',
+      assignedAgent: '3',
+      status: 'CLOSED',
     },
     {
-      customerID: 17,
-      name: 'Quinn Young',
-      emailId: 'quinn.young@example.com',
-      phoneNumeber: '555-789-0123',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'EUROPE',
-        Interest: 'OUTDOOR_ACTIVITIES',
-        'Purchasing Habits': 'NEW',
-      },
-    },
-    {
-      customerID: 18,
-      name: 'Rachel King',
-      emailId: 'rachel.king@example.com',
-      phoneNumeber: '555-890-1234',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'ASIAN_PACIFIC',
-        Interest: 'SOCIAL_MEDIA',
-        'Purchasing Habits': 'FREQUENT',
-      },
-    },
-    {
-      customerID: 19,
-      name: 'Sam Carter',
-      emailId: 'sam.carter@example.com',
-      phoneNumeber: '555-901-2345',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'LATIN_AMERICA',
-        Interest: 'FITNESS',
-        'Purchasing Habits': 'REGULAR',
-      },
-    },
-    {
-      customerID: 20,
-      name: 'Tina Adams',
-      emailId: 'tina.adams@example.com',
-      phoneNumeber: '555-012-3456',
-      purchaseHistory: ['12313', '1231131', '1231231'],
-      segmentationData: {
-        Region: 'MIDDLE_EAST_AND_AFRICA',
-        Interest: 'ENVIRONMENT',
-        'Purchasing Habits': 'SPARSE',
-      },
+      ticketID: '26',
+      customerID: '3',
+      issueDescription: 'This service is not adsisapdnias',
+      assignedAgent: '12',
+      status: 'OPEN',
     },
   ]);
 
   constructor(
     private readonly currencyPipe: CurrencyPipe,
-    private readonly salesService: CustomersService,
+    private readonly supportService: CustomerSupportService,
   ) {}
 
-  activeCustomers!: number;
-  totalCustomers!: number;
-  topRegion!: string;
-  trendingInterest!: string;
-  customerCountInterest!: number;
-  customerCountRegion!: number;
+  totalTickets!: number
+  closedTickets!:number
+  openTickets!:number
+  totalAgents!:number
+
 
   statistics: {
     title: string;
@@ -277,86 +154,54 @@ export class TabsSupportComponent {
     footer: string;
   }[] = [];
 
-  isSameDay(closingDate: Date, today: Date) {
-    return (
-      closingDate.getFullYear() === today.getFullYear() &&
-      closingDate.getMonth() === today.getMonth() &&
-      closingDate.getDate() === today.getDate()
-    );
-  }
 
   ngOnInit(): void {
-    this.allCustomers.subscribe((customers) => {
-      this.totalCustomers = customers.length;
-      this.activeCustomers = customers.filter(
-        (customer) => customer.purchaseHistory.length > 3,
-      ).length;
-      const regionCount: Record<string, number> = customers.reduce(
-        (acc: Record<string, number>, customer) => {
-          const region = customer.segmentationData.Region;
-          acc[region] = (acc[region] ?? 0) + 1;
-          return acc;
-        },
-        {},
-      );
 
-      const interestCount: Record<string, number> = customers.reduce(
-        (acc: Record<string, number>, customer) => {
-          const interest = customer.segmentationData.Interest;
-          acc[interest] = (acc[interest] ?? 0) + 1;
-          return acc;
-        },
-        {},
-      );
-
-      this.topRegion = Object.keys(regionCount).reduce((top, region) => {
-        if (!top || regionCount[region] > regionCount[top]) {
-          this.customerCountRegion = regionCount[region];
-          return region;
+    this.allTickets.subscribe(
+      {
+        next: (tickets : SupportTicket[]) => {
+          this.totalTickets = tickets.length
+          this.closedTickets = tickets.filter((ticket) => ticket.status == "CLOSED").length
+          this.openTickets = this.totalTickets - this.closedTickets
+          
+          const allAgents = new Set(...[tickets.map((ticket : SupportTicket) => ticket.assignedAgent)])
+          this.totalAgents = allAgents.size
         }
-        return top;
-      }, '');
+      }
+    )
+    
 
-      this.trendingInterest = Object.keys(interestCount).reduce((top, interest) => {
-        if (!top || interestCount[interest] > interestCount[interest]) {
-          this.customerCountInterest = interestCount[interest];
-          return interest;
-        }
-        return top;
-      }, '');
-
-      
       this.statistics = [
         {
-          title: 'Active Customers',
-          count: this.activeCustomers.toString(),
+          title: 'Open Tickets',
+          count: this.openTickets.toString(),
           iconBg: 'bg-blue-100',
           iconClass: 'pi pi-users text-blue-500',
-          closingLine: `${this.totalCustomers}`,
+          closingLine: `${this.totalTickets}`,
           closingBg: 'text-green-500',
-          footer: 'Total customers:',
+          footer: 'Total tickets:',
         },
         {
-          title: 'Top Region',
-          count: this.topRegion,
+          title: 'Tickets/Agent',
+          count: (this.totalTickets/this.totalAgents).toFixed(2),
           iconBg: 'bg-green-100',
           iconClass: 'pi pi-indian-rupee text-green-500',
-          closingLine: `${this.customerCountRegion}`,
+          closingLine: `${this.totalAgents}`,
           closingBg: 'text-green-500',
-          footer: 'Customer count:',
+          footer: 'Total agents:',
         },
         {
-          title: 'Trending Interest',
-          count: this.trendingInterest,
+          title: 'Closing Rate',
+          count: ((this.closedTickets/this.totalTickets)*100).toFixed(2) + '%',
           iconBg: 'bg-purple-100',
           iconClass: 'pi pi-trophy text-purple-500',
-          closingLine: `${this.customerCountInterest}`,
-          closingBg: 'text-green-500',
-          footer: 'Customer count:',
+          closingLine: `${this.openTickets}`,
+          closingBg: 'text-red-500',
+          footer: 'Open tickets:',
         },
       ];
-    });
   }
-
-
 }
+
+
+
