@@ -23,6 +23,10 @@ import { UpdateCampaignComponent } from './pages/crm-services/marketing-automati
 import { ReachAnalysisComponent } from './pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';import { CreateTicketComponent } from './pages/crm-services/customer-support/components/create-ticket/create-ticket.component';
 import { UpdateTicketComponent } from './pages/crm-services/customer-support/components/update-ticket/update-ticket.component';
 import { DeleteTicketComponent } from './pages/crm-services/customer-support/components/delete-ticket/delete-ticket.component';
+import { SalesAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/sales-analytics/sales-analytics.component';
+import { MarketingAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/marketing-analytics/marketing-analytics.component';
+import { CustomersAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/customers-analytics/customers-analytics.component';
+import { SupportAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/support-analytics/support-analytics.component';
 
 export const appRoutes: Routes = [
   { path: '', component: LandingComponent, canActivate: [AuthGuard] },
@@ -66,7 +70,13 @@ export const appRoutes: Routes = [
             {path:'updateCampaign',component:UpdateCampaignComponent},
             {path:'reachAnalysis',component:ReachAnalysisComponent} // Assuming you want to use the same component for viewing by ID
           ]},
-          {path: 'analytics-and-reporting', component: AnalyticsAndReportingComponent},
+          {path: 'analytics-and-reporting', children: [
+            {path: '', component: AnalyticsAndReportingComponent},
+            {path: 'sales-reports', component: SalesAnalyticsComponent},
+            {path: 'customer-reports', component: CustomersAnalyticsComponent},
+            {path: 'marketing-reports', component: MarketingAnalyticsComponent},
+            {path: 'support-reports', component: SupportAnalyticsComponent},
+          ]},
         ],
         canActivate: [AuthGuard]
       }

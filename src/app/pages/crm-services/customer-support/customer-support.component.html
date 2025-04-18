@@ -1,8 +1,10 @@
 <app-customer-support-header title="Customer-Support"></app-customer-support-header>
-<app-search-ticket></app-search-ticket>
-<app-filter-tickets></app-filter-tickets>
-<app-view-tickets [customers]="allTickets$ | async"></app-view-tickets>
-<!-- <app-update-ticket></app-update-ticket> -->
+<div class="card">
+    <app-search-ticket></app-search-ticket>
+    <app-filter-tickets></app-filter-tickets>
+    <app-view-tickets [customers]="allTickets$ | async"></app-view-tickets>
+</div>
+    <!-- <app-update-ticket></app-update-ticket> -->
 
 
   

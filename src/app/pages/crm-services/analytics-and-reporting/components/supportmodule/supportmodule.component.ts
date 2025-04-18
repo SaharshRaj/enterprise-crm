@@ -1,4 +1,6 @@
 import { ChangeDetectorRef, Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { SupportTicket } from '../../../../../models/SupportTicket';
+import { CustomerSupportService } from '../../../customer-support/service/customer-support.service';
 
 @Component({
   selector: 'app-supportmodule',
@@ -9,30 +11,16 @@ import { ChangeDetectorRef, Component, inject, OnInit, PLATFORM_ID } from '@angu
 export class SupportmoduleComponent implements OnInit {
   data: any;
   options: any;
-  ticketData = [
-    { "ticketID": 1, "customerID": 1, "issueDescription": "Issue opened", "assignedAgent": 1, "status": "CLOSED" },
-    { "ticketID": 4, "customerID": 4, "issueDescription": "Order not received", "assignedAgent": 4, "status": "OPEN" },
-    { "ticketID": 5, "customerID": 1, "issueDescription": "The issue has been opened", "assignedAgent": 1, "status": "OPEN" },
-    { "ticketID": 7, "customerID": 2, "issueDescription": "The issue has been opened", "assignedAgent": 2, "status": "OPEN" },
-    { "ticketID": 8, "customerID": 2, "issueDescription": "The issue has been opened", "assignedAgent": 2, "status": "OPEN" },
-    { "ticketID": 9, "customerID": 2, "issueDescription": "The issue has been opened", "assignedAgent": 2, "status": "OPEN" },
-    { "ticketID": 10, "customerID": 3, "issueDescription": "The issue has been closed", "assignedAgent": 10, "status": "CLOSED" },
-    { "ticketID": 12, "customerID": 12, "issueDescription": "The ticket has been closed", "assignedAgent": 12, "status": "CLOSED" },
-    { "ticketID": 13, "customerID": 2, "issueDescription": "The ticket has been opened", "assignedAgent": 2, "status": "OPEN" },
-    { "ticketID": 15, "customerID": 3, "issueDescription": "Issue closed", "assignedAgent": 3, "status": "CLOSED" },
-    { "ticketID": 16, "customerID": 3, "issueDescription": "Issue closed", "assignedAgent": 3, "status": "CLOSED" },
-    { "ticketID": 17, "customerID": 0, "issueDescription": "string", "assignedAgent": 1, "status": "OPEN" },
-    { "ticketID": 21, "customerID": 3, "issueDescription": "Issue closed", "assignedAgent": 3, "status": "CLOSED" },
-    { "ticketID": 23, "customerID": 3, "issueDescription": "Issue closed", "assignedAgent": 3, "status": "CLOSED" },
-    { "ticketID": 24, "customerID": 3, "issueDescription": "Issue closed", "assignedAgent": 3, "status": "CLOSED" },
-    { "ticketID": 25, "customerID": 3, "issueDescription": "Issue closed", "assignedAgent": 3, "status": "CLOSED" },
-    { "ticketID": 26, "customerID": 3, "issueDescription": "This service is not adsisapdnias", "assignedAgent": 12, "status": "OPEN" }
-  ];
-
-  constructor(private readonly cd: ChangeDetectorRef) {}
+  ticketData!: SupportTicket[];
+  constructor(private readonly cd: ChangeDetectorRef, private readonly supportService: CustomerSupportService) {}
 
   ngOnInit() {
-    this.initChart();
+    this.supportService.getAllTickets().subscribe({
+      next: (tickets) => {
+        this.ticketData = tickets
+        this.initChart();
+      }
+    })
   }
 
   initChart() {

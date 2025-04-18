@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { SalesService } from '../../../sales-automation/service/sales.service';
-import { SalesOpportunity, SalesStage } from '../../../../../models/SalesOpportunity';
+import {
+  SalesOpportunity,
+  SalesStage,
+} from '../../../../../models/SalesOpportunity';
+import { MarketingAutomationService } from '../../../marketing-automation/service/marketing-automation.service';
+import { Campaign } from '../../../../../models/Campaign';
 
 @Component({
   selector: 'app-tabs-marketing',
   standalone: false,
   templateUrl: './tabs-marketing.component.html',
-  styleUrl: './tabs-marketing.component.scss'
+  styleUrl: './tabs-marketing.component.scss',
 })
 export class TabsMarketingComponent {
   allCampaigns!: SalesOpportunity[];
 
-  constructor(private readonly currencyPipe: CurrencyPipe, private readonly salesService: SalesService){}
+  constructor(private readonly maretingService: MarketingAutomationService) {}
 
-  totalLeads!: number;
-  totalRevenue!: number;
-  winRate!: number;
-  lostRate!: number;
-  closingToday!:number;
-  revenueLost!:number;
+  totalCampaign!: number;
+  ongoingCampaign!: number;
+  totalCustomerInteractions!: number;
 
   statistics: {
     title: string;
@@ -31,61 +33,48 @@ export class TabsMarketingComponent {
     footer: string;
   }[] = [];
 
-  isSameDay(closingDate: Date, today: Date){
-    return closingDate.getFullYear() === today.getFullYear() &&
-    closingDate.getMonth() === today.getMonth() &&
-    closingDate.getDate() === today.getDate();
+  checkIfOngoing(closing: Date, today: Date, starting: Date): boolean {
+    return today >= starting && today <= closing;
   }
-
 
   ngOnInit(): void {
-    this.salesService.getSales().subscribe((sales) => {
-      this.revenueLost = sales.filter((sale) => sale.salesStage == SalesStage.CLOSED_LOST).map(sale => sale.estimatedValue).reduce((a,b)=>a+b,0)
-      this.closingToday = sales.filter((sale) => this.isSameDay(new Date(sale.closingDate) ,new Date())).length
-      this.totalLeads = sales.length;
-      this.totalRevenue = sales
-        .filter((sale) => sale.salesStage === 'CLOSED_WON')
-        .map((sale) => sale.estimatedValue)
-        .reduce((a, b) => a + b, 0);
-      const won = sales.filter(
-        (sale) => sale.salesStage === 'CLOSED_WON',
-      ).length;
-      const lost = sales.filter(
-        (sale) => sale.salesStage === 'CLOSED_LOST',
-      ).length;
-      this.winRate = +((won / sales.length) * 100).toFixed(2);
-      this.lostRate = +((lost / sales.length) * 100).toFixed(2);
-      this.statistics = [
-        {
-          title: 'Total Leads',
-          count: this.totalLeads.toString(),
-          iconBg: 'bg-blue-100',
-          iconClass: 'pi pi-users text-blue-500',
-          closingLine: `${this.closingToday}`,
-          closingBg: 'text-green-500',
-          footer: 'Leads closing today:',
-        },
-        {
-          title: 'Total Revenue',
-          count: this.totalRevenue.toFixed(2).toString(),
-          iconBg: 'bg-green-100',
-          iconClass: 'pi pi-indian-rupee text-green-500',
-          closingLine: `${this.currencyPipe.transform(this.revenueLost,'INR')}`,
-          closingBg: 'text-red-500',
-          footer: 'Revenue lost:',
-        },
-        {
-          title: 'Win Rate',
-          count: this.winRate.toString() + '%',
-          iconBg: 'bg-purple-100',
-          iconClass: 'pi pi-trophy text-purple-500',
-          closingLine: `${this.lostRate}%`,
-          closingBg: 'text-green-500',
-          footer: 'Lose rate:',
-        },
-      ];
-    });
+
+    this.maretingService.getCampaigns().subscribe({
+      next: (campaigns : Campaign[]) => {
+        this.totalCampaign = campaigns.length
+        this.ongoingCampaign = campaigns.filter((campaign) => this.checkIfOngoing(new Date(campaign.endDate), new Date(), new Date(campaign.startDate))).length;
+        this.totalCustomerInteractions = campaigns.map((campaign) => campaign.customerInteractions).reduce((a,b)=> a+b, 0)
+        
+        this.statistics = [
+          {
+            title: 'Total Campaigns',
+            count: this.totalCampaign.toString(),
+            iconBg: 'bg-blue-100',
+            iconClass: 'pi pi-users text-blue-500',
+        closingLine: '',
+        closingBg: 'text-green-500',
+        footer: '',
+      },
+      {
+        title: 'Ongoing Campaigns',
+        count: this.ongoingCampaign.toString(),
+        iconBg: 'bg-green-100',
+        iconClass: 'pi pi-indian-rupee text-green-500',
+        closingLine: '',
+        closingBg: 'text-red-500',
+        footer: '',
+      },
+      {
+        title: 'Customer Interactions',
+        count: this.totalCustomerInteractions.toString(),
+        iconBg: 'bg-purple-100',
+        iconClass: 'pi pi-trophy text-purple-500',
+        closingLine: '',
+        closingBg: 'text-green-500',
+        footer: '',
+      },
+    ];
   }
-
-
+})
+  }
 }
