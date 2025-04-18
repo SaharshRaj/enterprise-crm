@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './marketing-automation.component.scss'
 })
 export class MarketingAutomationComponent {
-
+  
 }

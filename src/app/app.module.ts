@@ -37,7 +37,7 @@ import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-an
     CustomerSupportModule,
     AnalyticsAndReportingModule,
     StoreModule.forRoot({ time: timeReducer, auth: authReducer }),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     provideHttpClient(withFetch()),

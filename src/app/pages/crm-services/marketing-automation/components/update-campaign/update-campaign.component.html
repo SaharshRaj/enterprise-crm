@@ -1,0 +1,36 @@
+<div [hidden]="submitted">
+  <form (ngSubmit)="onSubmit()" class="mb-4">
+    <div class="form-group">
+      <label for="campaignID">Campaign ID:</label>
+      <input type="text" id="campaignID" [(ngModel)]="campaign.campaignID" name="campaignID" class="form-control" >
+    </div>
+    <div class="form-group">
+      <label for="name">Campaign Name:</label>
+      <input type="text" id="name" [(ngModel)]="campaign.name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" [(ngModel)]="campaign.startDate" name="startDate" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" [(ngModel)]="campaign.endDate" name="endDate" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="type">Type:</label>
+      <select id="type" [(ngModel)]="campaign.type" name="type" class="form-control" required>
+        <option value="" disabled>Select a Type</option>
+        <option *ngFor="let notType of NotificationType" [value]="notType.value">{{ notType.label }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Campaign</button>
+  </form>
+
+  <div *ngIf="noRecordFound" class="alert alert-danger">
+    No campaign found with the provided ID.
+  </div>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Data updated successfully</h4>
+</div>
