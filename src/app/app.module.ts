@@ -23,6 +23,7 @@ import { MarketingAutomationModule } from './modules/crm-services/marketing-auto
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
 import { MessageService } from 'primeng/api';
+// import { CustomerDeleteConfirmationComponent } from './pages/crm-services/customer-data-management/customer-delete-confirmation/customer-delete-confirmation.component';
 
 @NgModule({
   declarations: [AppComponent],

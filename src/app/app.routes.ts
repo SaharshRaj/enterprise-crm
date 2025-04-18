@@ -13,6 +13,8 @@ import { CustomerDataManagementComponent } from './pages/crm-services/customer-d
 import { CustomerSupportComponent } from './pages/crm-services/customer-support/customer-support.component';
 import { MarketingAutomationComponent } from './pages/crm-services/marketing-automation/marketing-automation.component';
 import { AnalyticsAndReportingComponent } from './pages/crm-services/analytics-and-reporting/analytics-and-reporting.component';
+import { RegisterCustomerComponent } from './pages/crm-services/customer-data-management/register-customer/register-customer.component';
+import { UpdateCustomerComponent } from './pages/crm-services/customer-data-management/update-customer/update-customer.component';
 
 export const appRoutes: Routes = [
   { path: '', component: LandingComponent, canActivate: [AuthGuard] },
@@ -34,7 +36,12 @@ export const appRoutes: Routes = [
         path: 'services',
         children: [
           {path: '', redirectTo: 'customer-data-management', pathMatch: "full"},
-          {path: 'customer-data-management', component: CustomerDataManagementComponent},
+          {path: 'customer-data-management', children:[
+            {path: '', component: CustomerDataManagementComponent},
+            { path : 'add-customer', component: RegisterCustomerComponent},
+            // {path: 'update-customer', component:UpdateCustomerComponent},
+            { path: 'update-customer/:id', component: UpdateCustomerComponent },
+          ]},
           {path: 'sales-automation', component: SalesAutomationComponent},
           {path: 'customer-support', component: CustomerSupportComponent},
           {path: 'marketing-automation', component: MarketingAutomationComponent},
