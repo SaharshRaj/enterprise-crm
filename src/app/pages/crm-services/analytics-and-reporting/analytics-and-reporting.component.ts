@@ -32,7 +32,7 @@ export class AnalyticsAndReportingComponent implements OnInit{
       customerID: 201,
       name: 'Rajesh Kumar',
       emailId: 'rajesh.kumar@example.com',
-      phoneNumeber: '91-9876543210',
+      phoneNumber: '91-9876543210',
       purchaseHistory: ['Electronics - 2025-04-05', 'Books - 2025-04-12','Electronics - 2025-04-05','Electronics - 2025-04-05','Electronics - 2025-04-05'],
       segmentationData: { Interest: 'Technology', Region: 'South', "Purchasing Habits": 'Frequent Online Buyer' },
     },
@@ -40,7 +40,7 @@ export class AnalyticsAndReportingComponent implements OnInit{
       customerID: 202,
       name: 'Priya Sharma',
       emailId: 'priya.sharma@example.com',
-      phoneNumeber: '91-8765432109',
+      phoneNumber: '91-8765432109',
       purchaseHistory: ['Apparel - 2025-04-01'],
       segmentationData: { Interest: 'Fashion', Region: 'North', "Purchasing Habits": 'Seasonal Spender' },
     },
@@ -48,7 +48,7 @@ export class AnalyticsAndReportingComponent implements OnInit{
       customerID: 203,
       name: 'Amit Patel',
       emailId: 'amit.patel@example.com',
-      phoneNumeber: '91-7654321098',
+      phoneNumber: '91-7654321098',
       purchaseHistory: [],
       segmentationData: { Interest: 'Travel', Region: 'West', "Purchasing Habits": 'Occasional Big Purchases' },
     },
@@ -56,7 +56,7 @@ export class AnalyticsAndReportingComponent implements OnInit{
       customerID: 204,
       name: 'Sneha Verma',
       emailId: 'sneha.verma@example.com',
-      phoneNumeber: '91-6543210987',
+      phoneNumber: '91-6543210987',
       purchaseHistory: ['Home Decor - 2025-03-28', 'Kitchenware - 2025-04-15'],
       segmentationData: { Interest: 'Home & Living', Region: 'East', "Purchasing Habits": 'Value-Conscious' },
     },
@@ -64,7 +64,7 @@ export class AnalyticsAndReportingComponent implements OnInit{
       customerID: 205,
       name: 'Rahul Singh',
       emailId: 'rahul.singh@example.com',
-      phoneNumeber: '91-5432109876',
+      phoneNumber: '91-5432109876',
       purchaseHistory: ['Books - 2025-04-10'],
       segmentationData: { Interest: 'Literature', Region: 'Central', "Purchasing Habits": 'Regular Small Purchases' },
     },
@@ -74,47 +74,47 @@ export class AnalyticsAndReportingComponent implements OnInit{
     {
       ticketID: '1',
       customerID: '1',
-      priority: 'High',
+      priority: 'high',
       created: new Date(),
       assignedAgent: '1',
       issueDescription: 'Sample issue description for testing.',
-      status: 'Open'
+      status: 'OPEN'
   },
   {
     ticketID: '2',
     customerID: '2',
-    priority: 'Low',
+    priority: 'low',
     created: new Date(),
     assignedAgent: '4',
     issueDescription: 'Sample issue description for testing.',
-    status: 'closed'
+    status: 'CLOSED'
   },
   {
     ticketID: '3',
     customerID: '3',
-    priority: 'High',
+    priority: 'high',
     created: new Date(),
     assignedAgent: '3',
     issueDescription: 'Sample issue description for testing.',
-    status: 'Open'
+    status: 'OPEN'
 },
 {
   ticketID: '4',
   customerID: '4',
-  priority: 'Low',
+  priority: 'low',
   created: new Date(),
   assignedAgent: '4',
   issueDescription: 'Sample issue description for testing.',
-  status: 'closed'
+  status: 'CLOSED'
 },
 {
   ticketID: '5',
   customerID: '5',
-  priority: 'High',
+  priority: 'high',
   created: new Date(),
   assignedAgent: '5',
   issueDescription: 'Sample issue description for testing.',
-  status: 'Open'
+  status: 'OPEN'
 },
   ];
 

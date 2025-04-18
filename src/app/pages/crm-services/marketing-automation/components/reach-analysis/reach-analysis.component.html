@@ -25,19 +25,19 @@
         Campaign Type: {{ type }}
       </div>
       <div class="card-body">
-        <p><strong>Average Interactions:</strong> {{ campaignReachByType[type]?.averageInteractions | number:'1.2-2' }}</p>
+        <p><strong>Average Interactions:</strong> {{ campaignReachByType[type].averageInteractions | number:'1.2-2' }}</p>
 
         <div *ngIf="campaignReachByType[type]?.highestReachCampaignName">
-          <p><strong>Highest Reach Campaign:</strong> {{ campaignReachByType[type]?.highestReachCampaignName }}</p>
-          <p><strong>Highest Reach Interactions:</strong> {{ campaignReachByType[type]?.highestReachInteractions }}</p>
+          <p><strong>Highest Reach Campaign:</strong> {{ campaignReachByType[type].highestReachCampaignName }}</p>
+          <p><strong>Highest Reach Interactions:</strong> {{ campaignReachByType[type].highestReachInteractions }}</p>
         </div>
         <div *ngIf="!campaignReachByType[type]?.highestReachCampaignName">
           <p><strong>Highest Reach Campaign:</strong> N/A</p>
         </div>
 
         <div *ngIf="campaignReachByType[type]?.lowestReachCampaignName">
-          <p><strong>Lowest Reach Campaign:</strong> {{ campaignReachByType[type]?.lowestReachCampaignName }}</p>
-          <p><strong>Lowest Reach Interactions:</strong> {{ campaignReachByType[type]?.lowestReachInteractions }}</p>
+          <p><strong>Lowest Reach Campaign:</strong> {{ campaignReachByType[type].lowestReachCampaignName }}</p>
+          <p><strong>Lowest Reach Interactions:</strong> {{ campaignReachByType[type].lowestReachInteractions }}</p>
         </div>
         <div *ngIf="!campaignReachByType[type]?.lowestReachCampaignName">
           <p><strong>Lowest Reach Campaign:</strong> N/A</p>

@@ -16,7 +16,7 @@ export class TabsCustomerComponent {
       customerID: 1,
       name: 'Alice Smith',
       emailId: 'alice.smith@example.com',
-      phoneNumeber: '555-123-4567',
+      phoneNumber: '555-123-4567',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'NORTH_AMERICA',
@@ -28,7 +28,7 @@ export class TabsCustomerComponent {
       customerID: 2,
       name: 'Bob Johnson',
       emailId: 'bob.johnson@example.com',
-      phoneNumeber: '555-234-5678',
+      phoneNumber: '555-234-5678',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'EUROPE',
@@ -40,7 +40,7 @@ export class TabsCustomerComponent {
       customerID: 3,
       name: 'Carol White',
       emailId: 'carol.white@example.com',
-      phoneNumeber: '555-345-6789',
+      phoneNumber: '555-345-6789',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'ASIAN_PACIFIC',
@@ -52,7 +52,7 @@ export class TabsCustomerComponent {
       customerID: 4,
       name: 'David Brown',
       emailId: 'david.brown@example.com',
-      phoneNumeber: '555-456-7890',
+      phoneNumber: '555-456-7890',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'LATIN_AMERICA',
@@ -64,7 +64,7 @@ export class TabsCustomerComponent {
       customerID: 5,
       name: 'Eve Davis',
       emailId: 'eve.davis@example.com',
-      phoneNumeber: '555-567-8901',
+      phoneNumber: '555-567-8901',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'MIDDLE_EAST_AND_AFRICA',
@@ -76,7 +76,7 @@ export class TabsCustomerComponent {
       customerID: 6,
       name: 'Frank Miller',
       emailId: 'frank.miller@example.com',
-      phoneNumeber: '555-678-9012',
+      phoneNumber: '555-678-9012',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'CENTRAL_AMERICA',
@@ -88,7 +88,7 @@ export class TabsCustomerComponent {
       customerID: 7,
       name: 'Grace Wilson',
       emailId: 'grace.wilson@example.com',
-      phoneNumeber: '555-789-0123',
+      phoneNumber: '555-789-0123',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'EASTERN_EUROPE',
@@ -100,7 +100,7 @@ export class TabsCustomerComponent {
       customerID: 8,
       name: 'Hank Moore',
       emailId: 'hank.moore@example.com',
-      phoneNumeber: '555-890-1234',
+      phoneNumber: '555-890-1234',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'WESTERN_EUROPE',
@@ -112,7 +112,7 @@ export class TabsCustomerComponent {
       customerID: 9,
       name: 'Ivy Taylor',
       emailId: 'ivy.taylor@example.com',
-      phoneNumeber: '555-901-2345',
+      phoneNumber: '555-901-2345',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'NORTHERN_EUROPE',
@@ -124,7 +124,7 @@ export class TabsCustomerComponent {
       customerID: 10,
       name: 'Jack Anderson',
       emailId: 'jack.anderson@example.com',
-      phoneNumeber: '555-012-3456',
+      phoneNumber: '555-012-3456',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'SOUTHERN_EUROPE',
@@ -136,7 +136,7 @@ export class TabsCustomerComponent {
       customerID: 11,
       name: 'Kara Thomas',
       emailId: 'kara.thomas@example.com',
-      phoneNumeber: '555-123-4567',
+      phoneNumber: '555-123-4567',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'SOUTHEAST_ASIA',
@@ -148,7 +148,7 @@ export class TabsCustomerComponent {
       customerID: 12,
       name: 'Leo Jackson',
       emailId: 'leo.jackson@example.com',
-      phoneNumeber: '555-234-5678',
+      phoneNumber: '555-234-5678',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'SOUTH_ASIA',
@@ -160,7 +160,7 @@ export class TabsCustomerComponent {
       customerID: 13,
       name: 'Mia Harris',
       emailId: 'mia.harris@example.com',
-      phoneNumeber: '555-345-6789',
+      phoneNumber: '555-345-6789',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'EAST_ASIA',
@@ -172,7 +172,7 @@ export class TabsCustomerComponent {
       customerID: 14,
       name: 'Noah Martin',
       emailId: 'noah.martin@example.com',
-      phoneNumeber: '555-456-7890',
+      phoneNumber: '555-456-7890',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'OCEANIA',
@@ -184,7 +184,7 @@ export class TabsCustomerComponent {
       customerID: 15,
       name: 'Olivia Lee',
       emailId: 'olivia.lee@example.com',
-      phoneNumeber: '555-567-8901',
+      phoneNumber: '555-567-8901',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'SUB_SAHARAN_AFRICA',
@@ -196,7 +196,7 @@ export class TabsCustomerComponent {
       customerID: 16,
       name: 'Paul Walker',
       emailId: 'paul.walker@example.com',
-      phoneNumeber: '555-678-9012',
+      phoneNumber: '555-678-9012',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'NORTH_AMERICA',
@@ -208,7 +208,7 @@ export class TabsCustomerComponent {
       customerID: 17,
       name: 'Quinn Young',
       emailId: 'quinn.young@example.com',
-      phoneNumeber: '555-789-0123',
+      phoneNumber: '555-789-0123',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'EUROPE',
@@ -220,7 +220,7 @@ export class TabsCustomerComponent {
       customerID: 18,
       name: 'Rachel King',
       emailId: 'rachel.king@example.com',
-      phoneNumeber: '555-890-1234',
+      phoneNumber: '555-890-1234',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'ASIAN_PACIFIC',
@@ -232,7 +232,7 @@ export class TabsCustomerComponent {
       customerID: 19,
       name: 'Sam Carter',
       emailId: 'sam.carter@example.com',
-      phoneNumeber: '555-901-2345',
+      phoneNumber: '555-901-2345',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'LATIN_AMERICA',
@@ -244,7 +244,7 @@ export class TabsCustomerComponent {
       customerID: 20,
       name: 'Tina Adams',
       emailId: 'tina.adams@example.com',
-      phoneNumeber: '555-012-3456',
+      phoneNumber: '555-012-3456',
       purchaseHistory: ['12313', '1231131', '1231231'],
       segmentationData: {
         Region: 'MIDDLE_EAST_AND_AFRICA',

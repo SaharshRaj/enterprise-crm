@@ -106,7 +106,7 @@ export class AnalyticsStatsComponent implements OnInit {
 
     this.allSupports$.subscribe((supportTickets) => {
       let totalTickets = supportTickets.length;
-      let openTickets = supportTickets.filter((ticket) => ticket.status === 'Open').length;
+      let openTickets = supportTickets.filter((ticket) => ticket.status === 'OPEN').length;
       let resolutionRate = totalTickets > 0 ? (openTickets / totalTickets) * 100 : 0;
     
       this.statistics.push(
