@@ -34,22 +34,22 @@ export class HeaderComponent implements OnInit{
   ngOnInit() {
     this.items = [
         {
-            icon: 'pi pi-pencil',
+            icon: 'pi pi-users',
             label: 'Generate Customer Report',
             command: () => {this.router.navigate(['pages/services/analytics-and-reporting/customer-reports'])},
         },
         {
-            icon: 'pi pi-refresh',
+            icon: 'pi pi-indian-rupee',
             label: 'Generate Sales Report',
             command: () => {this.router.navigate(['pages/services/analytics-and-reporting/sales-reports'])},
         },
         {
-            icon: 'pi pi-trash',
+            icon: 'pi pi-question-circle',
             label: 'Generate Customer Support Report',
             command: () => {this.router.navigate(['pages/services/analytics-and-reporting/support-reports'])},
         },
         {
-            icon: 'pi pi-upload',
+            icon: 'pi pi-briefcase',
             label: 'Generate Marketing Report',
             command: () => {this.router.navigate(['pages/services/analytics-and-reporting/marketing-reports'])},
         },

@@ -22,6 +22,7 @@ import { SupportAnalyticsComponent } from '../../../pages/crm-services/analytics
 import { MarketingAnalyticsComponent } from '../../../pages/crm-services/analytics-and-reporting/marketing-analytics/marketing-analytics.component';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { OrganizationChartModule } from 'primeng/organizationchart';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ButtonModule } from 'primeng/button';
     LandingModule,
     SpeedDial,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    OrganizationChartModule
   ],
   providers: [
     AnalyticsService

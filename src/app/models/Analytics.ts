@@ -37,7 +37,7 @@ export type MarketingReport = {
         }[],
         totalCampaigns: number,
         totalCustomerInteractions: number,
-        topCampaign: Navigator,
+        topCampaign: string,
         completedCampaigns: number,
         activeCampaigns: number,
         zeroInteractionCampaigns: number

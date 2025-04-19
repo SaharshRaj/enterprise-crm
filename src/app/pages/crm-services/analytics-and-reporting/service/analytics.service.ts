@@ -33,4 +33,13 @@ export class AnalyticsService {
   generateCustomerReport(){
     return this.httpClient.post<CustomerReport>(environment.apiUrl + `/analytics/customers`, null)
   }  
+  generateMarketingReport(){
+    return this.httpClient.post<MarketingReport>(environment.apiUrl + `/analytics/marketingCampaigns`, null)
+  }  
+  generateSalesReport(){
+    return this.httpClient.post<SalesReport>(environment.apiUrl + `/analytics/sales`, null)
+  }
+  generateSupportReport(){
+    return this.httpClient.post<SupportReport>(environment.apiUrl + `/analytics/supportTickets`, null)
+  }
 }
