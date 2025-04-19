@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { Campaign } from '../../../../../models/Campaign';
+import { Component, OnInit } from '@angular/core';
 import { MarketingAutomationService } from '../../service/marketing-automation.service';
-import { FormsModule } from '@angular/forms'; // Import FormsModule if you're using ngModel
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Campaign } from '../../../../../models/Campaign';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-get-campaign-by-id',
@@ -10,91 +11,112 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
   templateUrl: './get-campaign-by-id.component.html',
   styleUrl: './get-campaign-by-id.component.scss'
 })
-export class GetCampaignByIdComponent {
-  // campaign: Campaign = new Campaign(); // Initialize with a fresh instance
-  // campaignIdToSearch: string = ''; // Property to hold the ID entered by the user
-  // noRecordFound: boolean = false;
-  // submitted: boolean = false;
-  // searchError: string = ''; // To display any error messages
+export class GetCampaignByIdComponent implements OnInit {
+  loading = false;
+  campaign?: Campaign;
+  form!: FormGroup;
+  id!: number;
 
-  // constructor(private marketingService: MarketingAutomationService) { }
-
-  // searchCampaignById(): void {
-  //   this.submitted = true;
-  //   this.noRecordFound = false;
-  //   this.searchError = '';
-
-  //   if (!this.campaignIdToSearch.trim()) {
-  //     this.noRecordFound = true;
-  //     return;
-  //   }
-
-  //   const campaignId = +this.campaignIdToSearch.trim(); // Convert to number
-
-  //   const campaign = new Campaign();
-  //   campaign.campaignID = +this.campaignIdToSearch.trim(); // Assuming campaignID is the property name
-  //   campaign.campaignID = campaignId;
-  //   this.marketingService.getCampaignId()
-  //   .subscribe(
-  //       (data) => {
-  //         this.campaign = data || new Campaign(); // Assign data or a new Campaign if null
-  //         this.noRecordFound = !(data && data.campaignID); // Set based on data existence
-  //       },
-  //       (error) => {
-  //         console.error('Error fetching campaign:', error);
-  //         this.searchError = 'Error fetching campaign. Please try again later.';
-  //         this.noRecordFound = true;
-  //         this.campaign = new Campaign(); // Clear previous data on error
-  //       }
-  //     );
-  // }
-
-  // onSubmit(): void {
-  //   this.searchCampaignById();
-  // }
-  // campaign:Campaign=new Campaign();
-  // noRecordFound=false;
-  // submitted=false;
-  // constructor(private marketingService:MarketingAutomationService){
-  // }
-  // search(){
-  //   this.marketingService.getCampaignById(this.campaign)
-  //   .subscribe(data=>{
-  //     this.campaign=data;
-  //   });
-  //   if(this.campaign.campaignID==0){
-  //     this.noRecordFound=true;
-  //   }
-  // }
-  // onSubmit(){
-  //   this.search();
-  //   this.submitted=true;
-  // }
-
-  campaign:Campaign=new Campaign();
-  noRecordFound=false;
-  submitted=false;
-  constructor(private markeingService:MarketingAutomationService){
+  constructor(
+    private readonly marketingService: MarketingAutomationService,
+    private confirmationService: ConfirmationService,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly messageService: MessageService,
+    private readonly router: Router
+  ) {
+    // Initialize the form with default controls in the constructor
+    this.form = new FormGroup({
+      text: new FormControl<string>('', [Validators.required])
+    });
   }
-  search(){
-    this.markeingService.getCampaignId()
-    .subscribe(
-      {
-        next: (data: Campaign) => this.campaign = data,
-        error: (error: HttpErrorResponse) => {
-          this.campaign = new Campaign()
-          this.campaign.campaignID = 0;
-        }
+
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.id = +params.get('id')!;
+      if (this.id) {
+        console.log(this.id);
+        this.marketingService.getCampaignById(this.id).subscribe({
+          next: (campaign: Campaign) => {
+            this.campaign = campaign;
+            this.form.patchValue({ text: this.campaign.trackingUrl });
+          },
+          error: (error) => {
+            console.error('Error fetching campaign:', error);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load campaign details.' });
+          }
+        });
       }
-    );
-    if(this.campaign.campaignID==0){
-      this.noRecordFound=true;
+    });
+  }
+
+  get textControlErrorMessage(): string | null {
+    if (this.form?.get('text')?.hasError('required')) {
+      return 'The URL is required.';
     }
-  }
-  onSubmit(){
-    this.search();
-    this.submitted=true;
+    return null;
   }
 
+  confirmDelete(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this record?',
+      header: 'Danger Zone',
+      icon: 'pi pi-info-circle',
+      rejectLabel: 'Cancel',
+      rejectButtonProps: {
+        label: 'Cancel',
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: 'Delete',
+        severity: 'danger',
+      },
+      accept: () => {
+        this.handleDelete();
+      },
+      reject: () => {
+        this.messageService.add({ severity: '', summary: 'Canceled', detail: 'You have canceled' });
+      },
+    });
+  }
 
+  handleUpdate(){
+    this.loading = true,
+    this.campaign!.trackingUrl = this.form.get('text')?.value
+    this.marketingService.updateCampaign(this.campaign!).subscribe({
+      next: ()=> {
+        this.messageService.add({
+          severity: 'success', summary: 'Success', detail: 'Campaign Updated Successfully!'
+        });
+        this.loading = false;
+        console.log(this.campaign)
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error', summary: 'Error', detail: 'Some error occurred!'
+        });
+        this.loading = false;
+      }
+    })
+  }
+
+  handleDelete() {
+    this.loading = true;
+    this.marketingService.deleteCampaign(this.campaign!).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success', summary: 'Success', detail: 'Campaign Deleted Successfully!'
+        });
+        this.loading = false;
+        this.router.navigate(['/pages/services/marketing-automation'])
+      },
+      error: () => {
+        this.messageService.add({
+          severity: 'error', summary: 'Error', detail: 'Some error occurred!'
+        });
+        this.loading = false;
+      }
+    });
+  }
 }

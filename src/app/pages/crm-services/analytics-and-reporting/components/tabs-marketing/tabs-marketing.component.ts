@@ -43,7 +43,7 @@ export class TabsMarketingComponent {
       next: (campaigns : Campaign[]) => {
         this.totalCampaign = campaigns.length
         this.ongoingCampaign = campaigns.filter((campaign) => this.checkIfOngoing(new Date(campaign.endDate), new Date(), new Date(campaign.startDate))).length;
-        this.totalCustomerInteractions = campaigns.map((campaign) => campaign.customerInteractions).reduce((a,b)=> a+b, 0)
+        this.totalCustomerInteractions = campaigns.map((campaign) => campaign.customerInteractions!).reduce((a,b)=> a!+b!, 0)
         
         this.statistics = [
           {

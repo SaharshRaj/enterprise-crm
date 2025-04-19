@@ -19,7 +19,6 @@ import { CreateCampaignComponent } from './pages/crm-services/marketing-automati
 import { ListCampaignComponent } from './pages/crm-services/marketing-automation/components/list-campaign/list-campaign.component';
 import { GetCampaignByIdComponent } from './pages/crm-services/marketing-automation/components/get-campaign-by-id/get-campaign-by-id.component';
 import { DeleteCampaignComponent } from './pages/crm-services/marketing-automation/components/delete-campaign/delete-campaign.component';
-import { UpdateCampaignComponent } from './pages/crm-services/marketing-automation/components/update-campaign/update-campaign.component';
 import { ReachAnalysisComponent } from './pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';import { CreateTicketComponent } from './pages/crm-services/customer-support/components/create-ticket/create-ticket.component';
 import { UpdateTicketComponent } from './pages/crm-services/customer-support/components/update-ticket/update-ticket.component';
 import { DeleteTicketComponent } from './pages/crm-services/customer-support/components/delete-ticket/delete-ticket.component';
@@ -65,9 +64,8 @@ export const appRoutes: Routes = [
             { path: '', component: MarketingAutomationComponent ,},
             {path:'createCampaign',component:CreateCampaignComponent},
             {path: 'listCampaign', component: ListCampaignComponent},
-            {path:'getCampaignById', component: GetCampaignByIdComponent},
+            {path:'getCampaignById/:id', component: GetCampaignByIdComponent},
             {path:'deleteCampaign',component:DeleteCampaignComponent},
-            {path:'updateCampaign',component:UpdateCampaignComponent},
             {path:'reachAnalysis',component:ReachAnalysisComponent} // Assuming you want to use the same component for viewing by ID
           ]},
           {path: 'analytics-and-reporting', children: [

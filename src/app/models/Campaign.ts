@@ -1,13 +1,13 @@
 import { NotificationType } from "./NotificationType";
 
 export class Campaign{
-  campaignID!:number;
+  campaignID?:number;
   name!:string;
   startDate!:Date;
   endDate!:Date;
   type!:NotificationType;
-  customerInteractions!:number;
-  trackingUrl!:string;
-  status!:string;
+  customerInteractions?:number;
+  trackingUrl?:string;
+  status?:string;
 }
 

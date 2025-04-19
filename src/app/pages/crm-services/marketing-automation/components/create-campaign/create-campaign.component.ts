@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { MarketingAutomationService } from '../../service/marketing-automation.service';
 import { Router } from '@angular/router';
 
 // Custom validator for future dates
-function futureDateValidator(control: AbstractControl): ValidationErrors | null {
+function futureDateValidator(
+  control: AbstractControl,
+): ValidationErrors | null {
   if (!control.value) {
     return null; // Don't validate if no value is provided (required handles this)
   }
@@ -19,7 +27,9 @@ function futureDateValidator(control: AbstractControl): ValidationErrors | null 
 }
 
 // Custom validator to prevent numerical names
-function nonNumericalNameValidator(control: AbstractControl): ValidationErrors | null {
+function nonNumericalNameValidator(
+  control: AbstractControl,
+): ValidationErrors | null {
   if (!control.value) {
     return null;
   }
@@ -33,9 +43,10 @@ function nonNumericalNameValidator(control: AbstractControl): ValidationErrors |
   selector: 'app-create-campaign',
   standalone: false,
   templateUrl: './create-campaign.component.html',
-  styleUrl: './create-campaign.component.scss'
+  styleUrl: './create-campaign.component.scss',
 })
 export class CreateCampaignComponent implements OnInit {
+  loading = false;
   formData: FormGroup;
   successMessageVisible: boolean = false;
   showForm: boolean = true; // Controls form visibility (initially visible)
@@ -43,13 +54,20 @@ export class CreateCampaignComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private marketingService: MarketingAutomationService,
-    private router: Router
+    private router: Router,
   ) {
     this.formData = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(5), nonNumericalNameValidator]],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          nonNumericalNameValidator,
+        ],
+      ],
       startDate: ['', [Validators.required, futureDateValidator]],
       endDate: ['', [Validators.required, futureDateValidator]],
-      type: ['', Validators.required]
+      type: ['', Validators.required],
     });
   }
 
@@ -57,14 +75,29 @@ export class CreateCampaignComponent implements OnInit {
     // You can add any initialization logic here
   }
 
-  get name() { return this.formData.get('name'); }
-  get startDate() { return this.formData.get('startDate'); }
-  get endDate() { return this.formData.get('endDate'); }
-  get type() { return this.formData.get('type'); }
+  get name() {
+    return this.formData.get('name');
+  }
+  get startDate() {
+    return this.formData.get('startDate');
+  }
+  get endDate() {
+    return this.formData.get('endDate');
+  }
+  get type() {
+    return this.formData.get('type');
+  }
 
-  onSubmit(formData: any): void {
+  onSubmit(): void {
     if (this.formData.valid) {
-      this.marketingService.registerCampaign(formData)
+      this.loading = true;
+      this.marketingService
+        .registerCampaign({
+          name: this.formData.get('name')?.value,
+          startDate: this.formData.get('startDate')?.value,
+          endDate: this.formData.get('endDate')?.value,
+          type: this.formData.get('type')?.value,
+        })
         .subscribe({
           next: (response) => {
             console.log('Campaign created successfully:', response);
@@ -73,15 +106,17 @@ export class CreateCampaignComponent implements OnInit {
             this.formData.reset();
             // Optionally navigate to the campaign list or another page
             // this.router.navigate(['/campaigns']);
+            this.loading = false;
           },
           error: (error) => {
             console.error('Error creating campaign:', error);
             // Handle error display to the user
-          }
+            this.loading = false;
+          },
         });
     } else {
       // Trigger validation to show error messages
-      Object.values(this.formData.controls).forEach(control => {
+      Object.values(this.formData.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });

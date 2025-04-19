@@ -40,7 +40,7 @@ export class MarketingAnalyticsComponent implements OnInit {
   loadInitialDataForChart() {
     this.marketingService.getCampaigns().subscribe({
       next: (campaigns) => {
-        this.barChartData = {labels: campaigns.map((campaign) => campaign.name), data: campaigns.map((campaign) => campaign.customerInteractions)}
+        this.barChartData = {labels: campaigns.map((campaign) => campaign.name), data: campaigns.map((campaign) => campaign.customerInteractions!)}
       },
       complete: () => {
         this.initChart();

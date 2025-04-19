@@ -35,7 +35,7 @@ export class ListCampaignComponent implements OnInit {
   loadCampaigns(): void {
     this.marketingService.getCampaigns()
       .subscribe(data => {
-        this.campaigns = data;
+        this.campaigns = data.reverse();
         this.filterCampaigns(); // Initial filtering
       });
   }
@@ -81,7 +81,7 @@ export class ListCampaignComponent implements OnInit {
     if (this.searchText) {
       const lowerSearchText = this.searchText.toLowerCase();
       filtered = filtered.filter(campaign =>
-        campaign.campaignID.toString().toLowerCase().includes(lowerSearchText)
+        campaign.campaignID?.toString().toLowerCase().includes(lowerSearchText)
       );
       this.searched = true;
     } else {

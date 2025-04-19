@@ -9,9 +9,10 @@ import { RouterModule } from '@angular/router';
 import { ListCampaignComponent } from '../../../pages/crm-services/marketing-automation/components/list-campaign/list-campaign.component';
 import { GetCampaignByIdComponent } from '../../../pages/crm-services/marketing-automation/components/get-campaign-by-id/get-campaign-by-id.component';
 import { DeleteCampaignComponent } from '../../../pages/crm-services/marketing-automation/components/delete-campaign/delete-campaign.component';
-import { UpdateCampaignComponent } from '../../../pages/crm-services/marketing-automation/components/update-campaign/update-campaign.component';
 import { ReachAnalysisComponent } from '../../../pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -22,14 +23,16 @@ import { ReachAnalysisComponent } from '../../../pages/crm-services/marketing-au
     ListCampaignComponent,
     GetCampaignByIdComponent,
     DeleteCampaignComponent,
-    UpdateCampaignComponent,
     ReachAnalysisComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    InputTextModule,
+    ConfirmDialogModule
   ],
   providers: [
     MarketingAutomationService

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment.development';
 import { Campaign } from '../../../../models/Campaign';
 export interface CampaignReachByType {
   [key: string]: { // Key will be the campaign Type (e.g., 'EMAIL', 'SMS')
@@ -29,8 +29,8 @@ export class MarketingAutomationService {
   public getCampaigns() {
     return this.http.get<Campaign[]>(this.registerCampaignUrl+"/marketing");
   }
-  public getCampaignById(campaign:Campaign) {
-    return this.http.get<Campaign>(this.registerCampaignUrl+"/marketing/"+campaign.campaignID);
+  public getCampaignById(id: number) {
+    return this.http.get<Campaign>(this.registerCampaignUrl+"/marketing/"+id);
   }
   public deleteCampaign(campaign:Campaign) {
     return this.http.delete<Campaign>(this.registerCampaignUrl+"/marketing/"+campaign.campaignID);

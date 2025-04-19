@@ -28,7 +28,6 @@ import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
