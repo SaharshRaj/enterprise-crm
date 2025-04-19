@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SupportTicket } from '../../../../../models/SupportTicket';
 import { CustomerSupportService } from '../../service/customer-support.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-update-ticket',
@@ -23,10 +24,11 @@ export class UpdateTicketComponent implements OnInit {
   statusOptions: ('OPEN' | 'CLOSED' )[] = ['OPEN', 'CLOSED'];
 
   constructor(
-    private fb: FormBuilder,
-    private supportService: CustomerSupportService,
-    private router: Router,
-    private route: ActivatedRoute
+    private readonly fb: FormBuilder,
+    private readonly supportService: CustomerSupportService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -61,12 +63,14 @@ export class UpdateTicketComponent implements OnInit {
         next: (response) => {
           console.log('Ticket updated successfully:', response);
           this.loading = false;
+          this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Ticket Updated Successfully.' });
           this.success = true;
           this.router.navigate(['pages/services/customer-support']);
         },
         error: (error) => {
           this.error = error.message || 'Failed to update ticket.';
           this.loading = false;
+          this.messageService.add({ severity: 'error', summary: 'Error.', detail: 'Some error occurred.' });
           this.success = false;
         }
       });

@@ -13,9 +13,11 @@ export class CustomerSupportService {
 
 private apiUrl = environment.apiUrl+'/support'
 
-constructor(private http: HttpClient) {}
+constructor(private readonly http: HttpClient) {}
 
 public createTicket(supportTicket: SupportTicket) {
+  const agentId = '30'+(Math.random()*10).toFixed(0);
+  supportTicket.assignedAgent = agentId
   return this.http.post<SupportTicket>(this.apiUrl, supportTicket);
 }
 

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerProfile } from '../../../../models/CustomerProfile';
 import { CustomersService } from '../service/customers.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-update-customer',
@@ -40,8 +41,8 @@ export class UpdateCustomerComponent {
     private fb: FormBuilder,
     private customersService: CustomersService,
     private router: Router,
-    private route: ActivatedRoute
-    
+    private route: ActivatedRoute,
+    private readonly messageService: MessageService
   ) {}
 
   
@@ -90,12 +91,14 @@ export class UpdateCustomerComponent {
         next: (response) => {
           console.log('Customer registered successfully:', response);
           this.loading = false;
+          this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Customer Updated Successfully.' });
           this.success = true;
           this.router.navigate(['pages/services/customer-data-management']);
         },
         error: (error) => {
           this.error = error.message || 'Failed to register customer.';
           this.loading = false;
+          this.messageService.add({ severity: 'error', summary: 'Success.', detail: 'Some error occurred.' });
           this.success = false;
         },
       });

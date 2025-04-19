@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SupportTicket } from '../../../../../models/SupportTicket';
 import { CustomerSupportService } from '../../service/customer-support.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-create-ticket',
@@ -19,9 +20,10 @@ export class CreateTicketComponent implements OnInit {
   success = false;
 
   constructor(
-    private fb: FormBuilder,
-    private supportService: CustomerSupportService,
-    private router: Router
+    private readonly fb: FormBuilder,
+    private readonly supportService: CustomerSupportService,
+    private readonly router: Router,
+    private readonly messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -44,11 +46,13 @@ export class CreateTicketComponent implements OnInit {
         next: (response: any) => {
           console.log('Ticket created successfully:', response);
           this.loading = false;
+          this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Ticket Created Successfully.' });
           this.success = true;
           this.router.navigate(['pages/services/customer-support']);
         },
         error: (error: { message: string; }) => {
           this.error = error.message || 'Failed to create ticket.';
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Some error occurred.' });
           this.loading = false;
           this.success = false;
         }

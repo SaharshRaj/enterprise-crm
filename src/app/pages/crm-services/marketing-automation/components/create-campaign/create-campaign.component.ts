@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { MarketingAutomationService } from '../../service/marketing-automation.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 // Custom validator for future dates
 function futureDateValidator(
@@ -55,6 +56,7 @@ export class CreateCampaignComponent implements OnInit {
     private fb: FormBuilder,
     private marketingService: MarketingAutomationService,
     private router: Router,
+    private readonly messageService: MessageService
   ) {
     this.formData = this.fb.group({
       name: [
@@ -104,12 +106,14 @@ export class CreateCampaignComponent implements OnInit {
             this.successMessageVisible = true;
             // Optionally reset the form after successful submission
             this.formData.reset();
+            this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Campaign Created Successfully.' });
             // Optionally navigate to the campaign list or another page
             // this.router.navigate(['/campaigns']);
             this.loading = false;
           },
           error: (error) => {
             console.error('Error creating campaign:', error);
+            this.messageService.add({ severity: 'error', summary: 'Error.', detail: 'Some error occurred.' });
             // Handle error display to the user
             this.loading = false;
           },

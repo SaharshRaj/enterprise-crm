@@ -1,11 +1,10 @@
-import { SearchTicketComponent } from './../../../pages/crm-services/customer-support/components/search-ticket/search-ticket.component';
 import { CreateTicketComponent } from './../../../pages/crm-services/customer-support/components/create-ticket/create-ticket.component';
 import { ViewTicketsComponent } from './../../../pages/crm-services/customer-support/components/view-tickets/view-tickets.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerSupportComponent } from '../../../pages/crm-services/customer-support/customer-support.component';
 import { CustomerSupportService } from '../../../pages/crm-services/customer-support/service/customer-support.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateTicketComponent } from '../../../pages/crm-services/customer-support/components/update-ticket/update-ticket.component';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
@@ -19,14 +18,16 @@ import { FluidModule } from 'primeng/fluid';
 import { CustomerSupportHeaderComponent } from '../../../pages/crm-services/customer-support/components/header/header.component';
 import { MessageService } from 'primeng/api';
 import { RouterModule } from '@angular/router';
-import { FilterTicketsComponent } from '../../../pages/crm-services/customer-support/components/filter-tickets/filter-tickets.component';
 import { DeleteTicketComponent } from '../../../pages/crm-services/customer-support/components/delete-ticket/delete-ticket.component';
+import { ConfirmationService} from 'primeng/api';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+
 
 @NgModule({
   declarations: [
     CustomerSupportComponent,ViewTicketsComponent,CreateTicketComponent,
-    CustomerSupportHeaderComponent,UpdateTicketComponent,SearchTicketComponent,
-    FilterTicketsComponent,DeleteTicketComponent
+    CustomerSupportHeaderComponent,UpdateTicketComponent,
+    DeleteTicketComponent
   ],
   imports: [
     CommonModule,
@@ -40,11 +41,14 @@ import { DeleteTicketComponent } from '../../../pages/crm-services/customer-supp
     Tooltip,
     SpeedDial,
     FluidModule,
-    RouterModule
+    FormsModule,
+    RouterModule,
+    ConfirmDialog
   ],
   providers: [
     CustomerSupportService,
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 })
 export class CustomerSupportModule { }

@@ -82,3 +82,101 @@ table {
     transform: translateY(0.5px);
   }
   
+
+  .ticket-search-container {
+    margin-bottom: 20px; /* Add some space below the search input */
+}
+
+.ticket-search-input {
+    width: 100%; /* Make the input take up the full width of its container */
+    padding: 10px;
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add rounded corners */
+    font-size: 16px; /* Increase font size for better readability */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+}
+
+.ticket-search-input:focus {
+    outline: none; /* Remove the default outline */
+    border-color: #007bff; /* Change border color on focus (e.g., to Bootstrap's primary color) */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1); /* Add a subtle shadow on focus */
+}
+
+/* Responsive adjustments (optional - adjust as needed) */
+@media (max-width: 768px) {
+    .ticket-search-input {
+        font-size: 14px; /* Smaller font on small screens */
+        padding: 8px;
+    }
+}
+
+.ticket-filter-container {
+  margin-bottom: 15px;
+  position: relative; /* For positioning the dropdown */
+}
+
+.filter-button {
+  padding: 8px 15px;
+  background-color: #f8f9fa; /* Light grey background */
+  color: #333; /* Dark text color */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+
+  i {
+    margin-left: 5px;
+    color: #555; /* Slightly darker icon color */
+  }
+
+  &:hover {
+    background-color: #e9ecef; /* Slightly darker hover background */
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #007bff; /* Highlight on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus ring */
+  }
+}
+
+.status-filter-options {
+  position: absolute;
+  top: 100%; /* Position below the button */
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 10; /* Ensure it's above other elements */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.status-filter-options button {
+  padding: 10px 15px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f0f0f0; /* Light grey hover background */
+  }
+
+  &.active {
+    background-color: #007bff; /* Blue active background */
+    color: white; /* White active text color */
+    font-weight: bold;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: #0056b3; /* Darker blue focus background */
+  }
+}

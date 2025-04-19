@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CustomerProfile } from '../../../../models/CustomerProfile';
 import { CustomersService } from '../service/customers.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-delete-customer',
@@ -19,7 +20,7 @@ export class DeleteCustomerComponent implements OnInit {
     successMessage: string | null = null;
     loading: boolean = false;
 
-    constructor(private customersService: CustomersService) { }
+    constructor(private customersService: CustomersService, private readonly messageService: MessageService) { }
 
     ngOnInit(): void {
         if (this.selectedCustomerId === null) {
@@ -40,12 +41,14 @@ export class DeleteCustomerComponent implements OnInit {
         this.customersService.deleteCustomer(this.selectedCustomerId).subscribe({
           next: (res: string) =>{
             this.successMessage = res;
+            this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Customer Deleted Successfully.' });
             this.deleteSuccessful.emit();
             setTimeout(() => this.onClose(), 1000);
           },
           
           error: (error: HttpErrorResponse) => {
             this.errorMessage= error.error.message,
+            this.messageService.add({ severity: 'error', summary: 'Success.', detail: 'Some Error Occurred.' });
             console.log(error.error.message);
             this.loading = false
           },

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerProfile } from '../../../../models/CustomerProfile';
 import { CustomersService } from '../service/customers.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register-customer',
@@ -39,6 +40,7 @@ export class RegisterCustomerComponent implements OnInit {
     private fb: FormBuilder,
     private customersService: CustomersService,
     private router: Router,
+    private messageService: MessageService
 
   ) {}
 
@@ -72,12 +74,14 @@ export class RegisterCustomerComponent implements OnInit {
         next: (response) => {
           console.log('Customer registered successfully:', response);
           this.loading = false;
+          this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Customer Registered Successfully.' });
           this.success = true;
           this.router.navigate(['pages/services/customer-data-management']);
         },
         error: (error) => {
           this.error = error.message || 'Failed to register customer.';
           this.loading = false;
+          this.messageService.add({ severity: 'info', summary: 'Error.', detail: 'Some Error Occurred.' });
           this.success = false;
         },
       });
