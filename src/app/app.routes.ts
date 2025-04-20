@@ -26,6 +26,7 @@ import { SalesAnalyticsComponent } from './pages/crm-services/analytics-and-repo
 import { MarketingAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/marketing-analytics/marketing-analytics.component';
 import { CustomersAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/customers-analytics/customers-analytics.component';
 import { SupportAnalyticsComponent } from './pages/crm-services/analytics-and-reporting/support-analytics/support-analytics.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const appRoutes: Routes = [
   { path: '', component: LandingComponent, canActivate: [AuthGuard] },
@@ -33,6 +34,7 @@ export const appRoutes: Routes = [
     path: 'pages',
     children: [
       {path: '', redirectTo: 'landing', pathMatch: "full"},
+      {path: 'profile', component: ProfileComponent},
       { path: 'landing', component: LandingComponent },
       {
         path: 'admin',

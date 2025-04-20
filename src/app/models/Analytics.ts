@@ -56,3 +56,5 @@ export type SupportReport = {
         top5Customers: Record<string, number>
     }
 }
+
+export type AllReports = (SalesReport | CustomerReport | MarketingReport | SupportReport)[];

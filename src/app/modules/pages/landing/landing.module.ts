@@ -22,6 +22,12 @@ import { SelectButton } from 'primeng/selectbutton';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { LayoutModule } from '../../layout/layout.module';
 import { NotFoundComponent } from '../../../pages/not-found/not-found.component';
+import { CustomersService } from '../../../pages/crm-services/customer-data-management/service/customers.service';
+import { SalesService } from '../../../pages/crm-services/sales-automation/service/sales.service';
+import { MarketingAutomationService } from '../../../pages/crm-services/marketing-automation/service/marketing-automation.service';
+import { CustomerSupportService } from '../../../pages/crm-services/customer-support/service/customer-support.service';
+import { AnalyticsService } from '../../../pages/crm-services/analytics-and-reporting/service/analytics.service';
+import { ProfileComponent } from '../../../pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,7 @@ import { NotFoundComponent } from '../../../pages/not-found/not-found.component'
     TimeComponent,
     DateComponent,
     NotFoundComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +60,7 @@ import { NotFoundComponent } from '../../../pages/not-found/not-found.component'
     ConfirmDialog,
     FormsModule,
   ],
+  providers: [CustomersService, SalesService, MarketingAutomationService, CustomerSupportService, AnalyticsService],
   exports :[TabsComponent] 
 })
 export class LandingModule {}

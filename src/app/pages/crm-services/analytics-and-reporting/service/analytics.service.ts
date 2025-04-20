@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { CustomerProfile } from '../../../../models/CustomerProfile';
 import { SupportTicket } from '../../../../models/SupportTicket';
 import { SalesOpportunity } from '../../../../models/SalesOpportunity';
-import { CustomerReport, MarketingReport, SalesReport, SupportReport } from '../../../../models/Analytics';
+import { AllReports, CustomerReport, MarketingReport, SalesReport, SupportReport } from '../../../../models/Analytics';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +41,9 @@ export class AnalyticsService {
   }
   generateSupportReport(){
     return this.httpClient.post<SupportReport>(environment.apiUrl + `/analytics/supportTickets`, null)
+  }
+
+  getAllReports(){
+    return this.httpClient.get<AllReports>(environment.apiUrl + `/analytics`)
   }
 }

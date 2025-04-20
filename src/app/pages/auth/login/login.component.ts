@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../service/auth.service';
 import { Employee } from '../../../models/Employee';
+import { selectAuthState } from '../../../store/auth/auth.selector';
 
 @Component({
   selector: 'app-login',
@@ -48,6 +49,12 @@ onSubmit(employee: Employee) {
     }
 
     ngOnInit(): void {
+            this.store.select(selectAuthState).subscribe((authState) => {
+                if(authState.user){
+                    this.router.navigate(['/'])
+                }
+            })
+
             this.form = new FormGroup({
                 email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@enterprise\.com$/)]),
                 password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]),

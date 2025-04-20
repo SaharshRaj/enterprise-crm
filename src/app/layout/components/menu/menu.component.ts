@@ -28,7 +28,7 @@ export class MenuComponent {
                 label: 'Modules',
                 items: [
                     {label: 'Customers', icon: 'pi pi-fw pi-users', routerLink: ['pages/services/customer-data-management']},
-                    {label: 'Sales', icon: 'pi pi-fw pi-dollar', routerLink: ['pages/services/sales-automation']},
+                    {label: 'Sales', icon: 'pi pi-fw pi-indian-rupee', routerLink: ['pages/services/sales-automation']},
                     {label: 'Support', icon: 'pi pi-fw pi-phone', routerLink: ['pages/services/customer-support']},
                     {label: 'Marketing', icon: 'pi pi-fw pi-megaphone', routerLink: ['pages/services/marketing-automation']},
                     {label: 'Analytics', icon: 'pi pi-fw pi-chart-bar', routerLink: ['pages/services/analytics-and-reporting']},

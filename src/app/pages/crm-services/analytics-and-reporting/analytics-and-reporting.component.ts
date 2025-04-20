@@ -29,7 +29,7 @@ export class AnalyticsAndReportingComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
-    this.salesList$ = this.salesService.salesList$;
+    this.salesList$ = this.salesService.getAllSales();
     this.customerList$ = this.customersService.getCustomers();
     this.customerSupportList$= this.customerSupportService.getAllTickets();
   }

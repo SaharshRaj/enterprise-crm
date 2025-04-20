@@ -36,7 +36,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "favicon.ico"
             ],
             "styles": [
               "src/styles.scss"

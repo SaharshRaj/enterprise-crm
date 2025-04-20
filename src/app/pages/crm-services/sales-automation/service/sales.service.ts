@@ -60,4 +60,8 @@ export class SalesService {
       { cronExpression: cron }
     );
   }
+
+  getAllSales(){
+    return this.httpClient.get<SalesOpportunity[]>(environment.apiUrl + '/sales-opportunity')
+  }
 }
