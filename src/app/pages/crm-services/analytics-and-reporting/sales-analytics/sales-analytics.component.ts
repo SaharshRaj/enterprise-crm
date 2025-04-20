@@ -34,7 +34,7 @@ export class SalesAnalyticsComponent implements OnInit{
   }
 
   loadInitialDataForChart() {
-    this.salesService.getSales().subscribe({
+    this.salesService.salesList$.subscribe({
       next: (sales) => {
         const salesStages = [...(new Set(sales.map((sale) => sale.salesStage)))]
         const estimatedValue = 

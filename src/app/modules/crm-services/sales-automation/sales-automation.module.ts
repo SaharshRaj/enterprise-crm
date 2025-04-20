@@ -16,7 +16,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { Dialog } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { DatePickerModule } from 'primeng/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { FloatLabel } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
@@ -42,6 +42,7 @@ import { Ripple } from 'primeng/ripple';
     ChartModule,
     FluidModule,
     DragDropModule,
+    FormsModule,
     PanelModule,
     MenuModule,
     PaginatorModule,

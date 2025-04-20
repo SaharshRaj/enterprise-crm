@@ -146,11 +146,11 @@ export class HeadingComponent implements OnInit {
 
   salesStage = [{ name: 'PROSPECTING' }];
   
-  handleLeadSumbit() {
+  handleLeadSubmit() {
     this.isLoading = true;
     const date = this.newLeadForm.get('closingDate')?.value;
     const formattedDate = date.toISOString().split('T')[0];
-    console.log('Formatted Closing Date:', formattedDate);
+  
     this.salesService
       .create({
         customerID: this.newLeadForm.get('customerId')?.value,
@@ -160,27 +160,33 @@ export class HeadingComponent implements OnInit {
       })
       .subscribe({
         next: (sale: SalesOpportunity) => {
-          this.showToast({severity: 'success', summary: 'Saved', message:`Lead created successfully with id: ${sale.opportunityID}`})
+          this.showToast({
+            severity: 'success',
+            summary: 'Saved',
+            message: `Lead created successfully with id: ${sale.opportunityID}`,
+          });
+  
+          this.salesService.refreshSalesList(); // 🔄 Push new data dynamically
         },
         error: (error: HttpErrorResponse) => {
-          this.showToast({severity:'error', summary: 'Error', message: error.error.message})
-          console.log(error.error.message);
+          this.showToast({
+            severity: 'error',
+            summary: 'Error',
+            message: error.error.message,
+          });
           this.isLoading = false;
-          this.newLeadForm.reset({
-            salesStage: [{ name: 'PROSPECTING' }],
-            estimatedValue: 10000
-          })
         },
         complete: () => {
           this.isLoading = false;
           this.visible3 = false;
           this.newLeadForm.reset({
             salesStage: [{ name: 'PROSPECTING' }],
-            estimatedValue: 10000
-          })
+            estimatedValue: 10000,
+          });
         },
       });
   }
+  
   handleNotificationSumbit() {
     this.isLoading = true;
     const timeString = this.notificationCronForm.get('time')?.value;

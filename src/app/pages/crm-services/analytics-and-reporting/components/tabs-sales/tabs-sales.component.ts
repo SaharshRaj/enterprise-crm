@@ -39,7 +39,7 @@ export class TabsSalesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.salesService.getSales().subscribe((sales) => {
+    this.salesService.salesList$.subscribe((sales) => {
       this.revenueLost = sales.filter((sale) => sale.salesStage == SalesStage.CLOSED_LOST).map(sale => sale.estimatedValue).reduce((a,b)=>a+b,0)
       this.closingToday = sales.filter((sale) => this.isSameDay(new Date(sale.closingDate) ,new Date())).length
       this.totalLeads = sales.length;
