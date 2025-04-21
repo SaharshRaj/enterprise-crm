@@ -23,6 +23,7 @@ import { MarketingAutomationModule } from './modules/crm-services/marketing-auto
 import { CustomerSupportModule } from './modules/crm-services/customer-support/customer-support.module';
 import { AnalyticsAndReportingModule } from './modules/crm-services/analytics-and-reporting/analytics-and-reporting.module';
 import { MessageService } from 'primeng/api';
+import { notificationReducer } from './store/notifications/notifications.reducer';
 // import { CustomerDeleteConfirmationComponent } from './pages/crm-services/customer-data-management/customer-delete-confirmation/customer-delete-confirmation.component';
 
 
@@ -40,7 +41,7 @@ import { MessageService } from 'primeng/api';
     MarketingAutomationModule,
     CustomerSupportModule,
     AnalyticsAndReportingModule,
-    StoreModule.forRoot({ time: timeReducer, auth: authReducer }),
+    StoreModule.forRoot({ time: timeReducer, auth: authReducer, notification: notificationReducer }),
     EffectsModule.forRoot([AuthEffects]),
     Toast
   ],

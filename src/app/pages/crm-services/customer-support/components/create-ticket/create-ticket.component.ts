@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SupportTicket } from '../../../../../models/SupportTicket';
 import { CustomerSupportService } from '../../service/customer-support.service';
 import { MessageService } from 'primeng/api';
+import { Store } from '@ngrx/store'
 
 @Component({
   selector: 'app-create-ticket',
@@ -23,7 +23,8 @@ export class CreateTicketComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly supportService: CustomerSupportService,
     private readonly router: Router,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly store: Store
   ) {}
 
   ngOnInit(): void {

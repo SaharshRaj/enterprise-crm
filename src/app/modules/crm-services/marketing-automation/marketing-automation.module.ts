@@ -12,6 +12,7 @@ import { DeleteCampaignComponent } from '../../../pages/crm-services/marketing-a
 import { ReachAnalysisComponent } from '../../../pages/crm-services/marketing-automation/components/reach-analysis/reach-analysis.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { DatePicker } from 'primeng/datepicker';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
@@ -32,7 +33,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FormsModule,
     ButtonModule,
     InputTextModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DatePicker
   ],
   providers: [
     MarketingAutomationService

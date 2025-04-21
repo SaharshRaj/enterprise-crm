@@ -3,6 +3,9 @@ import { CustomersService } from '../../customer-data-management/service/custome
 import { AnalyticsService } from '../service/analytics.service';
 import { Observable } from 'rxjs';
 import { CustomerReport } from '../../../../models/Analytics';
+import { Store } from '@ngrx/store';
+import { addNotification } from '../../../../store/notifications/notiffications.actions';
+import { Notification } from '../../../../models/Notification';
 
 @Component({
   selector: 'app-customers-analytics',
@@ -20,12 +23,19 @@ export class CustomersAnalyticsComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly customerService: CustomersService,
     private readonly analyticsService: AnalyticsService,
+    private readonly store : Store
   ) {}
 
   ngOnInit() {
     this.loadInitialCustomerDataForChart();
     this.loadReport();
     this.cd.markForCheck();
+    const newNotification: Notification = {
+      heading: 'Analytics and Reporting',
+      description: 'Generated new customers report.',
+      time: new Date().toLocaleTimeString()
+    }
+    this.store.dispatch(addNotification({notification: newNotification}))
   }
 
   loadInitialCustomerDataForChart() {
@@ -48,6 +58,7 @@ export class CustomersAnalyticsComponent implements OnInit {
   }
 
   initChart() {
+    
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
 

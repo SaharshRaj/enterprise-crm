@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Campaign } from '../../../../../models/Campaign';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-get-campaign-by-id',
@@ -24,10 +25,18 @@ export class GetCampaignByIdComponent implements OnInit {
     private readonly messageService: MessageService,
     private readonly router: Router
   ) {
-    // Initialize the form with default controls in the constructor
+    
     this.form = new FormGroup({
-      text: new FormControl<string>('', [Validators.required])
+      text: new FormControl<string>('', [Validators.required]),
+      startDate: new FormControl<Date | null>(null, [Validators.required]), 
+      endDate: new FormControl<Date | null>(null, [Validators.required]),   
     });
+  }
+
+  private adjustForTimezone(date: Date | null): Date | null {
+    if (!date) return null;
+    const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+    return new Date(date.getTime() - userTimezoneOffset);
   }
 
   ngOnInit(): void {
@@ -39,6 +48,10 @@ export class GetCampaignByIdComponent implements OnInit {
           next: (campaign: Campaign) => {
             this.campaign = campaign;
             this.form.patchValue({ text: this.campaign.trackingUrl });
+
+            
+            this.form.patchValue({ startDate: this.campaign.startDate ? new Date(this.campaign.startDate) : null });
+            this.form.patchValue({ endDate: this.campaign.endDate ? new Date(this.campaign.endDate) : null });
           },
           error: (error) => {
             console.error('Error fetching campaign:', error);
@@ -82,15 +95,18 @@ export class GetCampaignByIdComponent implements OnInit {
   }
 
   handleUpdate(){
-    this.loading = true,
-    this.campaign!.trackingUrl = this.form.get('text')?.value
+    this.loading = true;
+    this.campaign!.trackingUrl = (this.form.get('text')?.value);
+    this.campaign!.startDate = this.adjustForTimezone(this.form.get('startDate')?.value)!; 
+    this.campaign!.endDate = this.adjustForTimezone(this.form.get('endDate')?.value)!;     
+
     this.marketingService.updateCampaign(this.campaign!).subscribe({
       next: ()=> {
         this.messageService.add({
           severity: 'success', summary: 'Success', detail: 'Campaign Updated Successfully!'
         });
         this.loading = false;
-        console.log(this.campaign)
+        console.log(this.campaign);
       },
       error: () => {
         this.messageService.add({
@@ -98,7 +114,7 @@ export class GetCampaignByIdComponent implements OnInit {
         });
         this.loading = false;
       }
-    })
+    });
   }
 
   handleDelete() {
@@ -109,7 +125,7 @@ export class GetCampaignByIdComponent implements OnInit {
           severity: 'success', summary: 'Success', detail: 'Campaign Deleted Successfully!'
         });
         this.loading = false;
-        this.router.navigate(['/pages/services/marketing-automation'])
+        this.router.navigate(['/pages/services/marketing-automation']);
       },
       error: () => {
         this.messageService.add({

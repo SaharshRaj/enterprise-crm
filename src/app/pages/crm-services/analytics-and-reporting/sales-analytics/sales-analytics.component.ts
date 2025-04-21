@@ -3,6 +3,9 @@ import { SalesReport } from '../../../../models/Analytics';
 import { Observable } from 'rxjs';
 import { SalesService } from '../../sales-automation/service/sales.service';
 import { AnalyticsService } from '../service/analytics.service';
+import { Store } from '@ngrx/store';
+import { addNotification } from '../../../../store/notifications/notiffications.actions';
+import { Notification } from '../../../../models/Notification';
 
 @Component({
   selector: 'app-sales-analytics',
@@ -24,6 +27,7 @@ export class SalesAnalyticsComponent implements OnInit{
     private readonly cd: ChangeDetectorRef,
     private readonly salesService: SalesService,
     private readonly analyticsService: AnalyticsService,
+    private readonly store: Store
   ) {}
 
 
@@ -31,6 +35,12 @@ export class SalesAnalyticsComponent implements OnInit{
     this.loadReport();
     this.loadInitialDataForChart();
     this.cd.markForCheck();
+    const newNotification: Notification = {
+          heading: 'Analytics and Reporting',
+          description: 'Generated new sales report.',
+          time: new Date().toLocaleTimeString()
+        }
+        this.store.dispatch(addNotification({notification: newNotification}))
   }
 
   loadInitialDataForChart() {

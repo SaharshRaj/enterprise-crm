@@ -3,6 +3,9 @@ import { Observable } from 'rxjs';
 import { SupportReport } from '../../../../models/Analytics';
 import { CustomerSupportService } from '../../customer-support/service/customer-support.service';
 import { AnalyticsService } from '../service/analytics.service';
+import { Store } from '@ngrx/store';
+import { Notification } from '../../../../models/Notification';
+import { addNotification } from '../../../../store/notifications/notiffications.actions';
 
 @Component({
   selector: 'app-support-analytics',
@@ -24,6 +27,7 @@ export class SupportAnalyticsComponent {
     private readonly cd: ChangeDetectorRef,
     private readonly supportService: CustomerSupportService,
     private readonly analyticsService: AnalyticsService,
+    private readonly store: Store
   ) {}
 
 
@@ -31,6 +35,12 @@ export class SupportAnalyticsComponent {
     this.loadReport();
     this.loadInitialDataForChart();
     this.cd.markForCheck();
+    const newNotification: Notification = {
+          heading: 'Analytics and Reporting',
+          description: 'Generated new customer-support report.',
+          time: new Date().toLocaleTimeString()
+        }
+        this.store.dispatch(addNotification({notification: newNotification}))
   }
 
   loadInitialDataForChart() {

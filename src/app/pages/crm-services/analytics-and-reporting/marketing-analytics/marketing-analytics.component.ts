@@ -5,6 +5,9 @@ import { MarketingAutomationService } from '../../marketing-automation/service/m
 import { AnalyticsService } from '../service/analytics.service';
 import { Campaign } from '../../../../models/Campaign';
 import { TreeNode } from 'primeng/api';
+import { Store } from '@ngrx/store';
+import { addNotification } from '../../../../store/notifications/notiffications.actions';
+import { Notification } from '../../../../models/Notification';
 
 @Component({
   selector: 'app-marketing-analytics',
@@ -27,6 +30,7 @@ export class MarketingAnalyticsComponent implements OnInit {
     private readonly cd: ChangeDetectorRef,
     private readonly marketingService: MarketingAutomationService,
     private readonly analyticsService: AnalyticsService,
+    private readonly store: Store
   ) {}
 
   tree!: TreeNode[];
@@ -35,6 +39,12 @@ export class MarketingAnalyticsComponent implements OnInit {
     this.loadReport();
     this.loadInitialDataForChart();
     this.cd.markForCheck();
+    const newNotification: Notification = {
+          heading: 'Analytics and Reporting',
+          description: 'Generated new marketing report.',
+          time: new Date().toLocaleTimeString()
+        }
+        this.store.dispatch(addNotification({notification: newNotification}))
   }
 
   loadInitialDataForChart() {
