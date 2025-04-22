@@ -23,16 +23,10 @@
                         <p-inputIcon>
                             <i class="pi pi-search"></i>
                         </p-inputIcon>
-                    <input
-                        pInputText
-                        type="text"
-                        [(ngModel)]="searchValue"
-                        placeholder="Search by Name, Role, or Email"
-                        (input)="dt.filterGlobal(searchValue, 'contains')"
-                    />
-                </p-iconField>
-                <p-button icon="pi pi-plus" label="Add Employee" routerLink="/pages/admin/employee/add" />
-            </div>
+                        <input pInputText type="text" [(ngModel)]="searchValue" placeholder="Search by Name, Role, or Email" (input)="dt.filterGlobal(searchValue, 'contains')" />
+                    </p-iconField>
+                    <p-button icon="pi pi-plus" label="Add Employee" routerLink="/pages/admin/employee/add" />
+                </div>
             </div>
         </ng-template>
         <ng-template #header>
@@ -62,7 +56,7 @@
             </tr>
         </ng-template>
         <ng-template #body let-employee>
-            <tr class="p-selectable-row" [routerLink]="'/pages/admin/employee/'+employee.id" style="cursor: pointer;">
+            <tr class="p-selectable-row" [routerLink]="'/pages/admin/employee/' + employee.id" style="cursor: pointer">
                 <td>
                     <div class="flex items-center justify-start gap-2">
                         <ng-container *ngIf="employee.img; else defaultImg">
@@ -76,13 +70,12 @@
                                 {{ employee.name }}
                             </p>
                             <p class="text-sm text-gray-500">
-                                {{employee.email }}
+                                {{ employee.email }}
                             </p>
                         </div>
-
                     </div>
                 </td>
-                <td >
+                <td>
                     {{ employee.id }}
                 </td>
                 <td>{{ employee.role }}</td>

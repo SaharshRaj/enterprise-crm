@@ -14,26 +14,9 @@ import { UpdateCustomerComponent } from '../../../pages/crm-services/customer-da
 import { FilterCustomerComponent } from '../../../pages/crm-services/customer-data-management/filter-customer/filter-customer.component';
 // import { CustomerDeleteConfirmationComponent } from '../../../pages/crm-services/customer-data-management/customer-delete-confirmation/customer-delete-confirmation.component';
 
-
 @NgModule({
-  declarations: [
-    CustomerDataManagementComponent,
-    CustomerManagementHeaderComponent,
-    CustomerListComponent,
-    RegisterCustomerComponent,
-    DeleteCustomerComponent,
-    SearchCustomerComponent,
-    UpdateCustomerComponent,
-    FilterCustomerComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
-  providers: [
-    CustomersService
-  ]
+    declarations: [CustomerDataManagementComponent, CustomerManagementHeaderComponent, CustomerListComponent, RegisterCustomerComponent, DeleteCustomerComponent, SearchCustomerComponent, UpdateCustomerComponent, FilterCustomerComponent],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+    providers: [CustomersService]
 })
-export class CustomerDataManagementModule { }
+export class CustomerDataManagementModule {}

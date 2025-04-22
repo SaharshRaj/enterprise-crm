@@ -3,21 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MarketingAutomationComponent } from './marketing-automation.component';
 
 describe('MarketingAutomationComponent', () => {
-  let component: MarketingAutomationComponent;
-  let fixture: ComponentFixture<MarketingAutomationComponent>;
+    let component: MarketingAutomationComponent;
+    let fixture: ComponentFixture<MarketingAutomationComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [MarketingAutomationComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [MarketingAutomationComponent]
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(MarketingAutomationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(MarketingAutomationComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

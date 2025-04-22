@@ -26,32 +26,31 @@ import { MessageService } from 'primeng/api';
 import { notificationReducer } from './store/notifications/notifications.reducer';
 // import { CustomerDeleteConfirmationComponent } from './pages/crm-services/customer-data-management/customer-delete-confirmation/customer-delete-confirmation.component';
 
-
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LayoutModule,
-    AuthModule,
-    LandingModule,
-    AdminModule,
-    SalesAutomationModule,
-    CustomerDataManagementModule,
-    MarketingAutomationModule,
-    CustomerSupportModule,
-    AnalyticsAndReportingModule,
-    StoreModule.forRoot({ time: timeReducer, auth: authReducer, notification: notificationReducer }),
-    EffectsModule.forRoot([AuthEffects]),
-    Toast
-  ],
-  providers: [
-    provideHttpClient(withFetch()),
-    provideAnimationsAsync(),
-    providePrimeNG({
-      theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } },
-    }),
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        LayoutModule,
+        AuthModule,
+        LandingModule,
+        AdminModule,
+        SalesAutomationModule,
+        CustomerDataManagementModule,
+        MarketingAutomationModule,
+        CustomerSupportModule,
+        AnalyticsAndReportingModule,
+        StoreModule.forRoot({ time: timeReducer, auth: authReducer, notification: notificationReducer }),
+        EffectsModule.forRoot([AuthEffects]),
+        Toast
+    ],
+    providers: [
+        provideHttpClient(withFetch()),
+        provideAnimationsAsync(),
+        providePrimeNG({
+            theme: { preset: Aura, options: { darkModeSelector: '.app-dark' } }
+        })
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

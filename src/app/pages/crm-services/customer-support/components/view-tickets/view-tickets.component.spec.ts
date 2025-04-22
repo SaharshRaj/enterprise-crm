@@ -3,21 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ViewTicketsComponent } from './view-tickets.component';
 
 describe('ViewTicketsComponent', () => {
-  let component: ViewTicketsComponent;
-  let fixture: ComponentFixture<ViewTicketsComponent>;
+    let component: ViewTicketsComponent;
+    let fixture: ComponentFixture<ViewTicketsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ViewTicketsComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [ViewTicketsComponent]
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(ViewTicketsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(ViewTicketsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

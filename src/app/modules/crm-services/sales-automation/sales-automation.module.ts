@@ -28,38 +28,32 @@ import { Toast } from 'primeng/toast';
 import { CurrencyPipe } from '@angular/common';
 import { Ripple } from 'primeng/ripple';
 @NgModule({
-  declarations: [
-    SalesAutomationComponent,
-    HeadingComponent,
-    StatsComponent,
-    MonthlySalesTrendComponent,
-    SalesPipelineComponent,
-  ],
-  imports: [
-    CommonModule,
-    LayoutModule,
-    ButtonModule,
-    ChartModule,
-    FluidModule,
-    DragDropModule,
-    FormsModule,
-    PanelModule,
-    MenuModule,
-    PaginatorModule,
-    Dialog,
-    InputTextModule,
-    ReactiveFormsModule,
-    DatePickerModule,
-    IftaLabelModule,
-    FloatLabel,
-    Tooltip,
-    SpeedDial,
-    InputNumber,
-    Select,
-    Toast,
-    Ripple
-  ],
-  providers: [SalesService, CurrencyPipe],
-  exports: [MonthlySalesTrendComponent]
+    declarations: [SalesAutomationComponent, HeadingComponent, StatsComponent, MonthlySalesTrendComponent, SalesPipelineComponent],
+    imports: [
+        CommonModule,
+        LayoutModule,
+        ButtonModule,
+        ChartModule,
+        FluidModule,
+        DragDropModule,
+        FormsModule,
+        PanelModule,
+        MenuModule,
+        PaginatorModule,
+        Dialog,
+        InputTextModule,
+        ReactiveFormsModule,
+        DatePickerModule,
+        IftaLabelModule,
+        FloatLabel,
+        Tooltip,
+        SpeedDial,
+        InputNumber,
+        Select,
+        Toast,
+        Ripple
+    ],
+    providers: [SalesService, CurrencyPipe],
+    exports: [MonthlySalesTrendComponent]
 })
 export class SalesAutomationModule {}

@@ -24,29 +24,29 @@ import { EmployeeComponent } from '../../pages/admin/employee/employee.component
 import { UpdateEmployeeComponent } from '../../pages/admin/update-employee/update-employee.component';
 
 @NgModule({
-  declarations: [AdminComponent, EmployeeTableComponent, EmployeeComponent, UpdateEmployeeComponent],
-  imports: [
-    CommonModule,
-    LayoutModule,
-    TableModule,
-    Tag,
-    ButtonModule,
-    IconField,
-    InputIcon,
-    CommonModule,
-    MultiSelectModule,
-    InputTextModule,
-    DropdownModule,
-    Slider,
-    ProgressBar,
-    PasswordModule,
-    ReactiveFormsModule,
-    AvatarModule,
-    Dialog,
-    ConfirmDialog,
-    SelectButton,
-    RouterModule,
-    FormsModule
-  ],
+    declarations: [AdminComponent, EmployeeTableComponent, EmployeeComponent, UpdateEmployeeComponent],
+    imports: [
+        CommonModule,
+        LayoutModule,
+        TableModule,
+        Tag,
+        ButtonModule,
+        IconField,
+        InputIcon,
+        CommonModule,
+        MultiSelectModule,
+        InputTextModule,
+        DropdownModule,
+        Slider,
+        ProgressBar,
+        PasswordModule,
+        ReactiveFormsModule,
+        AvatarModule,
+        Dialog,
+        ConfirmDialog,
+        SelectButton,
+        RouterModule,
+        FormsModule
+    ]
 })
 export class AdminModule {}

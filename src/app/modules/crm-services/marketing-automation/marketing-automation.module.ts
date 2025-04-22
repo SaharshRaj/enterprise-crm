@@ -15,29 +15,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DatePicker } from 'primeng/datepicker';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-
 @NgModule({
-  declarations: [
-    MarketingAutomationComponent,
-    DemoComponent,
-    CreateCampaignComponent,
-    ListCampaignComponent,
-    GetCampaignByIdComponent,
-    DeleteCampaignComponent,
-    ReachAnalysisComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    FormsModule,
-    ButtonModule,
-    InputTextModule,
-    ConfirmDialogModule,
-    DatePicker
-  ],
-  providers: [
-    MarketingAutomationService
-  ]
+    declarations: [MarketingAutomationComponent, DemoComponent, CreateCampaignComponent, ListCampaignComponent, GetCampaignByIdComponent, DeleteCampaignComponent, ReachAnalysisComponent],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule, ButtonModule, InputTextModule, ConfirmDialogModule, DatePicker],
+    providers: [MarketingAutomationService]
 })
-export class MarketingAutomationModule { }
+export class MarketingAutomationModule {}

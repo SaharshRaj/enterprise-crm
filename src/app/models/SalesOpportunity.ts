@@ -1,20 +1,20 @@
 export type SalesOpportunity = {
-  opportunityID: number;
+    opportunityID: number;
 
-  customerID: number;
+    customerID: number;
 
-  estimatedValue: number;
+    estimatedValue: number;
 
-  closingDate: string;
+    closingDate: string;
 
-  followUpReminder: string | null;
+    followUpReminder: string | null;
 
-  salesStage: SalesStage;
+    salesStage: SalesStage;
 };
 
 export enum SalesStage {
-  PROSPECTING = "PROSPECTING",
-  QUALIFICATION = "QUALIFICATION",
-  CLOSED_WON="CLOSED_WON",
-  CLOSED_LOST="CLOSED_LOST"
-};
+    PROSPECTING = 'PROSPECTING',
+    QUALIFICATION = 'QUALIFICATION',
+    CLOSED_WON = 'CLOSED_WON',
+    CLOSED_LOST = 'CLOSED_LOST'
+}

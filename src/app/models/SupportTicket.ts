@@ -1,19 +1,17 @@
 export interface SupportTicket {
+    ticketID?: string;
 
-    ticketID?: string; 
-  
     customerID: string;
-  
-    priority?: "high" | "low";
-  
-    created?: Date;
-  
-    assignedAgent: string;
-  
-    issueDescription: string; 
 
-    status: "OPEN" | "CLOSED"
-  
+    priority?: 'high' | 'low';
+
+    created?: Date;
+
+    assignedAgent: string;
+
+    issueDescription: string;
+
+    status: 'OPEN' | 'CLOSED';
 }
 
 export function getMockSupportTicket(): SupportTicket {

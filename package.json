@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "compodoc": "npx compodoc -p tsconfig.compodoc.json -s"
+    "compodoc": "npx compodoc -p tsconfig.compodoc.json -s",
+    "format": "prettier --write \"**/*.{js,mjs,ts,mts,d.ts,html}\" --cache"
   },
   "private": true,
   "dependencies": {

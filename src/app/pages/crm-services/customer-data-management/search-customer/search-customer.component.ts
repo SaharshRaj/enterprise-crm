@@ -3,13 +3,13 @@ import { Subject, Subscription, debounceTime, distinctUntilChanged } from 'rxjs'
 import { CustomerProfile } from '../../../../models/CustomerProfile';
 
 @Component({
-  selector: 'app-search-customer',
-  standalone: false,
-  templateUrl: './search-customer.component.html',
-  styleUrl: './search-customer.component.scss'
+    selector: 'app-search-customer',
+    standalone: false,
+    templateUrl: './search-customer.component.html',
+    styleUrl: './search-customer.component.scss'
 })
 export class SearchCustomerComponent {
-  @Input() customers: CustomerProfile[] = [];
+    @Input() customers: CustomerProfile[] = [];
     @Output() searchChanged = new EventEmitter<CustomerProfile[]>();
     @Output() searchTermChange = new EventEmitter<string>();
 
@@ -17,14 +17,13 @@ export class SearchCustomerComponent {
     searchTermChanged$ = new Subject<string>();
     private subscription: Subscription | undefined;
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit(): void {
-        this.subscription = this.searchTermChanged$
-            .subscribe(searchTerm => {
-                this.performSearch(searchTerm);
-                this.searchTermChange.emit(searchTerm);
-            });
+        this.subscription = this.searchTermChanged$.subscribe((searchTerm) => {
+            this.performSearch(searchTerm);
+            this.searchTermChange.emit(searchTerm);
+        });
     }
 
     ngOnDestroy(): void {
@@ -38,7 +37,7 @@ export class SearchCustomerComponent {
         this.searchTermChanged$.next(value);
     }
 
-   performSearch(searchText: string): void {
+    performSearch(searchText: string): void {
         this.searchTerm = searchText;
         this.searchChanged.emit(this.filterCustomers(searchText));
     }
@@ -48,8 +47,8 @@ export class SearchCustomerComponent {
             return this.customers;
         }
         const searchTextLower = searchText.toLowerCase();
-        return this.customers.filter(customer =>
-            Object.values(customer).some(value => {
+        return this.customers.filter((customer) =>
+            Object.values(customer).some((value) => {
                 if (typeof value === 'string') {
                     return value.toLowerCase().includes(searchTextLower);
                 }
@@ -57,7 +56,7 @@ export class SearchCustomerComponent {
                     return value.toString().includes(searchTextLower);
                 }
                 if (typeof value === 'object' && value !== null) {
-                    return Object.values(value).some(nestedValue => {
+                    return Object.values(value).some((nestedValue) => {
                         if (typeof nestedValue === 'string') {
                             return nestedValue.toLowerCase().includes(searchTextLower);
                         }

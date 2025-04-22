@@ -1,9 +1,9 @@
-import { Notification } from "../../models/Notification";
+import { Notification } from '../../models/Notification';
 
-export interface NotificationsState{
+export interface NotificationsState {
     notification: Notification[] | null;
 }
 
 export const initialNotificationState: NotificationsState = {
-    notification: [],
-}
+    notification: []
+};

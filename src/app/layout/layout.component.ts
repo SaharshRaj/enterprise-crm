@@ -6,13 +6,13 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 
 @Component({
-  selector: 'app-layout',
-  standalone: false,
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+    selector: 'app-layout',
+    standalone: false,
+    templateUrl: './layout.component.html',
+    styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
-  overlayMenuOpenSubscription: Subscription;
+    overlayMenuOpenSubscription: Subscription;
 
     menuOutsideClickListener: any;
 
@@ -96,5 +96,4 @@ export class LayoutComponent {
             this.menuOutsideClickListener();
         }
     }
-
 }

@@ -8,25 +8,26 @@ import { Employee } from '../../../models/Employee';
 import { selectCurrentUser } from '../../../store/index.selectors';
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: false,
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+    selector: 'app-sidebar',
+    standalone: false,
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent implements OnInit {
-
-  loading = false
-  constructor(public el: ElementRef, private readonly authservice : AuthService, private readonly store: Store) {}
-    user$!: Observable<Employee | null>
+    loading = false;
+    constructor(
+        public el: ElementRef,
+        private readonly authservice: AuthService,
+        private readonly store: Store
+    ) {}
+    user$!: Observable<Employee | null>;
     ngOnInit(): void {
         this.user$ = this.store.pipe(select(selectCurrentUser));
     }
 
-
-
-    handleLogout(){
-        this.loading = true
-        this.authservice.logout()
-        this.loading = false
+    handleLogout() {
+        this.loading = true;
+        this.authservice.logout();
+        this.loading = false;
     }
 }

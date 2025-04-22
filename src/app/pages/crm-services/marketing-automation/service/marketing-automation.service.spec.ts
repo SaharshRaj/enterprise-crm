@@ -3,14 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { MarketingAutomationService } from './marketing-automation.service';
 
 describe('MarketingAutomationService', () => {
-  let service: MarketingAutomationService;
+    let service: MarketingAutomationService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(MarketingAutomationService);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({});
+        service = TestBed.inject(MarketingAutomationService);
+    });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });

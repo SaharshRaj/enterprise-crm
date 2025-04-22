@@ -10,9 +10,7 @@
             <label for="ticketID">Ticket ID</label>
             <input type="text" id="ticketID" formControlName="ticketID" class="form-control" readonly />
             <div *ngIf="ticketForm.controls['ticketID'].invalid && (ticketForm.controls['ticketID'].dirty || ticketForm.controls['ticketID'].touched)" class="alert alert-danger">
-                <div *ngIf="ticketForm.controls['ticketID'].errors?.['required']">
-                    Ticket ID is required.
-                </div>
+                <div *ngIf="ticketForm.controls['ticketID'].errors?.['required']">Ticket ID is required.</div>
             </div>
         </div>
 
@@ -24,13 +22,10 @@
                 </option>
             </select>
             <div *ngIf="ticketForm.controls['status'].invalid && (ticketForm.controls['status'].dirty || ticketForm.controls['status'].touched)" class="alert alert-danger">
-                <div *ngIf="ticketForm.controls['status'].errors?.['required']">
-                    Status is required.
-                </div>
+                <div *ngIf="ticketForm.controls['status'].errors?.['required']">Status is required.</div>
             </div>
         </div>
 
-
-<button type="submit" class="btn btn-primary">Update Ticket</button>
-  </form>
+        <button type="submit" class="btn btn-primary">Update Ticket</button>
+    </form>
 </div>

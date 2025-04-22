@@ -1,5 +1,5 @@
 export type Notification = {
-    heading : string,
-    description : string,
-    time : string,
-}
+    heading: string;
+    description: string;
+    time: string;
+};

@@ -25,35 +25,23 @@ import { ButtonModule } from 'primeng/button';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 
 @NgModule({
-  declarations: [
-    AnalyticsAndReportingComponent,
-    HeaderComponent,
-    AnalyticsStatsComponent,
-    CustomermoduleComponent,
-    MarketingmoduleComponent,
-    SupportmoduleComponent,
-    TabsSalesComponent,
-    TabsCustomerComponent,
-    TabsSupportComponent,
-    TabsMarketingComponent,
-    SalesAnalyticsComponent,
-    CustomersAnalyticsComponent,
-    SupportAnalyticsComponent,
-    MarketingAnalyticsComponent,
-  ],
-  imports: [
-    CommonModule,
-    FluidModule,
-    SalesAutomationModule,
-    ChartModule,
-    LandingModule,
-    SpeedDial,
-    TableModule,
-    ButtonModule,
-    OrganizationChartModule
-  ],
-  providers: [
-    AnalyticsService
-  ]
+    declarations: [
+        AnalyticsAndReportingComponent,
+        HeaderComponent,
+        AnalyticsStatsComponent,
+        CustomermoduleComponent,
+        MarketingmoduleComponent,
+        SupportmoduleComponent,
+        TabsSalesComponent,
+        TabsCustomerComponent,
+        TabsSupportComponent,
+        TabsMarketingComponent,
+        SalesAnalyticsComponent,
+        CustomersAnalyticsComponent,
+        SupportAnalyticsComponent,
+        MarketingAnalyticsComponent
+    ],
+    imports: [CommonModule, FluidModule, SalesAutomationModule, ChartModule, LandingModule, SpeedDial, TableModule, ButtonModule, OrganizationChartModule],
+    providers: [AnalyticsService]
 })
-export class AnalyticsAndReportingModule { }
+export class AnalyticsAndReportingModule {}

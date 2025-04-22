@@ -3,21 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FloatingConfiguratorComponent } from './floating-configurator.component';
 
 describe('FloatingConfiguratorComponent', () => {
-  let component: FloatingConfiguratorComponent;
-  let fixture: ComponentFixture<FloatingConfiguratorComponent>;
+    let component: FloatingConfiguratorComponent;
+    let fixture: ComponentFixture<FloatingConfiguratorComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [FloatingConfiguratorComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [FloatingConfiguratorComponent]
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(FloatingConfiguratorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(FloatingConfiguratorComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

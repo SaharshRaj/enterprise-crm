@@ -12,33 +12,32 @@ import { TabsSupportComponent } from './components/tabs-support/tabs-support.com
 import { TabsMarketingComponent } from './components/tabs-marketing/tabs-marketing.component';
 
 @Component({
-  selector: 'app-analytics-and-reporting',
-  standalone: false,
-  templateUrl: './analytics-and-reporting.component.html',
-  styleUrl: './analytics-and-reporting.component.scss'
+    selector: 'app-analytics-and-reporting',
+    standalone: false,
+    templateUrl: './analytics-and-reporting.component.html',
+    styleUrl: './analytics-and-reporting.component.scss'
 })
-export class AnalyticsAndReportingComponent implements OnInit{
+export class AnalyticsAndReportingComponent implements OnInit {
+    salesList$!: Observable<SalesOpportunity[]>;
+    customerList$!: Observable<CustomerProfile[]>;
+    customerSupportList$!: Observable<SupportTicket[]>;
 
-  salesList$!:Observable<SalesOpportunity[]>;
-  customerList$!:Observable<CustomerProfile[]>;
-  customerSupportList$!:Observable<SupportTicket[]>;
+    constructor(
+        private readonly salesService: SalesService,
+        private readonly customersService: CustomersService,
+        private readonly customerSupportService: CustomerSupportService
+    ) {}
 
-  constructor(private readonly salesService: SalesService,
-              private readonly customersService : CustomersService,
-              private readonly customerSupportService : CustomerSupportService
-    ){}
+    ngOnInit(): void {
+        this.salesList$ = this.salesService.getAllSales();
+        this.customerList$ = this.customersService.getCustomers();
+        this.customerSupportList$ = this.customerSupportService.getAllTickets();
+    }
 
-  ngOnInit(): void {
-    this.salesList$ = this.salesService.getAllSales();
-    this.customerList$ = this.customersService.getCustomers();
-    this.customerSupportList$= this.customerSupportService.getAllTickets();
-  }
-
-  tabs = [
-    {label: "Customer Data Management", content: TabsCustomerComponent},
-    {label: "Sales Automation", content: TabsSalesComponent},
-    {label: "Customer Support", content: TabsSupportComponent},
-    {label: "Marketing Automation", content: TabsMarketingComponent},
-  ]
-
+    tabs = [
+        { label: 'Customer Data Management', content: TabsCustomerComponent },
+        { label: 'Sales Automation', content: TabsSalesComponent },
+        { label: 'Customer Support', content: TabsSupportComponent },
+        { label: 'Marketing Automation', content: TabsMarketingComponent }
+    ];
 }

@@ -1,6 +1,6 @@
 <div class="flex items-center justify-center overflow-hidden">
     <div class="flex flex-col items-center justify-center">
-        <div style="border-radius: 20px; padding: 0.3rem; " *ngIf="!userRegistered; else successMessage">
+        <div style="border-radius: 20px; padding: 0.3rem" *ngIf="!userRegistered; else successMessage">
             <div class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20" style="border-radius: 20px">
                 <div class="text-center mb-8">
                     <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4">{{ !loading ? 'Enter Employee Details' : 'Registering' }}</div>

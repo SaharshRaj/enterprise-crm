@@ -1,8 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import {
-    SalesOpportunity,
-    SalesStage,
-} from '../../../../../models/SalesOpportunity';
+import { SalesOpportunity, SalesStage } from '../../../../../models/SalesOpportunity';
 import { SalesService } from '../../service/sales.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
@@ -14,7 +11,7 @@ import { MessageService } from 'primeng/api';
     selector: 'app-sales-pipeline',
     standalone: false,
     templateUrl: './sales-pipeline.component.html',
-    styleUrl: './sales-pipeline.component.scss',
+    styleUrl: './sales-pipeline.component.scss'
 })
 export class SalesPipelineComponent implements OnInit, OnDestroy {
     @Input({ required: true }) allSales$!: Observable<SalesOpportunity[]>;
@@ -31,7 +28,7 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
         PROSPECTING: [],
         QUALIFICATION: [],
         CLOSED_LOST: [],
-        CLOSED_WON: [],
+        CLOSED_WON: []
     };
 
     first: Record<SalesStage, number> = { PROSPECTING: 0, QUALIFICATION: 0, CLOSED_LOST: 0, CLOSED_WON: 0 };
@@ -40,18 +37,17 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
         PROSPECTING: [],
         QUALIFICATION: [],
         CLOSED_LOST: [],
-        CLOSED_WON: [],
+        CLOSED_WON: []
     };
-
 
     originalSalesPipeline: Record<SalesStage, SalesOpportunity[]> = {
         PROSPECTING: [],
         QUALIFICATION: [],
         CLOSED_LOST: [],
-        CLOSED_WON: [],
+        CLOSED_WON: []
     };
 
-    showToast(toast: { severity: string, summary: string, message: string }) {
+    showToast(toast: { severity: string; summary: string; message: string }) {
         this.messageService.add({ severity: toast.severity, summary: toast.summary, detail: toast.message });
     }
 
@@ -61,23 +57,22 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
         this.updatePagedSalesPipeline();
     }
 
-
     onSave() {
         this.loading = true;
-        this.modifiedLeads.forEach(
-            (lead) => this.salesService.updateSales(lead).subscribe({
+        this.modifiedLeads.forEach((lead) =>
+            this.salesService.updateSales(lead).subscribe({
                 next: (sale: SalesOpportunity) => {
-                    this.showToast({ severity: 'success', message: `Successfully saved changes for Lead #${sale.opportunityID}`, summary: 'Success' })
+                    this.showToast({ severity: 'success', message: `Successfully saved changes for Lead #${sale.opportunityID}`, summary: 'Success' });
                 },
                 error: (error: any) => {
-                    this.showToast({ severity: 'error', message: error.error.message, summary: 'Error' })
+                    this.showToast({ severity: 'error', message: error.error.message, summary: 'Error' });
                     this.loading = false;
                 },
                 complete: () => {
                     this.modifiedLeads = [];
                     this.loading = false;
                     this.loadSalesData();
-                },
+                }
             })
         );
     }
@@ -86,7 +81,7 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
         this.salesPipeline = this.deepCopy(this.originalSalesPipeline);
         this.modifiedLeads = [];
         this.updatePagedSalesPipeline();
-        this.showToast({ severity: 'success', message: `All changes discarded successfully`, summary: 'Success' })
+        this.showToast({ severity: 'success', message: `All changes discarded successfully`, summary: 'Success' });
     }
 
     visible: boolean = false;
@@ -97,31 +92,30 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
     }
 
     onSearchChange() {
-        this.filteredSalesPipeline = this.salesStageKeys.reduce((acc, stage) => {
-            acc[stage] = this.salesPipeline[stage].filter(lead =>
-                lead.customerID.toString().includes(this.searchQuery) ||
-                lead.opportunityID.toString().includes(this.searchQuery)
-            );
-            return acc;
-        }, {} as Record<SalesStage, SalesOpportunity[]>);
+        this.filteredSalesPipeline = this.salesStageKeys.reduce(
+            (acc, stage) => {
+                acc[stage] = this.salesPipeline[stage].filter((lead) => lead.customerID.toString().includes(this.searchQuery) || lead.opportunityID.toString().includes(this.searchQuery));
+                return acc;
+            },
+            {} as Record<SalesStage, SalesOpportunity[]>
+        );
 
         this.updatePagedSalesPipeline(); // Ensure pagination reflects filtered results
     }
 
     bgClasses: Record<SalesStage, string> = {
-        PROSPECTING:
-            'bg-blue-100 text-blue-600 dark:border-blue-600 dark:text-blue-200 dark:bg-transparent ',
-        QUALIFICATION:
-            'bg-purple-100 text-purple-600 dark:border-purple-600 dark:text-purple-200 dark:bg-transparent ',
-        CLOSED_LOST:
-            'bg-red-100 text-red-600 dark:border-red-600 dark:text-red-200 dark:bg-transparent ',
-        CLOSED_WON:
-            'bg-green-100 text-green-600 dark:border-green-600 dark:text-green-200 dark:bg-transparent ',
+        PROSPECTING: 'bg-blue-100 text-blue-600 dark:border-blue-600 dark:text-blue-200 dark:bg-transparent ',
+        QUALIFICATION: 'bg-purple-100 text-purple-600 dark:border-purple-600 dark:text-purple-200 dark:bg-transparent ',
+        CLOSED_LOST: 'bg-red-100 text-red-600 dark:border-red-600 dark:text-red-200 dark:bg-transparent ',
+        CLOSED_WON: 'bg-green-100 text-green-600 dark:border-green-600 dark:text-green-200 dark:bg-transparent '
     };
 
     salesStageKeys = Object.values(SalesStage);
 
-    constructor(private readonly salesService: SalesService, private readonly messageService: MessageService) { }
+    constructor(
+        private readonly salesService: SalesService,
+        private readonly messageService: MessageService
+    ) {}
 
     ngOnInit(): void {
         this.formGroup = new FormGroup({
@@ -139,31 +133,22 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
                             return { beforeClosingDate: true };
                         }
                         return null;
-                    },
+                    }
                 ],
-                updateOn: 'change',
-            }),
+                updateOn: 'change'
+            })
         });
 
         this.salesService.salesList$.pipe(takeUntil(this.destroy$)).subscribe((sales) => {
-            this.salesStageKeys.forEach(
-                (stage) =>
-                    (this.salesPipeline[stage] = sales.filter((sale) => sale.salesStage === stage).reverse())
-            );
+            this.salesStageKeys.forEach((stage) => (this.salesPipeline[stage] = sales.filter((sale) => sale.salesStage === stage).reverse()));
             this.originalSalesPipeline = this.deepCopy(this.salesPipeline);
             this.updatePagedSalesPipeline();
         });
     }
 
-
     loadSalesData() {
         this.allSales$.pipe(takeUntil(this.destroy$)).subscribe((sales) => {
-            this.salesStageKeys.forEach(
-                (stage) =>
-                    (this.salesPipeline[stage] = sales.filter(
-                        (sale) => sale.salesStage === stage
-                    ).reverse())
-            );
+            this.salesStageKeys.forEach((stage) => (this.salesPipeline[stage] = sales.filter((sale) => sale.salesStage === stage).reverse()));
             // Create a deep copy of the initial sales data
             this.originalSalesPipeline = this.deepCopy(this.salesPipeline);
             this.updatePagedSalesPipeline();
@@ -191,8 +176,6 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
         });
     }
 
-
-
     onDrop(event: CdkDragDrop<SalesOpportunity[]>, newStage: SalesStage) {
         if (event.previousContainer !== event.container) {
             const lead = event.previousContainer.data[event.previousIndex];
@@ -201,9 +184,7 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
             const leadCopy = { ...lead };
             leadCopy.salesStage = newStage;
 
-            const existingIndex = this.modifiedLeads.findIndex(
-                (modifiedLead) => modifiedLead.opportunityID === leadCopy.opportunityID
-            );
+            const existingIndex = this.modifiedLeads.findIndex((modifiedLead) => modifiedLead.opportunityID === leadCopy.opportunityID);
 
             if (existingIndex === -1) {
                 this.modifiedLeads.push(leadCopy);
@@ -211,19 +192,13 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
                 this.modifiedLeads[existingIndex] = leadCopy;
             }
 
-            const previousIndexInOriginal = this.salesPipeline[
-                previousStage
-            ].findIndex((item) => item.opportunityID === lead.opportunityID);
+            const previousIndexInOriginal = this.salesPipeline[previousStage].findIndex((item) => item.opportunityID === lead.opportunityID);
             if (previousIndexInOriginal !== -1) {
                 this.salesPipeline[previousStage].splice(previousIndexInOriginal, 1);
             }
 
             lead.salesStage = newStage;
-            this.salesPipeline[newStage].splice(
-                event.currentIndex + (this.first[newStage] || 0),
-                0,
-                lead
-            );
+            this.salesPipeline[newStage].splice(event.currentIndex + (this.first[newStage] || 0), 0, lead);
 
             this.updatePagedSalesPipeline();
         }
@@ -240,25 +215,20 @@ export class SalesPipelineComponent implements OnInit, OnDestroy {
             const updatedLead = { ...this.selectedLead };
             updatedLead.followUpReminder = formattedDate;
 
-            const existingIndexModified = this.modifiedLeads.findIndex(
-                (modifiedLead) => modifiedLead.opportunityID === updatedLead.opportunityID
-            );
+            const existingIndexModified = this.modifiedLeads.findIndex((modifiedLead) => modifiedLead.opportunityID === updatedLead.opportunityID);
             if (existingIndexModified === -1) {
                 this.modifiedLeads.push(updatedLead);
             } else {
-                this.modifiedLeads[existingIndexModified].followUpReminder =
-                    updatedLead.followUpReminder;
+                this.modifiedLeads[existingIndexModified].followUpReminder = updatedLead.followUpReminder;
             }
 
             // Update the lead in the salesPipeline
             for (const stage in this.salesPipeline) {
-                const index = this.salesPipeline[stage as SalesStage].findIndex(
-                    (lead) => lead.opportunityID === updatedLead.opportunityID
-                );
+                const index = this.salesPipeline[stage as SalesStage].findIndex((lead) => lead.opportunityID === updatedLead.opportunityID);
                 if (index !== -1) {
                     this.salesPipeline[stage as SalesStage][index] = {
                         ...this.salesPipeline[stage as SalesStage][index],
-                        followUpReminder: formattedDate,
+                        followUpReminder: formattedDate
                     };
                     break; // Lead found and updated
                 }

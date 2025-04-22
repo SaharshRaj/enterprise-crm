@@ -5,89 +5,87 @@ import { Employee } from '../../../../models/Employee';
 import { AuthService } from '../../../auth/service/auth.service';
 
 @Component({
-  selector: 'app-employee-table',
-  standalone: false,
-  templateUrl: './employee-table.component.html',
-  styleUrl: './employee-table.component.scss'
+    selector: 'app-employee-table',
+    standalone: false,
+    templateUrl: './employee-table.component.html',
+    styleUrl: './employee-table.component.scss'
 })
 export class EmployeeTableComponent implements OnInit {
-  @ViewChild('dt') dt!: Table;
+    @ViewChild('dt') dt!: Table;
 
-  employees!: Employee[];
-  selectedEmployees!: Employee[];
-  loading: boolean = true;
-  searchValue: string = '';
-  items: MenuItem[] | undefined;
+    employees!: Employee[];
+    selectedEmployees!: Employee[];
+    loading: boolean = true;
+    searchValue: string = '';
+    items: MenuItem[] | undefined;
 
-  constructor(private readonly authService: AuthService, private readonly confirmationService: ConfirmationService){}
+    constructor(
+        private readonly authService: AuthService,
+        private readonly confirmationService: ConfirmationService
+    ) {}
 
+    visible: boolean = false;
 
-  visible: boolean = false;
-
-  showDialog() {
-      this.visible = true;
-  }
-  ngOnInit() {
-        this.loading = true
+    showDialog() {
+        this.visible = true;
+    }
+    ngOnInit() {
+        this.loading = true;
         this.authService.getAllUser().subscribe((users) => {
             this.employees = users;
-        this.loading = false
+            this.loading = false;
         });
 
-
-    this.items = [
-        {
-            label: 'Options',
-            items: [
-                {
-                    label: 'Update',
-                    icon: 'pi pi-pencil',
-                    command: () => {
-                        this.showDialog();
+        this.items = [
+            {
+                label: 'Options',
+                items: [
+                    {
+                        label: 'Update',
+                        icon: 'pi pi-pencil',
+                        command: () => {
+                            this.showDialog();
+                        }
                     },
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-trash',
-                    iconStyle:  {'color' : 'red'},
-                }
-            ]
-        }
-    ];
-  }
-
-  confirmDelete(event: Event, id:number) {
-    this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'Do you want to delete this record?',
-        header: 'Danger Zone',
-        icon: 'pi pi-info-circle',
-        rejectLabel: 'Cancel',
-        rejectButtonProps: {
-            label: 'Cancel',
-            severity: 'secondary',
-            outlined: true,
-        },
-        acceptButtonProps: {
-            label: 'Delete',
-            severity: 'danger',
-        },
-
-        accept: () => {
-            this.authService.deleteUser(id).subscribe((obj) => console.log(obj.status))
-            this.employees = this.employees.filter((emp)=>emp.id !== id)
-        },
-        reject: () => {
-
-        },
-    });
-}
-
-
-  clear() {
-    if (this.dt) {
-      this.dt.clear();
-      this.searchValue = '';
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-trash',
+                        iconStyle: { color: 'red' }
+                    }
+                ]
+            }
+        ];
     }
-  }
+
+    confirmDelete(event: Event, id: number) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Do you want to delete this record?',
+            header: 'Danger Zone',
+            icon: 'pi pi-info-circle',
+            rejectLabel: 'Cancel',
+            rejectButtonProps: {
+                label: 'Cancel',
+                severity: 'secondary',
+                outlined: true
+            },
+            acceptButtonProps: {
+                label: 'Delete',
+                severity: 'danger'
+            },
+
+            accept: () => {
+                this.authService.deleteUser(id).subscribe((obj) => console.log(obj.status));
+                this.employees = this.employees.filter((emp) => emp.id !== id);
+            },
+            reject: () => {}
+        });
+    }
+
+    clear() {
+        if (this.dt) {
+            this.dt.clear();
+            this.searchValue = '';
+        }
+    }
 }

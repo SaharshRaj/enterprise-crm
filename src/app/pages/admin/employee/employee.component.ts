@@ -17,7 +17,10 @@ export class EmployeeComponent implements OnInit {
     userRegistered = false;
     loading = false;
 
-    constructor(private readonly authService : AuthService, private readonly router: Router){}
+    constructor(
+        private readonly authService: AuthService,
+        private readonly router: Router
+    ) {}
 
     onSubmit(employee: Employee) {
         this.loading = true;
@@ -34,7 +37,6 @@ export class EmployeeComponent implements OnInit {
         });
     }
 
-
     onCancel() {
         this.router.navigate(['/pages/admin']);
     }
@@ -50,15 +52,17 @@ export class EmployeeComponent implements OnInit {
         });
     }
 
-    options = [{ label: 'Manager', value: 'MANAGER' },
-    { label: 'Employee', value: 'EMPLOYEE' }]
+    options = [
+        { label: 'Manager', value: 'MANAGER' },
+        { label: 'Employee', value: 'EMPLOYEE' }
+    ];
 
     private passwordMatchValidator() {
         return (control: FormControl): ValidationErrors | null => {
             const password = this.form?.get('password')?.value;
             const confirmPassword = control.value;
             return password && confirmPassword && password !== confirmPassword ? { valid: false } : null;
-        }
+        };
     }
 
     get emailErrorMessage() {
@@ -86,7 +90,7 @@ export class EmployeeComponent implements OnInit {
         if (this.form.get('password')?.hasError('pattern')) {
             return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
         }
-        if(this.form.get('password')?.value !== this.form.get('confirmPassword')?.value){
+        if (this.form.get('password')?.value !== this.form.get('confirmPassword')?.value) {
             return 'Passwords are not matching.';
         }
         return '';
@@ -98,7 +102,7 @@ export class EmployeeComponent implements OnInit {
         if (this.form.get('confirmPassword')?.hasError('pattern')) {
             return 'Confirm Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
         }
-        if(this.form.get('password')?.value !== this.form.get('confirmPassword')?.value){
+        if (this.form.get('password')?.value !== this.form.get('confirmPassword')?.value) {
             return 'Passwords are not matching.';
         }
         return '';

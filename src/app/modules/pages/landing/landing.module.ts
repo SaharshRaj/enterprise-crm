@@ -30,37 +30,9 @@ import { AnalyticsService } from '../../../pages/crm-services/analytics-and-repo
 import { ProfileComponent } from '../../../pages/profile/profile.component';
 
 @NgModule({
-  declarations: [
-    LandingComponent,
-    GeneralInfoComponent,
-    TabsComponent,
-    CardComponent,
-    ModulesComponent,
-    TimeComponent,
-    DateComponent,
-    NotFoundComponent,
-    ProfileComponent,
-  ],
-  imports: [
-    CommonModule,
-    ButtonModule,
-    InputTextModule,
-    TabsModule,
-    RouterModule,
-    RippleModule,
-    LayoutModule,
-    ButtonModule,
-    CheckboxModule,
-    FormsModule,
-    AvatarModule,
-    AvatarGroupModule,
-    Menu,
-    Dialog,
-    SelectButton,
-    ConfirmDialog,
-    FormsModule,
-  ],
-  providers: [CustomersService, SalesService, MarketingAutomationService, CustomerSupportService, AnalyticsService],
-  exports :[TabsComponent] 
+    declarations: [LandingComponent, GeneralInfoComponent, TabsComponent, CardComponent, ModulesComponent, TimeComponent, DateComponent, NotFoundComponent, ProfileComponent],
+    imports: [CommonModule, ButtonModule, InputTextModule, TabsModule, RouterModule, RippleModule, LayoutModule, ButtonModule, CheckboxModule, FormsModule, AvatarModule, AvatarGroupModule, Menu, Dialog, SelectButton, ConfirmDialog, FormsModule],
+    providers: [CustomersService, SalesService, MarketingAutomationService, CustomerSupportService, AnalyticsService],
+    exports: [TabsComponent]
 })
 export class LandingModule {}

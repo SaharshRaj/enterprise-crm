@@ -5,20 +5,17 @@ import { Employee } from '../../models/Employee';
 import { selectAuthState } from '../../store/auth/auth.selector';
 
 @Component({
-  selector: 'app-profile',
-  standalone: false,
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss'
+    selector: 'app-profile',
+    standalone: false,
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.scss'
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
+    user!: Employee;
 
-  user!: Employee
+    constructor(private store: Store) {}
 
-  constructor(private store: Store){}
-  
-  ngOnInit(): void {
-    this.store.select(selectAuthState).subscribe((authState) => this.user = authState.user!)
-  }
-
-
+    ngOnInit(): void {
+        this.store.select(selectAuthState).subscribe((authState) => (this.user = authState.user!));
+    }
 }

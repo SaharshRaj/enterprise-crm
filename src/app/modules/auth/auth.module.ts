@@ -11,26 +11,9 @@ import { LayoutModule } from '../layout/layout.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmationService } from 'primeng/api';
 
-
-
 @NgModule({
-  declarations: [
-    AccessComponent,
-    ErrorComponent,
-    LoginComponent,
-  ],
-  imports: [
-    CommonModule,
-    PasswordModule,
-    ReactiveFormsModule,
-    FormsModule,
-    ButtonModule,
-    LayoutModule,
-    InputTextModule
-  ],
-  providers: [
-    AuthService,
-    ConfirmationService
-  ]
+    declarations: [AccessComponent, ErrorComponent, LoginComponent],
+    imports: [CommonModule, PasswordModule, ReactiveFormsModule, FormsModule, ButtonModule, LayoutModule, InputTextModule],
+    providers: [AuthService, ConfirmationService]
 })
-export class AuthModule { }
+export class AuthModule {}

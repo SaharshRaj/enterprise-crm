@@ -1,28 +1,26 @@
-import { isPlatformBrowser } from "@angular/common";
-import { Component, OnInit, inject, PLATFORM_ID, computed, signal } from "@angular/core";
-import { Router } from "@angular/router";
-import { PrimeNG } from "primeng/config";
-import { LayoutService } from "../../service/layout.service";
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, inject, PLATFORM_ID, computed, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { PrimeNG } from 'primeng/config';
+import { LayoutService } from '../../service/layout.service';
 import Aura from '@primeng/themes/aura';
 import Lara from '@primeng/themes/lara';
 import { $t } from '@primeng/themes';
 import Nora from '@primeng/themes/nora';
 
-
 interface Palette {
-  [key: number]: string;
+    [key: number]: string;
 }
 
 interface SurfacesType {
-  name: string;
-  palette: Palette;
+    name: string;
+    palette: Palette;
 }
 
-
 const presets = {
-  Aura,
-  Lara,
-  Nora
+    Aura,
+    Lara,
+    Nora
 } as const;
 
 declare function updatePreset(config: any): void;
@@ -31,16 +29,15 @@ declare function updateSurfacePalette(palette: Palette): void;
 type KeyOfType<T> = keyof T;
 
 @Component({
-  selector: 'app-configurator',
-  templateUrl: './configurator.component.html',
-  host: {
-    class: 'hidden absolute top-[3.25rem] right-0 w-72 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]'
-  },
-  standalone: false
+    selector: 'app-configurator',
+    templateUrl: './configurator.component.html',
+    host: {
+        class: 'hidden absolute top-[3.25rem] right-0 w-72 p-4 bg-surface-0 dark:bg-surface-900 border border-surface rounded-border origin-top shadow-[0px_3px_5px_rgba(0,0,0,0.02),0px_0px_2px_rgba(0,0,0,0.05),0px_1px_4px_rgba(0,0,0,0.08)]'
+    },
+    standalone: false
 })
 export class AppConfigurator implements OnInit {
-  router = inject(Router);
-
+    router = inject(Router);
 
     config: PrimeNG = inject(PrimeNG);
 
@@ -204,9 +201,9 @@ export class AppConfigurator implements OnInit {
         }
     ];
 
-    selectedPrimaryColor = signal('noir')
+    selectedPrimaryColor = signal('noir');
 
-    selectedSurfaceColor = signal( 'slate');
+    selectedSurfaceColor = signal('slate');
 
     selectedPreset = computed(() => this.layoutService.layoutConfig().preset);
 
@@ -228,55 +225,54 @@ export class AppConfigurator implements OnInit {
     });
 
     getPresetExt() {
-            return {
-                semantic: {
-                    primary: {
-                        50: '{slate.50}',
-                        100: '{slate.100}',
-                        200: '{surface.200}',
-                        300: '{surface.300}',
-                        400: '{surface.400}',
-                        500: '{surface.500}',
-                        600: '{surface.600}',
-                        700: '{surface.700}',
-                        800: '{surface.800}',
-                        900: '{surface.900}',
-                        950: '{surface.950}'
-                    },
-                    colorScheme: {
-                        light: {
-                            primary: {
-                                color: '{primary.950}',
-                                contrastColor: '#ffffff',
-                                hoverColor: '{primary.800}',
-                                activeColor: '{primary.700}'
-                            },
-                            highlight: {
-                                background: '{primary.950}',
-                                focusBackground: '{primary.700}',
-                                color: '#ffffff',
-                                focusColor: '#ffffff'
-                            }
+        return {
+            semantic: {
+                primary: {
+                    50: '{slate.50}',
+                    100: '{slate.100}',
+                    200: '{surface.200}',
+                    300: '{surface.300}',
+                    400: '{surface.400}',
+                    500: '{surface.500}',
+                    600: '{surface.600}',
+                    700: '{surface.700}',
+                    800: '{surface.800}',
+                    900: '{surface.900}',
+                    950: '{surface.950}'
+                },
+                colorScheme: {
+                    light: {
+                        primary: {
+                            color: '{primary.950}',
+                            contrastColor: '#ffffff',
+                            hoverColor: '{primary.800}',
+                            activeColor: '{primary.700}'
                         },
-                        dark: {
-                            primary: {
-                                color: '{primary.50}',
-                                contrastColor: '{primary.950}',
-                                hoverColor: '{primary.200}',
-                                activeColor: '{primary.300}'
-                            },
-                            highlight: {
-                                background: '{primary.50}',
-                                focusBackground: '{primary.300}',
-                                color: '{primary.950}',
-                                focusColor: '{primary.100}'
-                            }
+                        highlight: {
+                            background: '{primary.950}',
+                            focusBackground: '{primary.700}',
+                            color: '#ffffff',
+                            focusColor: '#ffffff'
+                        }
+                    },
+                    dark: {
+                        primary: {
+                            color: '{primary.50}',
+                            contrastColor: '{primary.950}',
+                            hoverColor: '{primary.200}',
+                            activeColor: '{primary.300}'
+                        },
+                        highlight: {
+                            background: '{primary.50}',
+                            focusBackground: '{primary.300}',
+                            color: '{primary.950}',
+                            focusColor: '{primary.100}'
                         }
                     }
                 }
-            };
-        }
-
+            }
+        };
+    }
 
     updateColors(event: any, type: string, color: any) {
         if (type === 'primary') {
@@ -307,5 +303,4 @@ export class AppConfigurator implements OnInit {
     onMenuModeChange(event: string) {
         this.layoutService.layoutConfig.update((prev) => ({ ...prev, menuMode: event }));
     }
-
 }

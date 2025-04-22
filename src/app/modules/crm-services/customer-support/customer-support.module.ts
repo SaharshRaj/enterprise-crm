@@ -19,36 +19,12 @@ import { CustomerSupportHeaderComponent } from '../../../pages/crm-services/cust
 import { MessageService } from 'primeng/api';
 import { RouterModule } from '@angular/router';
 import { DeleteTicketComponent } from '../../../pages/crm-services/customer-support/components/delete-ticket/delete-ticket.component';
-import { ConfirmationService} from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 
-
 @NgModule({
-  declarations: [
-    CustomerSupportComponent,ViewTicketsComponent,CreateTicketComponent,
-    CustomerSupportHeaderComponent,UpdateTicketComponent,
-    DeleteTicketComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    MenuModule,
-    Dialog,
-    DatePickerModule,
-    IftaLabelModule,
-    FloatLabel,
-    Tooltip,
-    SpeedDial,
-    FluidModule,
-    FormsModule,
-    RouterModule,
-    ConfirmDialog
-  ],
-  providers: [
-    CustomerSupportService,
-    MessageService,
-    ConfirmationService
-  ]
+    declarations: [CustomerSupportComponent, ViewTicketsComponent, CreateTicketComponent, CustomerSupportHeaderComponent, UpdateTicketComponent, DeleteTicketComponent],
+    imports: [CommonModule, ReactiveFormsModule, ButtonModule, MenuModule, Dialog, DatePickerModule, IftaLabelModule, FloatLabel, Tooltip, SpeedDial, FluidModule, FormsModule, RouterModule, ConfirmDialog],
+    providers: [CustomerSupportService, MessageService, ConfirmationService]
 })
-export class CustomerSupportModule { }
+export class CustomerSupportModule {}

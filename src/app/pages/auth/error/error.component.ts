@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-error',
-  standalone: false,
+    selector: 'app-error',
+    standalone: false,
 
-  templateUrl: './error.component.html',
-  styleUrl: './error.component.scss'
+    templateUrl: './error.component.html',
+    styleUrl: './error.component.scss'
 })
 export class ErrorComponent {
-    @Input({required: true}) errorMessage! : string;
+    @Input({ required: true }) errorMessage!: string;
 }

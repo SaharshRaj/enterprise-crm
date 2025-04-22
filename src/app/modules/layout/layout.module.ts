@@ -18,33 +18,9 @@ import { RouterModule } from '@angular/router';
 import { LayoutService } from '../../layout/service/layout.service';
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    FloatingConfiguratorComponent,
-    FooterComponent,
-    MenuComponent,
-    MenuItemComponent,
-    SidebarComponent,
-    TopbarComponent,
-    AppConfigurator,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    SelectButtonModule,
-    ButtonModule,
-    StyleClassModule,
-    RippleModule,
-    Avatar,
-    RouterModule
-  ],
-  exports: [
-    LayoutComponent,
-    FloatingConfiguratorComponent,
-    AppConfigurator,
-  ],
-  providers: [
-    LayoutService,
-  ]
+    declarations: [LayoutComponent, FloatingConfiguratorComponent, FooterComponent, MenuComponent, MenuItemComponent, SidebarComponent, TopbarComponent, AppConfigurator],
+    imports: [CommonModule, FormsModule, SelectButtonModule, ButtonModule, StyleClassModule, RippleModule, Avatar, RouterModule],
+    exports: [LayoutComponent, FloatingConfiguratorComponent, AppConfigurator],
+    providers: [LayoutService]
 })
 export class LayoutModule {}

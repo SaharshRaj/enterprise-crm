@@ -20,17 +20,20 @@ export class DeleteCustomerComponent implements OnInit {
     successMessage: string | null = null;
     loading: boolean = false;
 
-    constructor(private customersService: CustomersService, private readonly messageService: MessageService) { }
+    constructor(
+        private customersService: CustomersService,
+        private readonly messageService: MessageService
+    ) {}
 
     ngOnInit(): void {
         if (this.selectedCustomerId === null) {
-            this.errorMessage = "Customer Id is null. Cannot delete";
+            this.errorMessage = 'Customer Id is null. Cannot delete';
         }
     }
 
     confirmDelete(): void {
         if (this.selectedCustomerId === null) {
-            this.errorMessage = "No Customer ID provided to delete.";
+            this.errorMessage = 'No Customer ID provided to delete.';
             return;
         }
 
@@ -39,20 +42,19 @@ export class DeleteCustomerComponent implements OnInit {
         this.successMessage = null;
 
         this.customersService.deleteCustomer(this.selectedCustomerId).subscribe({
-          next: (res: string) =>{
-            this.successMessage = res;
-            this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Customer Deleted Successfully.' });
-            this.deleteSuccessful.emit();
-            setTimeout(() => this.onClose(), 1000);
-          },
-          
-          error: (error: HttpErrorResponse) => {
-            this.errorMessage= error.error.message,
-            this.messageService.add({ severity: 'error', summary: 'Success.', detail: 'Some Error Occurred.' });
-            console.log(error.error.message);
-            this.loading = false
-          },
-          complete:() =>  this.loading = false
+            next: (res: string) => {
+                this.successMessage = res;
+                this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Customer Deleted Successfully.' });
+                this.deleteSuccessful.emit();
+                setTimeout(() => this.onClose(), 1000);
+            },
+
+            error: (error: HttpErrorResponse) => {
+                (this.errorMessage = error.error.message), this.messageService.add({ severity: 'error', summary: 'Success.', detail: 'Some Error Occurred.' });
+                console.log(error.error.message);
+                this.loading = false;
+            },
+            complete: () => (this.loading = false)
         });
     }
 
@@ -62,4 +64,3 @@ export class DeleteCustomerComponent implements OnInit {
         this.successMessage = '';
     }
 }
-
