@@ -80,13 +80,13 @@ export class RegisterCustomerComponent implements OnInit {
           this.loading = false;
           this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Customer Registered Successfully.' });
           this.success = true;
-          this.router.navigate(['pages/services/customer-data-management']);
           const newNotification: Notification = {
                 heading: 'Customer Data Management',
                 description: `Registered a new customer with ID: ${response.customerID}.`,
                 time: new Date().toLocaleTimeString()
               }
               this.store.dispatch(addNotification({notification: newNotification}))
+          this.router.navigate(['pages/services/customer-data-management']);
         },
         error: (error) => {
           this.error = error.message || 'Failed to register customer.';

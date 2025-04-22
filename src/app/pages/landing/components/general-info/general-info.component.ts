@@ -27,7 +27,7 @@ export class GeneralInfoComponent implements OnInit, OnDestroy {
     this.notificationSubscription = this.store
       .select(selectNotificationState)
       .subscribe((notifications) => {
-        this.notificationList = notifications.notification ? notifications.notification.slice(0, 3) : [];
+        this.notificationList = notifications?.notification ? [...notifications.notification].reverse().slice(0, 3) : [];
       });
   }
 

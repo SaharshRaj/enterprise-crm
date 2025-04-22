@@ -9,6 +9,9 @@ import {
 import { MarketingAutomationService } from '../../service/marketing-automation.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Store } from '@ngrx/store';
+import { Notification } from '../../../../../models/Notification';
+import { addNotification } from '../../../../../store/notifications/notiffications.actions';
 
 // Custom validator for future dates
 function futureDateValidator(
@@ -56,7 +59,8 @@ export class CreateCampaignComponent implements OnInit {
     private fb: FormBuilder,
     private marketingService: MarketingAutomationService,
     private router: Router,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly store: Store
   ) {
     this.formData = this.fb.group({
       name: [
@@ -109,6 +113,12 @@ export class CreateCampaignComponent implements OnInit {
             this.messageService.add({ severity: 'info', summary: 'Success.', detail: 'Campaign Created Successfully.' });
             // Optionally navigate to the campaign list or another page
             // this.router.navigate(['/campaigns']);
+            const newNotification: Notification = {
+                            heading: 'Marketing Automation',
+                            description: `Created a new campaign with ID: ${response.campaignID}.`,
+                            time: new Date().toLocaleTimeString()
+                          }
+                          this.store.dispatch(addNotification({notification: newNotification}))
             this.loading = false;
           },
           error: (error) => {

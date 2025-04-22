@@ -12,6 +12,9 @@ import {
 } from '@angular/forms';
 import { SalesService } from '../../service/sales.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { Notification } from '../../../../../models/Notification';
+import { addNotification } from '../../../../../store/notifications/notiffications.actions';
 
 @Component({
   selector: 'app-heading',
@@ -27,7 +30,8 @@ export class HeadingComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly salesService: SalesService,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly store: Store
   ) {}
   
   ngOnInit(): void {
@@ -165,8 +169,14 @@ export class HeadingComponent implements OnInit {
             summary: 'Saved',
             message: `Lead created successfully with id: ${sale.opportunityID}`,
           });
+          const newNotification: Notification = {
+                          heading: 'Customer Data Management',
+                          description: `New lead created with ID: ${sale.opportunityID}.`,
+                          time: new Date().toLocaleTimeString()
+                        }
+                        this.store.dispatch(addNotification({notification: newNotification}))
   
-          this.salesService.refreshSalesList(); // 🔄 Push new data dynamically
+          this.salesService.refreshSalesList();
         },
         error: (error: HttpErrorResponse) => {
           this.showToast({
