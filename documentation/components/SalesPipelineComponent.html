@@ -1,0 +1,2145 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>enterprise-crm documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">enterprise-crm documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SalesPipelineComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-sales-pipeline</code></td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./sales-pipeline.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./sales-pipeline.component.scss</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bgClasses" >bgClasses</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#destroy$" >destroy$</a>
+                            </li>
+                            <li>
+                                <a href="#filteredSalesPipeline" >filteredSalesPipeline</a>
+                            </li>
+                            <li>
+                                <a href="#first" >first</a>
+                            </li>
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#modifiedLeads" >modifiedLeads</a>
+                            </li>
+                            <li>
+                                <a href="#originalSalesPipeline" >originalSalesPipeline</a>
+                            </li>
+                            <li>
+                                <a href="#pagedSalesPipeline" >pagedSalesPipeline</a>
+                            </li>
+                            <li>
+                                <a href="#rows" >rows</a>
+                            </li>
+                            <li>
+                                <a href="#salesPipeline" >salesPipeline</a>
+                            </li>
+                            <li>
+                                <a href="#salesStageKeys" >salesStageKeys</a>
+                            </li>
+                            <li>
+                                <a href="#searchQuery" >searchQuery</a>
+                            </li>
+                            <li>
+                                <a href="#selectedLead" >selectedLead</a>
+                            </li>
+                            <li>
+                                <a href="#visible" >visible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#deepCopy" >deepCopy</a>
+                            </li>
+                            <li>
+                                <a href="#discardChanges" >discardChanges</a>
+                            </li>
+                            <li>
+                                <a href="#leadTitle" >leadTitle</a>
+                            </li>
+                            <li>
+                                <a href="#loadSalesData" >loadSalesData</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onDrop" >onDrop</a>
+                            </li>
+                            <li>
+                                <a href="#onPageChange" >onPageChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSave" >onSave</a>
+                            </li>
+                            <li>
+                                <a href="#onSearchChange" >onSearchChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit" >onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#showDialog" >showDialog</a>
+                            </li>
+                            <li>
+                                <a href="#showToast" >showToast</a>
+                            </li>
+                            <li>
+                                <a href="#updatePagedSalesPipeline" >updatePagedSalesPipeline</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allSales$" >allSales$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(salesService: SalesService, messageService: MessageService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:122</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>salesService</td>
+                                                  
+                                                        <td>
+                                                                    <code>SalesService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                    <code>MessageService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="allSales$"></a>
+                        <b>allSales$</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Observable&lt;SalesOpportunity[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Required : </i>&nbsp;<b>true</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:20</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deepCopy"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>deepCopy</b></span>
+                        <a href="#deepCopy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deepCopy(obj: T)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="279"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:279</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>obj</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>T</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="discardChanges"></a>
+                    <span class="name">
+                        <span ><b>discardChanges</b></span>
+                        <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>discardChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="85"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="leadTitle"></a>
+                    <span class="name">
+                        <span ><b>leadTitle</b></span>
+                        <a href="#leadTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>leadTitle(lead: SalesOpportunity)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="274"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:274</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>lead</td>
+                                            <td>
+                                                        <code>SalesOpportunity</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSalesData"></a>
+                    <span class="name">
+                        <span ><b>loadSalesData</b></span>
+                        <a href="#loadSalesData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadSalesData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onDrop"></a>
+                    <span class="name">
+                        <span ><b>onDrop</b></span>
+                        <a href="#onDrop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onDrop(event: CdkDragDrop<SalesOpportunity[]>, newStage: SalesStage)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:196</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>CdkDragDrop&lt;SalesOpportunity[]&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>newStage</td>
+                                            <td>
+                                                        <code>SalesStage</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPageChange"></a>
+                    <span class="name">
+                        <span ><b>onPageChange</b></span>
+                        <a href="#onPageChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPageChange(event: PaginatorState, stage: SalesStage)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>PaginatorState</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>stage</td>
+                                            <td>
+                                                        <code>SalesStage</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                        <span ><b>onSave</b></span>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSave()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSearchChange"></a>
+                    <span class="name">
+                        <span ><b>onSearchChange</b></span>
+                        <a href="#onSearchChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSearchChange()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <span ><b>onSubmit</b></span>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showDialog"></a>
+                    <span class="name">
+                        <span ><b>showDialog</b></span>
+                        <a href="#showDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showDialog(lead: SalesOpportunity)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>lead</td>
+                                            <td>
+                                                        <code>SalesOpportunity</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showToast"></a>
+                    <span class="name">
+                        <span ><b>showToast</b></span>
+                        <a href="#showToast"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showToast(toast: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>toast</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updatePagedSalesPipeline"></a>
+                    <span class="name">
+                        <span ><b>updatePagedSalesPipeline</b></span>
+                        <a href="#updatePagedSalesPipeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updatePagedSalesPipeline()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bgClasses"></a>
+                    <span class="name">
+                        <span ><b>bgClasses</b></span>
+                        <a href="#bgClasses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;SalesStage | string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        PROSPECTING:
+            &#x27;bg-blue-100 text-blue-600 dark:border-blue-600 dark:text-blue-200 dark:bg-transparent &#x27;,
+        QUALIFICATION:
+            &#x27;bg-purple-100 text-purple-600 dark:border-purple-600 dark:text-purple-200 dark:bg-transparent &#x27;,
+        CLOSED_LOST:
+            &#x27;bg-red-100 text-red-600 dark:border-red-600 dark:text-red-200 dark:bg-transparent &#x27;,
+        CLOSED_WON:
+            &#x27;bg-green-100 text-green-600 dark:border-green-600 dark:text-green-200 dark:bg-transparent &#x27;,
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroy$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>destroy$</b></span>
+                        <a href="#destroy$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;void&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filteredSalesPipeline"></a>
+                    <span class="name">
+                        <span ><b>filteredSalesPipeline</b></span>
+                        <a href="#filteredSalesPipeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;SalesStage | SalesOpportunity[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ PROSPECTING: [], QUALIFICATION: [], CLOSED_LOST: [], CLOSED_WON: [] }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="first"></a>
+                    <span class="name">
+                        <span ><b>first</b></span>
+                        <a href="#first"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;SalesStage | number&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ PROSPECTING: 0, QUALIFICATION: 0, CLOSED_LOST: 0, CLOSED_WON: 0 }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modifiedLeads"></a>
+                    <span class="name">
+                        <span ><b>modifiedLeads</b></span>
+                        <a href="#modifiedLeads"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SalesOpportunity[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="originalSalesPipeline"></a>
+                    <span class="name">
+                        <span ><b>originalSalesPipeline</b></span>
+                        <a href="#originalSalesPipeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;SalesStage | SalesOpportunity[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        PROSPECTING: [],
+        QUALIFICATION: [],
+        CLOSED_LOST: [],
+        CLOSED_WON: [],
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pagedSalesPipeline"></a>
+                    <span class="name">
+                        <span ><b>pagedSalesPipeline</b></span>
+                        <a href="#pagedSalesPipeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;SalesStage | SalesOpportunity[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        PROSPECTING: [],
+        QUALIFICATION: [],
+        CLOSED_LOST: [],
+        CLOSED_WON: [],
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rows"></a>
+                    <span class="name">
+                        <span ><b>rows</b></span>
+                        <a href="#rows"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>4</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="salesPipeline"></a>
+                    <span class="name">
+                        <span ><b>salesPipeline</b></span>
+                        <a href="#salesPipeline"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Record&lt;SalesStage | SalesOpportunity[]&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        PROSPECTING: [],
+        QUALIFICATION: [],
+        CLOSED_LOST: [],
+        CLOSED_WON: [],
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="salesStageKeys"></a>
+                    <span class="name">
+                        <span ><b>salesStageKeys</b></span>
+                        <a href="#salesStageKeys"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>Object.values(SalesStage)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchQuery"></a>
+                    <span class="name">
+                        <span ><b>searchQuery</b></span>
+                        <a href="#searchQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedLead"></a>
+                    <span class="name">
+                        <span ><b>selectedLead</b></span>
+                        <a href="#selectedLead"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SalesOpportunity | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="visible"></a>
+                    <span class="name">
+                        <span ><b>visible</b></span>
+                        <a href="#visible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/crm-services/sales-automation/components/sales-pipeline/sales-pipeline.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit, OnDestroy } from &#x27;@angular/core&#x27;;
+import {
+    SalesOpportunity,
+    SalesStage,
+} from &#x27;../../../../../models/SalesOpportunity&#x27;;
+import { SalesService } from &#x27;../../service/sales.service&#x27;;
+import { Observable, Subject, takeUntil } from &#x27;rxjs&#x27;;
+import { CdkDragDrop } from &#x27;@angular/cdk/drag-drop&#x27;;
+import { PaginatorState } from &#x27;primeng/paginator&#x27;;
+import { FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
+import { MessageService } from &#x27;primeng/api&#x27;;
+
+@Component({
+    selector: &#x27;app-sales-pipeline&#x27;,
+    standalone: false,
+    templateUrl: &#x27;./sales-pipeline.component.html&#x27;,
+    styleUrl: &#x27;./sales-pipeline.component.scss&#x27;,
+})
+export class SalesPipelineComponent implements OnInit, OnDestroy {
+    @Input({ required: true }) allSales$!: Observable&lt;SalesOpportunity[]&gt;;
+
+    formGroup!: FormGroup;
+    selectedLead: SalesOpportunity | null &#x3D; null;
+    modifiedLeads: SalesOpportunity[] &#x3D; [];
+    loading &#x3D; false;
+    searchQuery: string &#x3D; &#x27;&#x27;;
+    filteredSalesPipeline: Record&lt;SalesStage, SalesOpportunity[]&gt; &#x3D; { PROSPECTING: [], QUALIFICATION: [], CLOSED_LOST: [], CLOSED_WON: [] };
+    private readonly destroy$ &#x3D; new Subject&lt;void&gt;();
+
+    salesPipeline: Record&lt;SalesStage, SalesOpportunity[]&gt; &#x3D; {
+        PROSPECTING: [],
+        QUALIFICATION: [],
+        CLOSED_LOST: [],
+        CLOSED_WON: [],
+    };
+
+    first: Record&lt;SalesStage, number&gt; &#x3D; { PROSPECTING: 0, QUALIFICATION: 0, CLOSED_LOST: 0, CLOSED_WON: 0 };
+    rows: number &#x3D; 4;
+    pagedSalesPipeline: Record&lt;SalesStage, SalesOpportunity[]&gt; &#x3D; {
+        PROSPECTING: [],
+        QUALIFICATION: [],
+        CLOSED_LOST: [],
+        CLOSED_WON: [],
+    };
+
+
+    originalSalesPipeline: Record&lt;SalesStage, SalesOpportunity[]&gt; &#x3D; {
+        PROSPECTING: [],
+        QUALIFICATION: [],
+        CLOSED_LOST: [],
+        CLOSED_WON: [],
+    };
+
+    showToast(toast: { severity: string, summary: string, message: string }) {
+        this.messageService.add({ severity: toast.severity, summary: toast.summary, detail: toast.message });
+    }
+
+    onPageChange(event: PaginatorState, stage: SalesStage) {
+        this.first[stage] &#x3D; event.first ?? 0;
+        this.rows &#x3D; event.rows ?? 4;
+        this.updatePagedSalesPipeline();
+    }
+
+
+    onSave() {
+        this.loading &#x3D; true;
+        this.modifiedLeads.forEach(
+            (lead) &#x3D;&gt; this.salesService.updateSales(lead).subscribe({
+                next: (sale: SalesOpportunity) &#x3D;&gt; {
+                    this.showToast({ severity: &#x27;success&#x27;, message: &#x60;Successfully saved changes for Lead #${sale.opportunityID}&#x60;, summary: &#x27;Success&#x27; })
+                },
+                error: (error: any) &#x3D;&gt; {
+                    this.showToast({ severity: &#x27;error&#x27;, message: error.error.message, summary: &#x27;Error&#x27; })
+                    this.loading &#x3D; false;
+                },
+                complete: () &#x3D;&gt; {
+                    this.modifiedLeads &#x3D; [];
+                    this.loading &#x3D; false;
+                    this.loadSalesData();
+                },
+            })
+        );
+    }
+
+    discardChanges() {
+        this.salesPipeline &#x3D; this.deepCopy(this.originalSalesPipeline);
+        this.modifiedLeads &#x3D; [];
+        this.updatePagedSalesPipeline();
+        this.showToast({ severity: &#x27;success&#x27;, message: &#x60;All changes discarded successfully&#x60;, summary: &#x27;Success&#x27; })
+    }
+
+    visible: boolean &#x3D; false;
+
+    showDialog(lead: SalesOpportunity) {
+        this.selectedLead &#x3D; lead;
+        this.visible &#x3D; true;
+    }
+
+    onSearchChange() {
+        this.filteredSalesPipeline &#x3D; this.salesStageKeys.reduce((acc, stage) &#x3D;&gt; {
+            acc[stage] &#x3D; this.salesPipeline[stage].filter(lead &#x3D;&gt;
+                lead.customerID.toString().includes(this.searchQuery) ||
+                lead.opportunityID.toString().includes(this.searchQuery)
+            );
+            return acc;
+        }, {} as Record&lt;SalesStage, SalesOpportunity[]&gt;);
+
+        this.updatePagedSalesPipeline(); // Ensure pagination reflects filtered results
+    }
+
+    bgClasses: Record&lt;SalesStage, string&gt; &#x3D; {
+        PROSPECTING:
+            &#x27;bg-blue-100 text-blue-600 dark:border-blue-600 dark:text-blue-200 dark:bg-transparent &#x27;,
+        QUALIFICATION:
+            &#x27;bg-purple-100 text-purple-600 dark:border-purple-600 dark:text-purple-200 dark:bg-transparent &#x27;,
+        CLOSED_LOST:
+            &#x27;bg-red-100 text-red-600 dark:border-red-600 dark:text-red-200 dark:bg-transparent &#x27;,
+        CLOSED_WON:
+            &#x27;bg-green-100 text-green-600 dark:border-green-600 dark:text-green-200 dark:bg-transparent &#x27;,
+    };
+
+    salesStageKeys &#x3D; Object.values(SalesStage);
+
+    constructor(private readonly salesService: SalesService, private readonly messageService: MessageService) { }
+
+    ngOnInit(): void {
+        this.formGroup &#x3D; new FormGroup({
+            date: new FormControl&lt;Date | null&gt;(null, {
+                validators: [
+                    (control) &#x3D;&gt; {
+                        const value &#x3D; control.value;
+                        if (!value) {
+                            return { required: true };
+                        }
+                        if (value &lt;&#x3D; new Date()) {
+                            return { futureDate: true };
+                        }
+                        if (this.selectedLead &amp;&amp; value &gt;&#x3D; new Date(this.selectedLead.closingDate)) {
+                            return { beforeClosingDate: true };
+                        }
+                        return null;
+                    },
+                ],
+                updateOn: &#x27;change&#x27;,
+            }),
+        });
+
+        this.salesService.salesList$.pipe(takeUntil(this.destroy$)).subscribe((sales) &#x3D;&gt; {
+            this.salesStageKeys.forEach(
+                (stage) &#x3D;&gt;
+                    (this.salesPipeline[stage] &#x3D; sales.filter((sale) &#x3D;&gt; sale.salesStage &#x3D;&#x3D;&#x3D; stage).reverse())
+            );
+            this.originalSalesPipeline &#x3D; this.deepCopy(this.salesPipeline);
+            this.updatePagedSalesPipeline();
+        });
+    }
+
+
+    loadSalesData() {
+        this.allSales$.pipe(takeUntil(this.destroy$)).subscribe((sales) &#x3D;&gt; {
+            this.salesStageKeys.forEach(
+                (stage) &#x3D;&gt;
+                    (this.salesPipeline[stage] &#x3D; sales.filter(
+                        (sale) &#x3D;&gt; sale.salesStage &#x3D;&#x3D;&#x3D; stage
+                    ).reverse())
+            );
+            // Create a deep copy of the initial sales data
+            this.originalSalesPipeline &#x3D; this.deepCopy(this.salesPipeline);
+            this.updatePagedSalesPipeline();
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+    updatePagedSalesPipeline() {
+        const pipelineData &#x3D; this.searchQuery ? this.filteredSalesPipeline : this.salesPipeline;
+
+        this.salesStageKeys.forEach((stage) &#x3D;&gt; {
+            const data &#x3D; pipelineData[stage] || [];
+            const totalRecords &#x3D; data.length;
+
+            // Ensure &#x60;first&#x60; doesn&#x27;t exceed total items
+            this.first[stage] &#x3D; Math.min(this.first[stage], totalRecords &gt; 0 ? totalRecords - 1 : 0);
+
+            const startIndex &#x3D; this.first[stage];
+            const endIndex &#x3D; Math.min(startIndex + this.rows, totalRecords);
+
+            this.pagedSalesPipeline[stage] &#x3D; data.slice(startIndex, endIndex);
+        });
+    }
+
+
+
+    onDrop(event: CdkDragDrop&lt;SalesOpportunity[]&gt;, newStage: SalesStage) {
+        if (event.previousContainer !&#x3D;&#x3D; event.container) {
+            const lead &#x3D; event.previousContainer.data[event.previousIndex];
+            const previousStage &#x3D; event.previousContainer.id as SalesStage;
+
+            const leadCopy &#x3D; { ...lead };
+            leadCopy.salesStage &#x3D; newStage;
+
+            const existingIndex &#x3D; this.modifiedLeads.findIndex(
+                (modifiedLead) &#x3D;&gt; modifiedLead.opportunityID &#x3D;&#x3D;&#x3D; leadCopy.opportunityID
+            );
+
+            if (existingIndex &#x3D;&#x3D;&#x3D; -1) {
+                this.modifiedLeads.push(leadCopy);
+            } else {
+                this.modifiedLeads[existingIndex] &#x3D; leadCopy;
+            }
+
+            const previousIndexInOriginal &#x3D; this.salesPipeline[
+                previousStage
+            ].findIndex((item) &#x3D;&gt; item.opportunityID &#x3D;&#x3D;&#x3D; lead.opportunityID);
+            if (previousIndexInOriginal !&#x3D;&#x3D; -1) {
+                this.salesPipeline[previousStage].splice(previousIndexInOriginal, 1);
+            }
+
+            lead.salesStage &#x3D; newStage;
+            this.salesPipeline[newStage].splice(
+                event.currentIndex + (this.first[newStage] || 0),
+                0,
+                lead
+            );
+
+            this.updatePagedSalesPipeline();
+        }
+    }
+
+    onSubmit() {
+        if (this.formGroup.valid &amp;&amp; this.selectedLead) {
+            const selectedDate &#x3D; this.formGroup.get(&#x27;date&#x27;)?.value as Date;
+            const year &#x3D; selectedDate.getFullYear();
+            const month &#x3D; (selectedDate.getMonth() + 1).toString().padStart(2, &#x27;0&#x27;);
+            const day &#x3D; selectedDate.getDate().toString().padStart(2, &#x27;0&#x27;);
+            const formattedDate &#x3D; &#x60;${year}-${month}-${day}&#x60;;
+
+            const updatedLead &#x3D; { ...this.selectedLead };
+            updatedLead.followUpReminder &#x3D; formattedDate;
+
+            const existingIndexModified &#x3D; this.modifiedLeads.findIndex(
+                (modifiedLead) &#x3D;&gt; modifiedLead.opportunityID &#x3D;&#x3D;&#x3D; updatedLead.opportunityID
+            );
+            if (existingIndexModified &#x3D;&#x3D;&#x3D; -1) {
+                this.modifiedLeads.push(updatedLead);
+            } else {
+                this.modifiedLeads[existingIndexModified].followUpReminder &#x3D;
+                    updatedLead.followUpReminder;
+            }
+
+            // Update the lead in the salesPipeline
+            for (const stage in this.salesPipeline) {
+                const index &#x3D; this.salesPipeline[stage as SalesStage].findIndex(
+                    (lead) &#x3D;&gt; lead.opportunityID &#x3D;&#x3D;&#x3D; updatedLead.opportunityID
+                );
+                if (index !&#x3D;&#x3D; -1) {
+                    this.salesPipeline[stage as SalesStage][index] &#x3D; {
+                        ...this.salesPipeline[stage as SalesStage][index],
+                        followUpReminder: formattedDate,
+                    };
+                    break; // Lead found and updated
+                }
+            }
+
+            // Update the pagedSalesPipeline
+            this.updatePagedSalesPipeline();
+
+            this.visible &#x3D; false;
+        }
+    }
+
+    leadTitle(lead: SalesOpportunity) {
+        return &#x60;ID ${lead.opportunityID}&#x60;;
+    }
+
+    // Helper function for deep copying objects
+    private deepCopy&lt;T&gt;(obj: T): T {
+        return JSON.parse(JSON.stringify(obj));
+    }
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;p-fluid&gt;
+  &lt;div class&#x3D;&quot;card&quot;&gt;
+      &lt;div class&#x3D;&quot;font-bold text-xl&quot;&gt;Sales Pipeline&lt;/div&gt;
+      &lt;div class&#x3D;&quot;font-semibold text-muted-color text-sm mb-4&quot;&gt;
+          Drag and drop leads to change sales-stage
+      &lt;/div&gt;
+      &lt;input
+          type&#x3D;&quot;text&quot;
+          placeholder&#x3D;&quot;Search Leads...&quot;
+          class&#x3D;&quot;p-inputtext w-full&quot;
+          [(ngModel)]&#x3D;&quot;searchQuery&quot;
+          (input)&#x3D;&quot;onSearchChange()&quot;
+      /&gt;
+      &lt;div class&#x3D;&quot;flex my-4  items-center justify-between&quot;&gt;
+          &lt;div class&#x3D;&quot;flex gap-2&quot;&gt;
+              &lt;p-button pTooltip&#x3D;&quot;Press &#x27;Save Changes&#x27; to save changes.&quot;  label&#x3D;&quot;Changes&quot; [badge]&#x3D;&quot;modifiedLeads.length.toString()&quot; label&#x3D;&quot;Changes&quot; icon&#x3D;&quot;pi pi-file-edit&quot; /&gt;
+              &lt;p-button pTooltip&#x3D;&quot;Discard Changes&quot; icon&#x3D;&quot;pi pi-trash&quot; severity&#x3D;&quot;danger&quot; (click)&#x3D;&quot;discardChanges()&quot; [disabled]&#x3D;&quot;modifiedLeads.length&#x3D;&#x3D;0&quot;/&gt;
+      &lt;/div&gt;
+
+          &lt;p-button pTooltip&#x3D;&quot;Save Changes&quot; tooltipPosition&#x3D;&quot;left&quot; label&#x3D;&quot;Save Changes&quot; icon&#x3D;&quot;pi pi-save&quot; (click)&#x3D;&quot;onSave()&quot; [disabled]&#x3D;&quot;modifiedLeads.length&#x3D;&#x3D;0&quot; [loading]&#x3D;&quot;loading&quot;/&gt;
+  &lt;/div&gt;
+      &lt;div class&#x3D;&quot;grid grid-cols-4&quot;&gt;
+          &lt;div
+              class&#x3D;&quot;flex flex-col gap-4 items-center&quot;
+              *ngFor&#x3D;&quot;let stage of salesStageKeys&quot;
+              cdkDropList
+              [cdkDropListData]&#x3D;&quot;pagedSalesPipeline[stage]&quot;
+              [cdkDropListConnectedTo]&#x3D;&quot;salesStageKeys&quot;
+              (cdkDropListDropped)&#x3D;&quot;onDrop($event, stage)&quot;
+              [id]&#x3D;&quot;stage&quot;
+          &gt;
+              &lt;div
+                  [ngClass]&#x3D;&quot;
+                      bgClasses[stage] +
+                      &#x27;border px-4 py-2 w-[98%]  flex justify-between items-center rounded-md shadow-md backdrop-blur-md&#x27;
+                  &quot;
+              &gt;
+                  &lt;p class&#x3D;&quot;m-0 font-bold text-sm md: text-base&quot;&gt;{{ stage | titlecase }}&lt;/p&gt;
+                  &lt;p&gt;{{ (searchQuery ? filteredSalesPipeline[stage].length : salesPipeline[stage].length) || 0 }}&lt;/p&gt;
+              &lt;/div&gt;
+              &lt;div
+                  [ngClass]&#x3D;&quot;&#x27;mx-auto w-[99%]&#x27;&quot;
+                  *ngFor&#x3D;&quot;let lead of pagedSalesPipeline[stage]&quot;
+                  cdkDrag
+              &gt;
+                  &lt;p-panel [toggleable]&#x3D;&quot;true&quot; [collapsed]&#x3D;&quot;true&quot;&gt;
+                      &lt;ng-template #header&gt;
+                          &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+                              &lt;span class&#x3D;&quot;font-bold&quot;&gt;{{ leadTitle(lead) }}&lt;/span&gt;
+                          &lt;/div&gt;
+                      &lt;/ng-template&gt;
+                      &lt;ng-template #footer&gt;
+                          &lt;span class&#x3D;&quot;text-yellow-500 dark:text-yellow-400 mb-2 text-sm&quot; *ngIf&#x3D;&quot;lead.followUpReminder&quot;
+                              &gt;Reminder is set for {{lead.followUpReminder}}&lt;/span
+                          &gt;
+                          &lt;p-button
+                              icon&#x3D;&quot;pi pi-clock&quot;
+                              severity&#x3D;&quot;secondary&quot;
+                              rounded
+                              text
+                              label&#x3D;&quot;Set Reminder&quot;
+                              *ngIf&#x3D;&quot;!lead.followUpReminder&quot;
+                              (click)&#x3D;&quot;showDialog(lead)&quot;
+                          &gt;&lt;/p-button&gt;
+                      &lt;/ng-template&gt;
+                      &lt;div class&#x3D;&quot;m-0&quot;&gt;
+                          &lt;p class&#x3D;&quot;text-xs&quot;&gt;Customer ID: {{ lead.customerID }}&lt;/p&gt;
+                          &lt;p&gt;{{ lead.estimatedValue | currency: &quot;INR&quot; }}&lt;/p&gt;
+                          &lt;div class&#x3D;&quot;flex items-center gap-2&quot;&gt;
+                              &lt;i class&#x3D;&quot;pi pi-calendar&quot;&gt;&lt;/i&gt;
+                              &lt;p class&#x3D;&quot;text-sm&quot;&gt;{{ lead.closingDate }}&lt;/p&gt;
+                          &lt;/div&gt;
+                      &lt;/div&gt;
+                    &lt;/p-panel&gt;
+                  &lt;/div&gt;
+                  &lt;p-paginator
+                      (onPageChange)&#x3D;&quot;onPageChange($event, stage)&quot;
+                      [first]&#x3D;&quot;first[stage]&quot;
+                      [rows]&#x3D;&quot;rows&quot;
+                      [totalRecords]&#x3D;&quot;searchQuery ? (filteredSalesPipeline[stage].length || 0) : (salesPipeline[stage].length || 0)&quot;
+                      [showFirstLastIcon]&#x3D;&quot;false&quot;
+                      [showCurrentPageReport]&#x3D;&quot;true&quot;
+                      [showPageLinks]&#x3D;&quot;false&quot;
+                      [showJumpToPageDropdown]&#x3D;&quot;false&quot;
+                      currentPageReportTemplate&#x3D;&quot;Showing {currentPage} of {totalPages}&quot;
+                  &gt;&lt;/p-paginator&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;p-dialog header&#x3D;&quot;Set a follow-up reminder.&quot; [modal]&#x3D;&quot;true&quot; [(visible)]&#x3D;&quot;visible&quot; [style]&#x3D;&quot;{ width: &#x27;25rem&#x27; }&quot;&gt;
+          &lt;form [formGroup]&#x3D;&quot;formGroup&quot; #registerForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+              &lt;span class&#x3D;&quot;p-text-secondary block mb-8&quot;&gt;Select the date you want.&lt;/span&gt;
+              &lt;div class&#x3D;&quot;mb-4&quot;&gt;
+                  &lt;p-floatlabel variant&#x3D;&quot;on&quot;&gt;
+                      &lt;p-datepicker [inline]&#x3D;&quot;true&quot; inputId&#x3D;&quot;on_label&quot; showIcon iconDisplay&#x3D;&quot;input&quot; formControlName&#x3D;&quot;date&quot; /&gt;
+                  &lt;/p-floatlabel&gt;
+                  &lt;div  *ngIf&#x3D;&quot;formGroup.get(&#x27;date&#x27;)?.invalid &amp;&amp; (formGroup.get(&#x27;date&#x27;)?.dirty || formGroup.get(&#x27;date&#x27;)?.touched)&quot; class&#x3D;&quot;p-error&quot;&gt;
+                      &lt;small class&#x3D;&quot;text-red-500&quot; *ngIf&#x3D;&quot;formGroup.get(&#x27;date&#x27;)?.errors?.[&#x27;required&#x27;]&quot;&gt;Date is required.&lt;/small&gt;
+                      &lt;small class&#x3D;&quot;text-red-500&quot; *ngIf&#x3D;&quot;formGroup.get(&#x27;date&#x27;)?.errors?.[&#x27;futureDate&#x27;]&quot;&gt;Date must be in the future.&lt;/small&gt;
+                      &lt;small class&#x3D;&quot;text-red-500&quot; *ngIf&#x3D;&quot;formGroup.get(&#x27;date&#x27;)?.errors?.[&#x27;beforeClosingDate&#x27;]&quot;&gt;Date must be before closing date.&lt;/small&gt;
+                  &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;flex justify-end gap-2&quot;&gt;
+                  &lt;p-button label&#x3D;&quot;Cancel&quot; severity&#x3D;&quot;secondary&quot; (click)&#x3D;&quot;visible &#x3D; false&quot; /&gt;
+                  &lt;p-button label&#x3D;&quot;Save&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;!formGroup.valid&quot;/&gt;
+              &lt;/div&gt;
+          &lt;/form&gt;
+      &lt;/p-dialog&gt;
+  &lt;/p-fluid&gt;</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p-fluid>  <div class="card">      <div class="font-bold text-xl">Sales Pipeline</div>      <div class="font-semibold text-muted-color text-sm mb-4">          Drag and drop leads to change sales-stage      </div>      <input          type="text"          placeholder="Search Leads..."          class="p-inputtext w-full"          [(ngModel)]="searchQuery"          (input)="onSearchChange()"      />      <div class="flex my-4  items-center justify-between">          <div class="flex gap-2">              <p-button pTooltip="Press \'Save Changes\' to save changes."  label="Changes" [badge]="modifiedLeads.length.toString()" label="Changes" icon="pi pi-file-edit" />              <p-button pTooltip="Discard Changes" icon="pi pi-trash" severity="danger" (click)="discardChanges()" [disabled]="modifiedLeads.length==0"/>      </div>          <p-button pTooltip="Save Changes" tooltipPosition="left" label="Save Changes" icon="pi pi-save" (click)="onSave()" [disabled]="modifiedLeads.length==0" [loading]="loading"/>  </div>      <div class="grid grid-cols-4">          <div              class="flex flex-col gap-4 items-center"              *ngFor="let stage of salesStageKeys"              cdkDropList              [cdkDropListData]="pagedSalesPipeline[stage]"              [cdkDropListConnectedTo]="salesStageKeys"              (cdkDropListDropped)="onDrop($event, stage)"              [id]="stage"          >              <div                  [ngClass]="                      bgClasses[stage] +                      \'border px-4 py-2 w-[98%]  flex justify-between items-center rounded-md shadow-md backdrop-blur-md\'                  "              >                  <p class="m-0 font-bold text-sm md: text-base">{{ stage | titlecase }}</p>                  <p>{{ (searchQuery ? filteredSalesPipeline[stage].length : salesPipeline[stage].length) || 0 }}</p>              </div>              <div                  [ngClass]="\'mx-auto w-[99%]\'"                  *ngFor="let lead of pagedSalesPipeline[stage]"                  cdkDrag              >                  <p-panel [toggleable]="true" [collapsed]="true">                      <ng-template #header>                          <div class="flex items-center gap-2">                              <span class="font-bold">{{ leadTitle(lead) }}</span>                          </div>                      </ng-template>                      <ng-template #footer>                          <span class="text-yellow-500 dark:text-yellow-400 mb-2 text-sm" *ngIf="lead.followUpReminder"                              >Reminder is set for {{lead.followUpReminder}}</span                          >                          <p-button                              icon="pi pi-clock"                              severity="secondary"                              rounded                              text                              label="Set Reminder"                              *ngIf="!lead.followUpReminder"                              (click)="showDialog(lead)"                          ></p-button>                      </ng-template>                      <div class="m-0">                          <p class="text-xs">Customer ID: {{ lead.customerID }}</p>                          <p>{{ lead.estimatedValue | currency: "INR" }}</p>                          <div class="flex items-center gap-2">                              <i class="pi pi-calendar"></i>                              <p class="text-sm">{{ lead.closingDate }}</p>                          </div>                      </div>                    </p-panel>                  </div>                  <p-paginator                      (onPageChange)="onPageChange($event, stage)"                      [first]="first[stage]"                      [rows]="rows"                      [totalRecords]="searchQuery ? (filteredSalesPipeline[stage].length || 0) : (salesPipeline[stage].length || 0)"                      [showFirstLastIcon]="false"                      [showCurrentPageReport]="true"                      [showPageLinks]="false"                      [showJumpToPageDropdown]="false"                      currentPageReportTemplate="Showing {currentPage} of {totalPages}"                  ></p-paginator>              </div>          </div>      </div>      <p-dialog header="Set a follow-up reminder." [modal]="true" [(visible)]="visible" [style]="{ width: \'25rem\' }">          <form [formGroup]="formGroup" #registerForm="ngForm" (ngSubmit)="onSubmit()">              <span class="p-text-secondary block mb-8">Select the date you want.</span>              <div class="mb-4">                  <p-floatlabel variant="on">                      <p-datepicker [inline]="true" inputId="on_label" showIcon iconDisplay="input" formControlName="date" />                  </p-floatlabel>                  <div  *ngIf="formGroup.get(\'date\')?.invalid && (formGroup.get(\'date\')?.dirty || formGroup.get(\'date\')?.touched)" class="p-error">                      <small class="text-red-500" *ngIf="formGroup.get(\'date\')?.errors?.[\'required\']">Date is required.</small>                      <small class="text-red-500" *ngIf="formGroup.get(\'date\')?.errors?.[\'futureDate\']">Date must be in the future.</small>                      <small class="text-red-500" *ngIf="formGroup.get(\'date\')?.errors?.[\'beforeClosingDate\']">Date must be before closing date.</small>                  </div>              </div>              <div class="flex justify-end gap-2">                  <p-button label="Cancel" severity="secondary" (click)="visible = false" />                  <p-button label="Save" type="submit" [disabled]="!formGroup.valid"/>              </div>          </form>      </p-dialog>  </p-fluid></div>'
+    var COMPONENTS = [{'name': 'AccessComponent', 'selector': 'app-access'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AnalyticsAndReportingComponent', 'selector': 'app-analytics-and-reporting'},{'name': 'AnalyticsStatsComponent', 'selector': 'app-analytics-stats'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AppConfigurator', 'selector': 'app-configurator'},{'name': 'CardComponent', 'selector': 'app-card'},{'name': 'CreateCampaignComponent', 'selector': 'app-create-campaign'},{'name': 'CreateTicketComponent', 'selector': 'app-create-ticket'},{'name': 'CustomerDataManagementComponent', 'selector': 'app-customer-data-management'},{'name': 'CustomerListComponent', 'selector': 'app-customer-list'},{'name': 'CustomerManagementHeaderComponent', 'selector': 'app-customer-management-header'},{'name': 'CustomermoduleComponent', 'selector': 'app-customermodule'},{'name': 'CustomersAnalyticsComponent', 'selector': 'app-customers-analytics'},{'name': 'CustomerSupportComponent', 'selector': 'app-customer-support'},{'name': 'CustomerSupportHeaderComponent', 'selector': 'app-customer-support-header'},{'name': 'DateComponent', 'selector': 'app-date'},{'name': 'DeleteCampaignComponent', 'selector': 'app-delete-campaign'},{'name': 'DeleteCustomerComponent', 'selector': 'app-delete-customer'},{'name': 'DeleteTicketComponent', 'selector': 'app-delete-ticket'},{'name': 'DemoComponent', 'selector': 'app-demo'},{'name': 'EmployeeComponent', 'selector': 'app-employee'},{'name': 'EmployeeTableComponent', 'selector': 'app-employee-table'},{'name': 'ErrorComponent', 'selector': 'app-error'},{'name': 'FilterCustomerComponent', 'selector': 'app-filter-customer'},{'name': 'FloatingConfiguratorComponent', 'selector': 'app-floating-configurator'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'GetCampaignByIdComponent', 'selector': 'app-get-campaign-by-id'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HeadingComponent', 'selector': 'app-heading'},{'name': 'LandingComponent', 'selector': 'app-landing'},{'name': 'LayoutComponent', 'selector': 'app-layout'},{'name': 'ListCampaignComponent', 'selector': 'app-list-campaign'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MarketingAnalyticsComponent', 'selector': 'app-marketing-analytics'},{'name': 'MarketingAutomationComponent', 'selector': 'app-marketing-automation'},{'name': 'MarketingmoduleComponent', 'selector': 'app-marketingmodule'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'MenuItemComponent', 'selector': '[app-menu-item]'},{'name': 'ModulesComponent', 'selector': 'app-modules'},{'name': 'MonthlySalesTrendComponent', 'selector': 'app-monthly-sales-trend'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'ProfileComponent', 'selector': 'app-profile'},{'name': 'ReachAnalysisComponent', 'selector': 'app-reach-analysis'},{'name': 'RegisterCustomerComponent', 'selector': 'app-register-customer'},{'name': 'SalesAnalyticsComponent', 'selector': 'app-sales-analytics'},{'name': 'SalesAutomationComponent', 'selector': 'app-sales-automation'},{'name': 'SalesPipelineComponent', 'selector': 'app-sales-pipeline'},{'name': 'SearchCustomerComponent', 'selector': 'app-search-customer'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'StatsComponent', 'selector': 'app-stats'},{'name': 'SupportAnalyticsComponent', 'selector': 'app-support-analytics'},{'name': 'SupportmoduleComponent', 'selector': 'app-supportmodule'},{'name': 'TabsComponent', 'selector': 'app-tabs'},{'name': 'TabsCustomerComponent', 'selector': 'app-tabs-customer'},{'name': 'TabsMarketingComponent', 'selector': 'app-tabs-marketing'},{'name': 'TabsSalesComponent', 'selector': 'app-tabs-sales'},{'name': 'TabsSupportComponent', 'selector': 'app-tabs-support'},{'name': 'TimeComponent', 'selector': 'app-time'},{'name': 'TopbarComponent', 'selector': 'app-topbar'},{'name': 'UpdateCustomerComponent', 'selector': 'app-update-customer'},{'name': 'UpdateEmployeeComponent', 'selector': 'app-update-employee'},{'name': 'UpdateTicketComponent', 'selector': 'app-update-ticket'},{'name': 'ViewTicketsComponent', 'selector': 'app-view-tickets'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SalesPipelineComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SalesPipelineComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
