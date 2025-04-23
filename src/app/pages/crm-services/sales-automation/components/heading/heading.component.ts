@@ -148,7 +148,7 @@ export class HeadingComponent implements OnInit {
                         message: `Lead created successfully with id: ${sale.opportunityID}`
                     });
                     const newNotification: Notification = {
-                        heading: 'Customer Data Management',
+                        heading: 'Sales Automation',
                         description: `New lead created with ID: ${sale.opportunityID}.`,
                         time: new Date().toLocaleTimeString()
                     };

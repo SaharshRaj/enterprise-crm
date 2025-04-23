@@ -3,6 +3,9 @@ import { Table } from 'primeng/table';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 import { Employee } from '../../../../models/Employee';
 import { AuthService } from '../../../auth/service/auth.service';
+import { Store } from '@ngrx/store';
+import { selectAuthState } from '../../../../store/auth/auth.selector';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-employee-table',
@@ -21,7 +24,9 @@ export class EmployeeTableComponent implements OnInit {
 
     constructor(
         private readonly authService: AuthService,
-        private readonly confirmationService: ConfirmationService
+        private readonly confirmationService: ConfirmationService,
+        private readonly store : Store,
+        private router: Router
     ) {}
 
     visible: boolean = false;
@@ -35,6 +40,12 @@ export class EmployeeTableComponent implements OnInit {
             this.employees = users;
             this.loading = false;
         });
+
+        this.store.select(selectAuthState).subscribe((authState) => {
+            if(authState.user?.role !== 'MANAGER'){
+                this.router.navigate(['/'])
+            }
+        })
 
         this.items = [
             {

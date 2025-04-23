@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../auth/service/auth.service';
+import { Store } from '@ngrx/store';
+import { selectAuthState } from '../../../store/auth/auth.selector';
 
 @Component({
     selector: 'app-update-employee',
@@ -17,7 +19,8 @@ export class UpdateEmployeeComponent implements OnInit {
     constructor(
         private readonly authService: AuthService,
         private readonly router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private store: Store
     ) {}
 
     form!: FormGroup;
@@ -55,6 +58,13 @@ export class UpdateEmployeeComponent implements OnInit {
             this.role = emp.role;
             this.img = emp.img;
         });
+
+        this.store.select(selectAuthState).subscribe((authState) => {
+                    if(authState.user?.role !== 'MANAGER'){
+                        this.router.navigate(['/'])
+                    }
+                })
+        
 
         this.form = new FormGroup({
             password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/)]),
